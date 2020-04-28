@@ -1,0 +1,21 @@
+Search for a doctor nearby given the desired specialties or general practice.
+Book appointment through website. Define the desired capabilities (i.e. requirements) of this portal.
+The requirements should be ideally expressed from the perspective of a patient who wants to visit the hospital/clinic for consultation and/or procedure.
+Patient - Insurance Provider – Doctor affiliation mapping should be built into the application. Also think about how analytics be used to provide fastest service to patients.
+
+Notes:
+
+Want to search in just the LA area
+Find a doctor who accepts (insurance) and practices (health practices)
+	returns a list of doc, sorted by distance
+	click on the doc you want
+get taken to enter your details
+	calender to pick date and time
+	can add notes
+Confirmation page after
+
+Mock database
+
+can specify distance from input zip
+
+Team name: HealthPair
