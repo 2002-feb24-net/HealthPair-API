@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.ComponentModel.DataAnnotations;
 
 namespace HealthPairDataAccess.DataModels
 {
     public class Data_Patient
     {
+        [Key]
         public int PatientId { get; set; }
         public int InsuranceId { get; set; }
         public string PatientFirstName { get; set; }

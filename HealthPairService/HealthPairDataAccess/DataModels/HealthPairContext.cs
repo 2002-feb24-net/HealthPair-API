@@ -105,13 +105,6 @@ namespace HealthPairDataAccess.DataModels
                     .WithMany(b => b.InsuranceProviders)
                     .HasForeignKey(bc => bc.ProviderId);
             });
-            modelBuilder.Entity<Data_Insurance>().HasData(
-                new Data_Insurance()
-                {
-                    InsuranceId = 1,
-                    InsuranceName = "Test Insurance Name"
-                }
-            );
 
             modelBuilder.Entity<Data_Patient>(entity =>
             {
