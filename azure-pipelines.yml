@@ -1,7 +1,9 @@
-trigger:
-- master
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
 
-pr:
+trigger:
 - master
 
 stages:
@@ -10,7 +12,7 @@ stages:
 
   variables:
     sdkVersion: 3.1.x
-    solutionPath: .
+    solutionPath: HealthPair
     buildConfiguration: Release
 
   jobs:
@@ -18,30 +20,32 @@ stages:
   - job: build
 
     pool:
-      vmImage: ubuntu-latest
+     vmImage: 'ubuntu-latest'
+
 
     steps:
 
-    - task: UseDotNet@2
-      inputs:
-        packageType: sdk
-        version: $(sdkVersion)
-      displayName: dotnet $(sdkVersion)
+     - task: UseDotNet@2
+       inputs:
+         packageType: sdk
+         version: $(sdkVersion)
+       displayName: dotnet $(sdkVersion)
 
-    - task: DotNetCoreCLI@2
-      inputs:
-        command: publish
-        publishWebProjects: true
-        arguments:
-          --configuration $(buildConfiguration)
-          --output $(Build.ArtifactStagingDirectory)/app
-        modifyOutputPath: false
-        zipAfterPublish: false
-      displayName: dotnet publish
+     - task: DotNetCoreCLI@2
+       inputs:
+         command: publish
+         publishWebProjects: true
+         arguments:
+           --configuration $(buildConfiguration)
+           --output $(Build.ArtifactStagingDirectory)/app
+         modifyOutputPath: false
+         zipAfterPublish: false
+       displayName: dotnet publish
 
-    - publish: $(Build.ArtifactStagingDirectory)/app
-      artifact: app
-      displayName: artifact publish app
+     - publish: $(Build.ArtifactStagingDirectory)/app
+       artifact: app
+       displayName: artifact publish app
+
 
   - job: test
 
@@ -55,17 +59,12 @@ stages:
         packageType: sdk
         version: 2.1.x
       displayName: dotnet 2.1.x
-
     - task: SonarCloudPrepare@1
       inputs:
-        SonarCloud: 'SonarCloudConnection'
+        SonarCloud: 'HealthPairSC'
         organization: '2002-feb24-net'
         scannerMode: 'MSBuild'
-        projectKey: '2002-feb24-net_HealthPair-API'
-        projectName: 'HealthPair'
-        extraProperties: |
-          sonar.cs.opencover.reportsPaths=$(Common.TestResultsDirectory)/*/coverage.opencover.xml
-      displayName: sonarcloud analysis prepare
+        projectKey: 'HealthPair-API'
     - task: UseDotNet@2
       inputs:
         packageType: sdk
@@ -108,6 +107,7 @@ stages:
       condition: succeededOrFailed()
       displayName: sonarcloud results build publish
 
+
 - stage: deploy
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   dependsOn: build
@@ -129,12 +129,10 @@ stages:
           - download: current
             artifact: app
             displayName: artifact download app
-            
           - task: AzureRmWebAppDeployment@4
             inputs:
               ConnectionType: 'AzureRM'
-              azureSubscription: 'Azure subscription Pay as you go(750ddbda-b710-43de-9ec8-b03ede22e082)'
+              azureSubscription: 'Azure subscription 1(3)(a2152353-9b25-48cf-bad2-948e50f630f2)'
               appType: 'webApp'
-              WebAppName: 'revatureexpensetracker'
+              WebAppName: 'HealthPair-API'
               packageForLinux: $(Pipeline.Workspace)/app
-            displayName: azure app service deploy
