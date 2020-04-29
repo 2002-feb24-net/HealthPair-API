@@ -83,7 +83,7 @@ stages:
         --logger trx
         --no-build
         --results-directory $(Common.TestResultsDirectory)
-        --settings ./coverlet.runsettings
+        --settings ./coverlett.runsettings
       workingDirectory: $(solutionPath)
       continueOnError: true
       displayName: dotnet test
