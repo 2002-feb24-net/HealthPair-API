@@ -6,13 +6,16 @@
 trigger:
 - master
 
+pr:
+- master
+
 stages:
 
 - stage: build
 
   variables:
     sdkVersion: 3.1.x
-    solutionPath: HealthPair
+    solutionPath: .
     buildConfiguration: Release
 
   jobs:
@@ -50,15 +53,15 @@ stages:
   - job: test
 
     pool:
-      vmImage: ubuntu-latest
+      vmImage: windows-latest
 
     steps:
 
     - task: UseDotNet@2
       inputs:
         packageType: sdk
-        version: 2.1.x
-      displayName: dotnet 2.1.x
+        version: $(sdkVersion)
+      displayName: dotnet $(sdkVersion)
     - task: SonarCloudPrepare@1
       inputs:
         SonarCloud: 'HealthPairSC'
