@@ -74,9 +74,8 @@ stages:
         version: $(sdkVersion)
       displayName: dotnet $(sdkVersion)
 
-    - script: dotnet build
+    - script: dotnet build $(solutionPath)
         --configuration $(buildConfiguration)
-      workingDirectory: $(solutionPath)
       displayName: dotnet build
 
     - script: dotnet test
