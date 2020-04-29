@@ -144,7 +144,7 @@ stages:
             inputs:
               containerregistrytype: 'Container Registry'
               dockerRegistryEndpoint: 'dockerhub-kyranbryant'
-              dockerComposeFile: 'docker-compose.prod.yml'
+              dockerComposeFile: 'docker-compose-prod.yml'
               action: 'Push services'
             displayName: docker-compose push
 
