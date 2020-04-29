@@ -4,7 +4,7 @@ services:
 
   web:
     build: HealthPairService
-    image: healthpairapi:1.0
+    image: kyranbryant/healthpairapi:1.0
     depends_on:
       - data
     ports:
