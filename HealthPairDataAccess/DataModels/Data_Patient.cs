@@ -13,7 +13,7 @@ namespace HealthPairDataAccess.DataModels
         public string PatientAddress1 { get; set; }
         public string PatientCity { get; set; }
         public string PatientState { get; set; }
-        public int PatientZip { get; set; }
+        public int PatientZipcode { get; set; }
         public DateTime PatientBirthDay { get; set; }
         public long PatientPhoneNumber { get; set; }
 

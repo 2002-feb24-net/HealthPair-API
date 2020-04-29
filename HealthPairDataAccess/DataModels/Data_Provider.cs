@@ -16,5 +16,6 @@ namespace HealthPairDataAccess.DataModels
         public Data_Facility Facility { get; set; }
         public Data_Specialty Specialty { get; set; }
         public ICollection<Data_Appointment> Appointments { get; set; } = new List<Data_Appointment>();
+        public ICollection<Data_InsuranceProvider> InsuranceProviders { get; set; } = new List<Data_InsuranceProvider>();
     }
 }

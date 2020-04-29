@@ -10,5 +10,6 @@ namespace HealthPairDataAccess.DataModels
         public string InsuranceName { get; set; }
 
         public ICollection<Data_Patient> Patients { get; set; } = new List<Data_Patient>();
+        public ICollection<Data_InsuranceProvider> InsuranceProviders { get; set; } = new List<Data_InsuranceProvider>();
     }
 }
