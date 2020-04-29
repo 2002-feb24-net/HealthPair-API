@@ -8,9 +8,9 @@ namespace HealthPairDomain.Interfaces
 {
     interface IAppointmentRepository
     {
-        Task<CoreAppointment> GetAppointmentAsync(string search = null);
+        Task<InnerAppointment> GetAppointmentAsync(string search = null);
 
-        Task<CoreAppointment> GetAppointmentByIdAsync(int id);
+        Task<InnerAppointment> GetAppointmentByIdAsync(int id);
 
 
     }

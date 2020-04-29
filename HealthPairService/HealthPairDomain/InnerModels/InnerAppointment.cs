@@ -4,14 +4,14 @@ using System.Text;
 
 namespace HealthPairDomain.InnerModels
 {
-    class CoreAppointment
+    class InnerAppointment
     {
         public int AppointmentId { get; set; }
         public int PatientId { get; set; }
         public int ProviderId { get; set; }
         public DateTime AppointmentDate { get; set; } = DateTime.Now;
 
-        //public Data_Patient Patient { get; set; }
-        //public Data_Provider Provider { get; set; }
+        public InnerPatient Patient { get; set; }
+        public InnerProvider Provider { get; set; }
     }
 }

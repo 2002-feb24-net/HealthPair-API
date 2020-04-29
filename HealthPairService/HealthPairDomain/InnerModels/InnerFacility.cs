@@ -14,6 +14,6 @@ namespace HealthPairDomain.InnerModels
         public int FacilityZipcode { get; set; }
         public long FacilityPhoneNumber { get; set; }
 
-        //public List<> MyProperty { get; set; }
+        public ICollection<InnerProvider> MyProperty { get; set; } = new List<InnerProvider>();
     }
 }
