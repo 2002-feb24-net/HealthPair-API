@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+
+  web:
+    build: HealthPairService
+    image: healthpairapi:1.0
+    depends_on:
+      - data
+    ports:
+      - 80:80
+    networks:
+      - default
+    environment:
+      DatabaseConnection: HealthPairDbPostgreSqlDockerCompose
+      ConnectionStrings__HealthPairDbPostgreSqlDockerCompose: Host=data;Database=HealthPairDb;Username=postgres;Password=Pass@word
+      EnsureDatabaseCreated: 'true'
+      CorsOrigins__0: http://localhost:4200
+      CorsOrigins__1: https://healthpair-api.azurewebsites.net
+      UseHttpsRedirection: 'false'
+
+  data:
+    image: postgres:12.0
+    networks:
+      - default
+    environment:
+      POSTGRES_PASSWORD: Pass@word
+
+networks:
+  default:
