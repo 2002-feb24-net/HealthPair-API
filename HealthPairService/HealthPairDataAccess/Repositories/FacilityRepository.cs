@@ -23,21 +23,13 @@ namespace HealthPairDataAccess.Repositories
         }
 
 
-        public async Task<InnerFacility> AddFacilityAsync(InnerFacility facility)
+        public async Task<Inner_Facility> AddFacilityAsync(Inner_Facility facility)
         {
-            var newFacility = Mapper.MapFacility(facility);
-
+            var newFacility = Mapper.UnMapFacility(facility);
             _context.Facilities.Add(newFacility);
             await _context.SaveChangesAsync();
 
             return Mapper.MapFacility(newFacility);
-        }
-
-        public EntityState ChangedAsync(InnerFacility facility)
-        {
-            var newFacility = Mapper.MapFacility(facility);
-
-            return _context.Entry(newFacility).State = EntityState.Modified;
         }
 
         public async Task<bool> FacilityExistAsync(int id)
@@ -45,14 +37,14 @@ namespace HealthPairDataAccess.Repositories
             return await _context.Facilities.AnyAsync(a => a.FacilityId == id);
         }
 
-        public async Task<IEnumerable<InnerFacility>> GetFacilityAsync(string search = null)
+        public async Task<List<Inner_Facility>> GetFacilityAsync(string search = null)
         {
             var facility = await _context.Facilities.ToListAsync();
 
-            return facility.Select(Mapper.MapFacility);
+            return facility.Select(Mapper.MapFacility).ToList();
         }
 
-        public async Task<InnerFacility> GetFacilityByIdAsync(int id)
+        public async Task<Inner_Facility> GetFacilityByIdAsync(int id)
         {
             var facility = await _context.Facilities
                 .FirstOrDefaultAsync(a => a.FacilityId == id);
@@ -62,7 +54,6 @@ namespace HealthPairDataAccess.Repositories
         public async Task<bool> RemoveFacilityAsync(int id)
         {
             var facility = await _context.Facilities.FindAsync(id);
-
             if (facility is null)
             {
                 return false;

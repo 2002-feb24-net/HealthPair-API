@@ -18,11 +18,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HealthPairDataAccess\HealthPairDataAccess.csproj" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\HealthPairDataAccess\HealthPairDataAccess.csproj" />
   </ItemGroup>
 
 

@@ -22,35 +22,28 @@ namespace HealthPairDataAccess.Repositories
             _context = context;
         }
 
-        public async Task<InnerProvider> AddProviderAsync(InnerProvider provider)
+        public async Task<Inner_Provider> AddProviderAsync(Inner_Provider provider)
         {
-            var newProvider = Mapper.MapProvier(provider);
+            var newProvider = Mapper.UnMapProvider(provider);
 
             _context.Providers.Add(newProvider);
             await _context.SaveChangesAsync();
 
-            return Mapper.MapProvier(newProvider);
+            return Mapper.MapProvider(newProvider);
         }
 
-        public EntityState Changed(InnerProvider provider)
-        {
-            var newProvider = Mapper.MapProvier(provider);
-
-            return _context.Entry(newProvider).State = EntityState.Modified;
-        }
-
-        public async Task<InnerProvider> GetProviderByIdAsync(int id)
+        public async Task<Inner_Provider> GetProviderByIdAsync(int id)
         {
             var provider = await _context.Providers
                 .FirstOrDefaultAsync(a => a.ProviderId == id);
-            return Mapper.MapProvier(provider);
+            return Mapper.MapProvider(provider);
         }
 
-        public async Task<IEnumerable<InnerProvider>> GetProvidersAsync(string search = null)
+        public async Task<List<Inner_Provider>> GetProvidersAsync(string search = null)
         {
             var provider = await _context.Providers.ToListAsync();
 
-            return provider.Select(Mapper.MapProvier);
+            return provider.Select(Mapper.MapProvider).ToList();
         }
 
         public async Task<bool> ProviderExistAsync(int id)

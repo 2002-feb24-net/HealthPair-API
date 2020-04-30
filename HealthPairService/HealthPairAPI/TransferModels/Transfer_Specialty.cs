@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HealthPairDomain.InnerModels
+namespace HealthPairAPI.TransferModels
 {
-    public class InnerSpeciality
+    public class Transfer_Specialty
     {
         public int SpecialtyId { get; set; }
         public string Specialty { get; set; }
 
-        public ICollection<InnerProvider> Providers { get; set; } = new List<InnerProvider>();
+        public List<Transfer_Provider> Providers { get; set; } = new List<Transfer_Provider>();
     }
 }

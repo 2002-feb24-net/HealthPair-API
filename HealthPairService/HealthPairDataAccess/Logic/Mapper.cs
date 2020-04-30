@@ -1,45 +1,43 @@
 ﻿using HealthPairDataAccess.DataModels;
 using HealthPairDomain.InnerModels;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace HealthPairDataAccess.Logic
 {
     public class Mapper
     {
-        //Appointments
 
-        public static InnerAppointment MapAppointments(Data_Appointment appointment)
+// ! ***********************************
+// ! ********* Appointments ************
+// ! ***********************************
+        public static Inner_Appointment MapAppointments(Data_Appointment appointment)
         {
-            return appointment is null ? null : new InnerAppointment
+            return new Inner_Appointment
             {
                 AppointmentId = appointment.AppointmentId,
                 AppointmentDate = appointment.AppointmentDate,
-                PatientId = appointment.PatientId,
-                ProviderId = appointment.ProviderId,
-                //Patient = 
-                //Provider =
+                Patient = MapPatient(appointment.Patient),
+                Provider = MapProvider(appointment.Provider)
             };
         }
 
-        public static Data_Appointment MapAppointments(InnerAppointment appointment)
+        public static Data_Appointment UnMapAppointments(Inner_Appointment appointment)
         {
             return new Data_Appointment
             {
                 AppointmentId = appointment.AppointmentId,
                 AppointmentDate = appointment.AppointmentDate,
-                PatientId = appointment.PatientId,
-                ProviderId = appointment.ProviderId,
-                //Patient = 
-                //Provider =
+                PatientId = appointment.Patient.PatientId,
+                ProviderId = appointment.Provider.ProviderId
             };
         }
 
-        //Facility
-        public static InnerFacility MapFacility(Data_Facility facility)
+// ! ***********************************
+// ! *********** Facility **************
+// ! ***********************************
+        public static Inner_Facility MapFacility(Data_Facility facility)
         {
-            return facility is null ? null : new InnerFacility
+            return new Inner_Facility
             {
                 FacilityId = facility.FacilityId,
                 FacilityAddress1 = facility.FacilityAddress1,
@@ -48,11 +46,10 @@ namespace HealthPairDataAccess.Logic
                 FacilityPhoneNumber = facility.FacilityPhoneNumber,
                 FacilityState = facility.FacilityState,
                 FacilityZipcode = facility.FacilityZipcode,
-                //Providers
             };
         }
 
-        public static Data_Facility MapFacility(InnerFacility facility)
+        public static Data_Facility UnMapFacility(Inner_Facility facility)
         {
             return new Data_Facility
             {
@@ -63,37 +60,36 @@ namespace HealthPairDataAccess.Logic
                 FacilityPhoneNumber = facility.FacilityPhoneNumber,
                 FacilityState = facility.FacilityState,
                 FacilityZipcode = facility.FacilityZipcode,
-                //Providers
             };
         }
 
-        //Insurance
-        public static InnerInsurance MapInsurance(Data_Insurance insurance)
+// ! ***********************************
+// ! *********** Insurance **************
+// ! ***********************************
+        public static Inner_Insurance MapInsurance(Data_Insurance insurance)
         {
-            return insurance is null ? null : new InnerInsurance
+            return new Inner_Insurance
             {
                 InsuranceId = insurance.InsuranceId,
                 InsuranceName = insurance.InsuranceName,
-                //InsuranceProviders
-                //Patients
             };
         }
 
-        public static Data_Insurance MapInsurance(InnerInsurance insurance)
+        public static Data_Insurance UnMapInsurance(Inner_Insurance insurance)
         {
             return new Data_Insurance
             {
                 InsuranceId = insurance.InsuranceId,
                 InsuranceName = insurance.InsuranceName,
-                //InsuranceProviders
-                //Patients
             };
         }
 
-        //Patient
-        public static InnerPatient MapPatient(Data_Patient patient)
+// ! ***********************************
+// ! *********** Patient **************
+// ! ***********************************
+        public static Inner_Patient MapPatient(Data_Patient patient)
         {
-            return patient is null ? null : new InnerPatient
+            return new Inner_Patient
             {
                 PatientId = patient.PatientId,
                 PatientAddress1 = patient.PatientAddress1,
@@ -104,13 +100,11 @@ namespace HealthPairDataAccess.Logic
                 PatientLastName = patient.PatientLastName,
                 PatientPhoneNumber = patient.PatientPhoneNumber,
                 PatientState = patient.PatientState,
-                InsuranceId = patient.InsuranceId,
-                //Appointments = MapAppointments(patient.Appointments)
-                //Insurance
+                Insurance = MapInsurance(patient.Insurance)
             };
         }
 
-        public static Data_Patient MapPatient(InnerPatient patient)
+        public static Data_Patient UnMapPatient(Inner_Patient patient)
         {
             return new Data_Patient
             {
@@ -123,93 +117,57 @@ namespace HealthPairDataAccess.Logic
                 PatientLastName = patient.PatientLastName,
                 PatientPhoneNumber = patient.PatientPhoneNumber,
                 PatientState = patient.PatientState,
-                InsuranceId = patient.InsuranceId,
-                //Appointments = MapAppointments(patient.Appointments)
-                //Insurance
+                InsuranceId = patient.Insurance.InsuranceId,
             };
         }
 
-        //Provider
-        public static Data_Provider MapProvier(InnerProvider provider)
+// ! ***********************************
+// ! *********** Provider **************
+// ! ***********************************
+        public static Inner_Provider MapProvider(Data_Provider provider)
         {
-            return provider is null ? null : new Data_Provider
+            return new Inner_Provider
             {
                 ProviderId = provider.ProviderId,
                 ProviderFirstName = provider.ProviderFirstName,
                 ProviderLastName = provider.ProviderLastName,
                 ProviderPhoneNumber = provider.ProviderPhoneNumber,
-                
-                //Facility
-                FacilityId = provider.FacilityId,
-                //Facility =
-                //Appointment
-                //Specialty
-                //Specialty =
-                SpecialtyId = provider.SpecialtyId,
-
-
+                Facility = MapFacility(provider.Facility),
+                Specialty = MapSpecialty(provider.Specialty)
             };
         }
 
-        public static InnerProvider MapProvier(Data_Provider provider)
+        public static Data_Provider UnMapProvider(Inner_Provider provider)
         {
-            return new InnerProvider
+            return new Data_Provider
             {
                 ProviderId = provider.ProviderId,
                 ProviderFirstName = provider.ProviderFirstName,
                 ProviderLastName = provider.ProviderLastName,
                 ProviderPhoneNumber = provider.ProviderPhoneNumber,
-
-                //Facility
-                FacilityId = provider.FacilityId,
-                //Facility =
-                //Appointment
-                //Specialty
-                //Specialty =
-                SpecialtyId = provider.SpecialtyId,
+                FacilityId = provider.Facility.FacilityId,
+                SpecialtyId = provider.Specialty.SpecialtyId
             };
         }
 
-        public static InnerSpeciality MapSpecialty(Data_Specialty specialty)
+// ! ***********************************
+// ! ********** Specialty **************
+// ! ***********************************
+        public static Inner_Specialty MapSpecialty(Data_Specialty specialty)
         {
-            return specialty is null ? null : new InnerSpeciality
+            return new Inner_Specialty
             {
                 SpecialtyId = specialty.SpecialtyId,
-                Specialty = specialty.Specialty,
-                //Providers
+                Specialty = specialty.Specialty
             };
         }
 
-        public static Data_Specialty MapSpecialty(InnerSpeciality specialty)
+        public static Data_Specialty UnMapSpecialty(Inner_Specialty specialty)
         {
             return new Data_Specialty
             {
                 SpecialtyId = specialty.SpecialtyId,
-                Specialty = specialty.Specialty,
-                //Providers
-            };
-        }
-
-        //Insurance Provider
-        public static InnerInsuranceProvider MapInsuranceProvider(Data_InsuranceProvider insuranceProvider)
-        {
-            return insuranceProvider is null ? null : new InnerInsuranceProvider
-            {
-                InsuranceId = insuranceProvider.InsuranceId,
-                ProviderId = insuranceProvider.ProviderId,
-                //Insurance
-                //Provider
-            };
-        }
-
-        public static Data_InsuranceProvider MapInsuranceProvider(InnerInsuranceProvider insuranceProvider)
-        {
-            return new Data_InsuranceProvider
-            {
-                InsuranceId = insuranceProvider.InsuranceId,
-                ProviderId = insuranceProvider.ProviderId,
-                //Insurance
-                //Provider
+                Specialty = specialty.Specialty
             };
         }
     }

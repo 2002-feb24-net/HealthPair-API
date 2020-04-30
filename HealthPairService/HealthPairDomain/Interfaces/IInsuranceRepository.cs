@@ -9,20 +9,10 @@ namespace HealthPairDomain.Interfaces
 {
     public interface IInsuranceRepository
     {
-        Task<IEnumerable<InnerInsurance>> GetInsuranceAsync(string search = null);
-
-        //Task<IEnumerable<InnerInsurance>> GetInsurancByInsuranceProvidereAsync(string search = null);
-
-        Task<InnerInsurance> GetInsuranceByIdAsync(int id);
-
-        //Task<IEnumerable<InnerInsurance>> GetInsuranceByPatientNameAsync(string search = null);
-
+        Task<List<Inner_Insurance>> GetInsuranceAsync(string search = null);
+        Task<Inner_Insurance> GetInsuranceByIdAsync(int id);
         Task<bool> InsuranceExistAsync(int id);
-
-        Task<InnerInsurance> AddInsuranceAsync(InnerInsurance insurance);
-
+        Task<Inner_Insurance> AddInsuranceAsync(Inner_Insurance insurance);
         Task<bool> RemoveInsuranceAsync(int id);
-
-        EntityState Changed(InnerInsurance insurance);
     }
 }

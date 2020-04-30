@@ -9,20 +9,10 @@ namespace HealthPairDomain.Interfaces
 {
     public interface ISpecialtyRepository
     {
-        Task<IEnumerable<InnerSpeciality>> GetspecialityAsync(string search = null);
-
-        Task<InnerSpeciality> GetspecialityByIdAsync(int id);
-
-        //Task<IEnumerable<InnerSpeciality>> GetspecialityByPatientNameAsync(string search = null);
-
-        //Task<IEnumerable<InnerSpeciality>> GetspecialityByProviderId(int id);
-
-        Task<bool> SpecialityExistAsync(int id);
-
-        Task<InnerSpeciality> AddspecialityAsync(InnerSpeciality speciality);
-
-        Task<bool> RemoveSpecialityAsync(int id);
-
-        EntityState Changed(InnerSpeciality speciality);
+        Task<List<Inner_Specialty>> GetSpecialtyAsync(string search = null);
+        Task<Inner_Specialty> GetSpecialtyByIdAsync(int id);
+        Task<bool> SpecialtyExistAsync(int id);
+        Task<Inner_Specialty> AddSpecialtyAsync(Inner_Specialty specialty);
+        Task<bool> RemoveSpecialtyAsync(int id);
     }
 }
