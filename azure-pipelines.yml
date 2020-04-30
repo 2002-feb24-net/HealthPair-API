@@ -156,7 +156,7 @@ stages:
 
           - task: AzureWebAppContainer@1
             inputs:
-              azureSubscription: 'Azure subscription 1(3)(a2152353-9b25-48cf-bad2-948e50f630f2)'
-              appName: 'HealthPair-Client'
+              azureSubscription: 'HealthPairAPIConnection'
+              appName: 'HealthPair-API'
               multicontainerConfigFile: 'docker-compose-prod.yml'
             displayName: azure app service deploy
