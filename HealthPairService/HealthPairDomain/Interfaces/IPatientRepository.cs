@@ -23,6 +23,6 @@ namespace HealthPairDomain.Interfaces
 
         Task RemovePatientAsync(int id);
 
-        EntityState Changed(InnerPatient patient);
+        Task ChangedAsync(InnerPatient patient);
     }
 }

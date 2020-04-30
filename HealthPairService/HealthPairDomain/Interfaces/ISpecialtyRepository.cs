@@ -23,6 +23,6 @@ namespace HealthPairDomain.Interfaces
 
         Task RemoveSpecialityAsync(int id);
 
-        EntityState Changed(InnerSpeciality speciality);
+        Task Changed(InnerSpeciality speciality);
     }
 }

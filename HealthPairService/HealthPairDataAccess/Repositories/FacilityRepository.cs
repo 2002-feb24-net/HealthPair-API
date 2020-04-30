@@ -34,11 +34,13 @@ namespace HealthPairDataAccess.Repositories
             return Mapper.MapFacility(newFacility);
         }
 
-        public EntityState ChangedAsync(InnerFacility facility)
+        public async Task ChangedAsync(InnerFacility facility)
         {
-            var newFacility = Mapper.MapFacility(facility);
+            var currentFacility = await _context.Facilities
+                .FirstOrDefaultAsync(a => a.FacilityId == facility.FacilityId);
+            var newFacility = Mapper.MapFacility(currentFacility);
 
-            return _context.Entry(newFacility).State = EntityState.Modified;
+            _context.Entry(currentFacility).CurrentValues.SetValues(newFacility);
         }
 
         public async Task<bool> FacilityExistAsync(int id)

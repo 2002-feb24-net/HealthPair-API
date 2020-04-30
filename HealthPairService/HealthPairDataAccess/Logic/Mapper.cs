@@ -151,7 +151,7 @@ namespace HealthPairDataAccess.Logic
             };
         }
 
-        public static InnerProvider MapProvier(Data_Provider provider)
+        public static InnerProvider MapProvider(Data_Provider provider)
         {
             return new InnerProvider
             {

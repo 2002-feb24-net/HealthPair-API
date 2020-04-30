@@ -33,11 +33,13 @@ namespace HealthPairDataAccess.Repositories
             return Mapper.MapSpecialty(newSpeciality);
         }
 
-        public EntityState Changed(InnerSpeciality speciality)
+        public async Task Changed(InnerSpeciality speciality)
         {
-            var newSpeciality = Mapper.MapSpecialty(speciality);
+            var currentSpecialty = await _context.Specialties
+                .FirstOrDefaultAsync(a => a.SpecialtyId == speciality.SpecialtyId);
+            var newSpecialty = Mapper.MapSpecialty(currentSpecialty);
 
-            return _context.Entry(newSpeciality).State = EntityState.Modified;
+            _context.Entry(currentSpecialty).CurrentValues.SetValues(newSpecialty);
         }
 
         public async Task<IEnumerable<InnerSpeciality>> GetspecialityAsync(string search = null)

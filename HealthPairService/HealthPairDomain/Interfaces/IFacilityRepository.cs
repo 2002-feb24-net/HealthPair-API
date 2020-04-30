@@ -21,6 +21,6 @@ namespace HealthPairDomain.Interfaces
 
         Task RemoveFacilityAsync(int id);
 
-        EntityState ChangedAsync(InnerFacility facility);
+        Task ChangedAsync(InnerFacility facility);
     }
 }

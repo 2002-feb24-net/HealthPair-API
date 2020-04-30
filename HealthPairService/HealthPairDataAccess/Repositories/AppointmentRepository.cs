@@ -39,11 +39,15 @@ namespace HealthPairDataAccess.Repositories
             return await _context.Appointments.AnyAsync(a => a.AppointmentId == id);
         }
 
-        public EntityState Changed(InnerAppointment appointment)
+        public async Task Changed(InnerAppointment appointment)
         {
-            var newAppointment = Mapper.MapAppointments(appointment);
+            var currentAppointment = await _context.Appointments
+                .FirstOrDefaultAsync(a => a.AppointmentId == appointment.AppointmentId);
+            var newAppointment = Mapper.MapAppointments(currentAppointment);
 
-            return _context.Entry(newAppointment).State = EntityState.Modified;
+            _context.Entry(currentAppointment).CurrentValues.SetValues(newAppointment);
+
+
         }
 
         public async Task<IEnumerable<InnerAppointment>> GetAppointmentAsync(string search = null)

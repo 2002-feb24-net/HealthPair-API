@@ -33,11 +33,13 @@ namespace HealthPairDataAccess.Repositories
             return Mapper.MapInsurance(newInsurance);
         }
 
-        public EntityState Changed(InnerInsurance insurance)
+        public async Task Changed(InnerInsurance insurance)
         {
-            var newInsurance = Mapper.MapInsurance(insurance);
+            var currentInsurance = await _context.Insurances
+                .FirstOrDefaultAsync(a => a.InsuranceId == insurance.InsuranceId);
+            var newInsurance = Mapper.MapInsurance(currentInsurance);
 
-            return _context.Entry(newInsurance).State = EntityState.Modified;
+            _context.Entry(currentInsurance).CurrentValues.SetValues(newInsurance);
         }
 
         public async Task<IEnumerable<InnerInsurance>> GetInsuranceAsync(string search = null)
