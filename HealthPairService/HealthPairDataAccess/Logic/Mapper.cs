@@ -12,7 +12,7 @@ namespace HealthPairDataAccess.Logic
 
         public static InnerAppointment MapAppointments(Data_Appointment appointment)
         {
-            return new InnerAppointment
+            return appointment is null ? null : new InnerAppointment
             {
                 AppointmentId = appointment.AppointmentId,
                 AppointmentDate = appointment.AppointmentDate,
