@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HealthPairDomain.InnerModels
 {
-    class InnerProvider
+    public class InnerProvider
     {
         public int ProviderId { get; set; }
         public int FacilityId { get; set; }

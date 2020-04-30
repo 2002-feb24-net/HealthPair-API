@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HealthPairDomain.InnerModels
 {
-    class InnerFacility
+    public class InnerFacility
     {
         public int FacilityId { get; set; }
         public string FacilityName { get; set; }
@@ -14,6 +14,6 @@ namespace HealthPairDomain.InnerModels
         public int FacilityZipcode { get; set; }
         public long FacilityPhoneNumber { get; set; }
 
-        public ICollection<InnerProvider> MyProperty { get; set; } = new List<InnerProvider>();
+        public ICollection<InnerProvider> Providers { get; set; } = new List<InnerProvider>();
     }
 }
