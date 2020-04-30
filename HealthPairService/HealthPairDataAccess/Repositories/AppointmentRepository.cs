@@ -69,9 +69,7 @@ namespace HealthPairDataAccess.Repositories
                 return;
             }
             _context.Remove(appointmnent);
-            Save();
-
-            
+            Save(); 
         }
 
         public void Save()
