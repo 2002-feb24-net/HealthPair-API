@@ -21,7 +21,7 @@ namespace HealthPairDomain.Interfaces
 
         Task<InnerProvider> AddProviderAsync(InnerProvider provider);
 
-        Task<bool> RemoveProviderAsync(int id);
+        Task RemoveProviderAsync(int id);
 
         EntityState Changed(InnerProvider provider);
     }

@@ -2,6 +2,7 @@
 using HealthPairDataAccess.Logic;
 using HealthPairDomain.InnerModels;
 using HealthPairDomain.Interfaces;
+using HealthPairDomain.Logic;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace HealthPairDataAccess.Repositories
 {
-    public class ProviderRepository : IProviderRepository
+    public class ProviderRepository : IProviderRepository, ISave
     {
         //Private variable of context
         private readonly HealthPairContext _context;
@@ -27,7 +28,7 @@ namespace HealthPairDataAccess.Repositories
             var newProvider = Mapper.MapProvier(provider);
 
             _context.Providers.Add(newProvider);
-            await _context.SaveChangesAsync();
+            Save();
 
             return Mapper.MapProvier(newProvider);
         }
@@ -58,19 +59,22 @@ namespace HealthPairDataAccess.Repositories
             return await _context.Providers.AnyAsync(a => a.ProviderId == id);
         }
 
-        public async Task<bool> RemoveProviderAsync(int id)
+        public async Task RemoveProviderAsync(int id)
         {
             var provider = await _context.Providers.FindAsync(id);
 
             if (provider is null)
             {
-                return false;
+                return;
             }
 
             _context.Providers.Remove(provider);
-            int written = await _context.SaveChangesAsync();
+            Save();
+        }
 
-            return written > 0;
+        public void Save()
+        {
+            _context.SaveChanges();
         }
     }
 }

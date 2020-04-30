@@ -23,15 +23,16 @@ namespace HealthPairDataAccess.Repositories
             _context = context;
         }
 
-        public async Task<InnerAppointment> AddAppointmentAsync(InnerAppointment appointment)
+        public async Task<InnerAppointment> AddAppointment(InnerAppointment appointment)
         {
             var newAppointment = Mapper.MapAppointments(appointment);
 
             _context.Appointments.Add(newAppointment);
-            Save();
+            await Save();
 
             return Mapper.MapAppointments(newAppointment);
         }
+
 
         public async Task<bool> AppointmentExistAsync(int id)
         {
@@ -69,12 +70,12 @@ namespace HealthPairDataAccess.Repositories
                 return;
             }
             _context.Remove(appointmnent);
-            Save(); 
+            await Save(); 
         }
 
-        public void Save()
+        public async Task Save()
         {
-             _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }
