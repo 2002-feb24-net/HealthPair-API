@@ -13,9 +13,9 @@ namespace HealthPairDomain.Interfaces
 
         Task<InnerAppointment> GetAppointmentByIdAsync(int id);
 
-        Task<IEnumerable<InnerAppointment>> GetAppointmentByPatientNameAsync(string search = null);
+        //Task<IEnumerable<InnerAppointment>> GetAppointmentByPatientNameAsync(string search = null);
 
-        Task<IEnumerable<InnerAppointment>> GetAppointmentByProviderId(int id);
+        //Task<IEnumerable<InnerAppointment>> GetAppointmentByProviderId(int id);
 
         Task<bool> AppointmentExistAsync(int id);
 
