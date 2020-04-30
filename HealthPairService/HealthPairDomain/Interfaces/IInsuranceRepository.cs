@@ -11,11 +11,11 @@ namespace HealthPairDomain.Interfaces
     {
         Task<IEnumerable<InnerInsurance>> GetInsuranceAsync(string search = null);
 
-        Task<IEnumerable<InnerInsurance>> GetInsurancByInsuranceProvidereAsync(string search = null);
+        //Task<IEnumerable<InnerInsurance>> GetInsurancByInsuranceProvidereAsync(string search = null);
 
         Task<InnerInsurance> GetInsuranceByIdAsync(int id);
 
-        Task<IEnumerable<InnerInsurance>> GetInsuranceByPatientNameAsync(string search = null);
+        //Task<IEnumerable<InnerInsurance>> GetInsuranceByPatientNameAsync(string search = null);
 
         Task<bool> InsuranceExistAsync(int id);
 
