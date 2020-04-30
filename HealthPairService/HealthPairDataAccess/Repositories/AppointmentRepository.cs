@@ -22,9 +22,9 @@ namespace HealthPairDataAccess.Repositories
             _context = context;
         }
 
-        public async Task<InnerAppointment> AddAppointmentAsync(InnerAppointment appointment)
+        public async Task<Inner_Appointment> AddAppointmentAsync(Inner_Appointment appointment)
         {
-            var newAppointment = Mapper.MapAppointments(appointment);
+            var newAppointment = Mapper.UnMapAppointments(appointment);
 
             _context.Appointments.Add(newAppointment);
             await _context.SaveChangesAsync();
@@ -37,21 +37,14 @@ namespace HealthPairDataAccess.Repositories
             return await _context.Appointments.AnyAsync(a => a.AppointmentId == id);
         }
 
-        public EntityState Changed(InnerAppointment appointment)
-        {
-            var newAppointment = Mapper.MapAppointments(appointment);
-
-            return _context.Entry(newAppointment).State = EntityState.Modified;
-        }
-
-        public async Task<IEnumerable<InnerAppointment>> GetAppointmentAsync(string search = null)
+        public async Task<List<Inner_Appointment>> GetAppointmentAsync(string search = null)
         {
             var appointments = await _context.Appointments.ToListAsync();
 
-            return appointments.Select(Mapper.MapAppointments);
+            return appointments.Select(Mapper.MapAppointments).ToList();
         }
 
-        public async Task<InnerAppointment> GetAppointmentByIdAsync(int id)
+        public async Task<Inner_Appointment> GetAppointmentByIdAsync(int id)
         {
             //var dataAppointment = Mapper
             var appointment = await _context.Appointments
@@ -61,14 +54,14 @@ namespace HealthPairDataAccess.Repositories
 
         public async Task<bool> RemoveAppointmentAsync(int id)
         {
-            var appointmnent = await _context.Appointments.FindAsync(id);
+            var appointment = await _context.Appointments.FindAsync(id);
 
-            if(appointmnent is null)
+            if(appointment is null)
             {
                 return false;
             }
 
-            _context.Appointments.Remove(appointmnent);
+            _context.Appointments.Remove(appointment);
             int written = await _context.SaveChangesAsync();
 
             return written > 0;

@@ -22,40 +22,27 @@ namespace HealthPairDataAccess.Repositories
             _context = context;
         }
 
-        public async Task<InnerPatient> AddPatientAsync(InnerPatient patient)
+        public async Task<Inner_Patient> AddPatientAsync(Inner_Patient patient)
         {
-            var newAPatient = Mapper.MapPatient(patient);
-
+            var newAPatient = Mapper.UnMapPatient(patient);
             _context.Patients.Add(newAPatient);
             await _context.SaveChangesAsync();
 
             return Mapper.MapPatient(newAPatient);
         }
 
-        public EntityState Changed(InnerPatient patient)
-        {
-            var newAPatient = Mapper.MapPatient(patient);
-
-            return _context.Entry(newAPatient).State = EntityState.Modified;
-        }
-
-        //public Task<IEnumerable<InnerPatient>> GetPatientByAppointmentId(int id)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        public async Task<InnerPatient> GetPatientByIdAsync(int id)
+        public async Task<Inner_Patient> GetPatientByIdAsync(int id)
         {
             var patient = await _context.Patients
                 .FirstOrDefaultAsync(a => a.PatientId == id);
             return Mapper.MapPatient(patient);
         }
 
-        public async Task<IEnumerable<InnerPatient>> GetPatientsAsync(string search = null)
+        public async Task<List<Inner_Patient>> GetPatientsAsync(string search = null)
         {
             var patient = await _context.Patients.ToListAsync();
 
-            return patient.Select(Mapper.MapPatient);
+            return patient.Select(Mapper.MapPatient).ToList();
         }
 
         public async Task<bool> PatientExistAsync(int id)

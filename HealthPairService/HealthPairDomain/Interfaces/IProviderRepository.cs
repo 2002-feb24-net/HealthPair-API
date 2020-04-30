@@ -9,20 +9,10 @@ namespace HealthPairDomain.Interfaces
 {
     public interface IProviderRepository
     {
-        Task<IEnumerable<InnerProvider>> GetProvidersAsync(string search = null);
-
-        Task<InnerProvider> GetProviderByIdAsync(int id);
-
-        //Task<IEnumerable<InnerProvider>> GetProviderByFacilityeNameAsync(string search = null);
-
-        //Task<IEnumerable<InnerProvider>> GetProviderBySpeialitytId(int id);
-
+        Task<List<Inner_Provider>> GetProvidersAsync(string search = null);
+        Task<Inner_Provider> GetProviderByIdAsync(int id);
         Task<bool> ProviderExistAsync(int id);
-
-        Task<InnerProvider> AddProviderAsync(InnerProvider provider);
-
+        Task<Inner_Provider> AddProviderAsync(Inner_Provider provider);
         Task<bool> RemoveProviderAsync(int id);
-
-        EntityState Changed(InnerProvider provider);
     }
 }

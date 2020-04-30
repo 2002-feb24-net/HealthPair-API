@@ -22,31 +22,23 @@ namespace HealthPairDataAccess.Repositories
             _context = context;
         }
 
-        public async Task<InnerInsurance> AddInsuranceAsync(InnerInsurance insurance)
+        public async Task<Inner_Insurance> AddInsuranceAsync(Inner_Insurance insurance)
         {
-            var newInsurance = Mapper.MapInsurance(insurance);
-
+            var newInsurance = Mapper.UnMapInsurance(insurance);
             _context.Insurances.Add(newInsurance);
             await _context.SaveChangesAsync();
 
             return Mapper.MapInsurance(newInsurance);
         }
 
-        public EntityState Changed(InnerInsurance insurance)
-        {
-            var newInsurance = Mapper.MapInsurance(insurance);
-
-            return _context.Entry(newInsurance).State = EntityState.Modified;
-        }
-
-        public async Task<IEnumerable<InnerInsurance>> GetInsuranceAsync(string search = null)
+        public async Task<List<Inner_Insurance>> GetInsuranceAsync(string search = null)
         {
             var insurance = await _context.Insurances.ToListAsync();
 
-            return insurance.Select(Mapper.MapInsurance);
+            return insurance.Select(Mapper.MapInsurance).ToList();
         }
 
-        public async Task<InnerInsurance> GetInsuranceByIdAsync(int id)
+        public async Task<Inner_Insurance> GetInsuranceByIdAsync(int id)
         {
             var insurance = await _context.Insurances
                 .FirstOrDefaultAsync(a => a.InsuranceId == id);
