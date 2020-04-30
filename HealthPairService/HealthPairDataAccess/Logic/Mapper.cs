@@ -39,7 +39,7 @@ namespace HealthPairDataAccess.Logic
         //Facility
         public static InnerFacility MapFacility(Data_Facility facility)
         {
-            return new InnerFacility
+            return facility is null ? null : new InnerFacility
             {
                 FacilityId = facility.FacilityId,
                 FacilityAddress1 = facility.FacilityAddress1,
@@ -70,7 +70,7 @@ namespace HealthPairDataAccess.Logic
         //Insurance
         public static InnerInsurance MapInsurance(Data_Insurance insurance)
         {
-            return new InnerInsurance
+            return insurance is null ? null : new InnerInsurance
             {
                 InsuranceId = insurance.InsuranceId,
                 InsuranceName = insurance.InsuranceName,
@@ -93,7 +93,7 @@ namespace HealthPairDataAccess.Logic
         //Patient
         public static InnerPatient MapPatient(Data_Patient patient)
         {
-            return new InnerPatient
+            return patient is null ? null : new InnerPatient
             {
                 PatientId = patient.PatientId,
                 PatientAddress1 = patient.PatientAddress1,
@@ -132,7 +132,7 @@ namespace HealthPairDataAccess.Logic
         //Provider
         public static Data_Provider MapProvier(InnerProvider provider)
         {
-            return new Data_Provider
+            return provider is null ? null : new Data_Provider
             {
                 ProviderId = provider.ProviderId,
                 ProviderFirstName = provider.ProviderFirstName,
@@ -172,7 +172,7 @@ namespace HealthPairDataAccess.Logic
 
         public static InnerSpeciality MapSpecialty(Data_Specialty specialty)
         {
-            return new InnerSpeciality
+            return specialty is null ? null : new InnerSpeciality
             {
                 SpecialtyId = specialty.SpecialtyId,
                 Specialty = specialty.Specialty,
@@ -193,7 +193,7 @@ namespace HealthPairDataAccess.Logic
         //Insurance Provider
         public static InnerInsuranceProvider MapInsuranceProvider(Data_InsuranceProvider insuranceProvider)
         {
-            return new InnerInsuranceProvider
+            return insuranceProvider is null ? null : new InnerInsuranceProvider
             {
                 InsuranceId = insuranceProvider.InsuranceId,
                 ProviderId = insuranceProvider.ProviderId,
