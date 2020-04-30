@@ -8,5 +8,8 @@ namespace HealthPairDomain.InnerModels
     {
         public int InsuranceId { get; set; }
         public string InsuranceName { get; set; }
+
+        public ICollection<InnerPatient> Patients { get; set; } = new List<InnerPatient>();
+        public ICollection<InnerInsuranceProvider> InsuranceProviders { get; set; } = new List<InnerInsuranceProvider>();
     }
 }
