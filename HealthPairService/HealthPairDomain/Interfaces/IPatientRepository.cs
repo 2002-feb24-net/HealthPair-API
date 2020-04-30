@@ -13,9 +13,9 @@ namespace HealthPairDomain.Interfaces
 
         Task<InnerPatient> GetPatientByIdAsync(int id);
 
-        Task<IEnumerable<InnerPatient>> GetPatientByInsuranceNameAsync(string search = null);
+        //Task<IEnumerable<InnerPatient>> GetPatientByInsuranceNameAsync(string search = null);
 
-        Task<IEnumerable<InnerPatient>> GetPatientByAppointmentId(int id);
+        //Task<IEnumerable<InnerPatient>> GetPatientByAppointmentId(int id);
 
         Task<bool> PatientExistAsync(int id);
 
