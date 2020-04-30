@@ -9,7 +9,9 @@ namespace HealthPairDataAccess.DataModels
     {
         [Key]
         public int PatientId { get; set; }
+        public string PatientPassword { get; set; }
         public int InsuranceId { get; set; }
+        public bool IsAdmin { get; set; }
         public string PatientFirstName { get; set; }
         public string PatientLastName { get; set; }
         public string PatientAddress1 { get; set; }

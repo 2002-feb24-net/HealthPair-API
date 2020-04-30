@@ -13,7 +13,7 @@ namespace HealthPairDomain.Interfaces
 
         Task<InnerFacility> GetFacilityByIdAsync(int id);
 
-        Task<IEnumerable<InnerFacility>> GetFacilityByProviderNameAsync(string search = null);
+        //Task<IEnumerable<InnerFacility>> GetFacilityByProviderNameAsync(string search = null);
 
         Task<bool> FacilityExistAsync(int id);
 
@@ -21,6 +21,6 @@ namespace HealthPairDomain.Interfaces
 
         Task<bool> RemoveFacilityAsync(int id);
 
-        EntityState Changed(InnerFacility facility);
+        EntityState ChangedAsync(InnerFacility facility);
     }
 }
