@@ -2,6 +2,7 @@
 using HealthPairDataAccess.Logic;
 using HealthPairDomain.InnerModels;
 using HealthPairDomain.Interfaces;
+using HealthPairDomain.Logic;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace HealthPairDataAccess.Repositories
 {
-    public class AppointmentRepository : IAppointmentRepository
+    public class AppointmentRepository : IAppointmentRepository, ISave
     {
         //Private variable of context
         private readonly HealthPairContext _context;
@@ -72,6 +73,11 @@ namespace HealthPairDataAccess.Repositories
             int written = await _context.SaveChangesAsync();
 
             return written > 0;
+        }
+
+        public void Save()
+        {
+            _context.SaveChangesAsync();
         }
     }
 }

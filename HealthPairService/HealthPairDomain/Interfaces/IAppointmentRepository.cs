@@ -21,7 +21,7 @@ namespace HealthPairDomain.Interfaces
 
         Task<InnerAppointment> AddAppointmentAsync(InnerAppointment appointment);
 
-        Task<bool> RemoveAppointmentAsync(int id);
+        Task RemoveAppointmentAsync(int id);
 
         EntityState Changed(InnerAppointment appointment);
 
