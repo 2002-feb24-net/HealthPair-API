@@ -13,9 +13,9 @@ namespace HealthPairDomain.Interfaces
 
         Task<InnerProvider> GetProviderByIdAsync(int id);
 
-        Task<IEnumerable<InnerProvider>> GetProviderByFacilityeNameAsync(string search = null);
+        //Task<IEnumerable<InnerProvider>> GetProviderByFacilityeNameAsync(string search = null);
 
-        Task<IEnumerable<InnerProvider>> GetProviderBySpeialitytId(int id);
+        //Task<IEnumerable<InnerProvider>> GetProviderBySpeialitytId(int id);
 
         Task<bool> ProviderExistAsync(int id);
 
