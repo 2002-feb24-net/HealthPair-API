@@ -21,16 +21,6 @@ namespace HealthPairDataAccess.Repositories
         {
             _context = context;
         }
-
-        public async Task<Inner_Specialty> AddSpecialtyAsync(Inner_Specialty specialty)
-        {
-            var newSpecialty = Mapper.UnMapSpecialty(specialty);
-            _context.Specialties.Add(newSpecialty);
-            await _context.SaveChangesAsync();
-
-            return Mapper.MapSpecialty(newSpecialty);
-        }
-
         public async Task<List<Inner_Specialty>> GetSpecialtyAsync(string search = null)
         {
             var specialty = await _context.Specialties.ToListAsync();
@@ -45,23 +35,44 @@ namespace HealthPairDataAccess.Repositories
             return Mapper.MapSpecialty(specialty);
         }
 
-        public async Task<bool> RemoveSpecialtyAsync(int id)
+        public async Task<bool> SpecialtyExistAsync(int id)
+        {
+            return await _context.Specialties.AnyAsync(a => a.SpecialtyId == id);
+        }
+
+        public async Task<Inner_Specialty> AddSpecialtyAsync(Inner_Specialty specialty)
+        {
+            var newSpecialty = Mapper.UnMapSpecialty(specialty);
+            _context.Specialties.Add(newSpecialty);
+            await Save();
+
+            return Mapper.MapSpecialty(newSpecialty);
+        }
+
+        public async Task UpdateSpecialtyAsync(Inner_Specialty specialty)
+        {
+            Data_Specialty currentEntity = await _context.Specialties.FindAsync(specialty.SpecialtyId);
+            Data_Specialty newEntity = Mapper.UnMapSpecialty(specialty);
+
+            _context.Entry(currentEntity).CurrentValues.SetValues(newEntity);
+            await Save();
+        }
+
+        public async Task RemoveSpecialtyAsync(int id)
         {
             var specialty = await _context.Specialties.FindAsync(id);
             if (specialty is null)
             {
-                return false;
+                return;
             }
 
             _context.Specialties.Remove(specialty);
-            int written = await _context.SaveChangesAsync();
-
-            return written > 0;
+            await Save();
         }
 
-        public async Task<bool> SpecialtyExistAsync(int id)
+        private async Task Save()
         {
-            return await _context.Specialties.AnyAsync(a => a.SpecialtyId == id);
+            await _context.SaveChangesAsync();
         }
     }
 }

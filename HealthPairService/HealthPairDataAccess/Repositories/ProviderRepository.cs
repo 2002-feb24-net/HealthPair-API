@@ -22,16 +22,6 @@ namespace HealthPairDataAccess.Repositories
             _context = context;
         }
 
-        public async Task<Inner_Provider> AddProviderAsync(Inner_Provider provider)
-        {
-            var newProvider = Mapper.UnMapProvider(provider);
-
-            _context.Providers.Add(newProvider);
-            await _context.SaveChangesAsync();
-
-            return Mapper.MapProvider(newProvider);
-        }
-
         public async Task<Inner_Provider> GetProviderByIdAsync(int id)
         {
             var provider = await _context.Providers
@@ -51,19 +41,40 @@ namespace HealthPairDataAccess.Repositories
             return await _context.Providers.AnyAsync(a => a.ProviderId == id);
         }
 
-        public async Task<bool> RemoveProviderAsync(int id)
+        public async Task<Inner_Provider> AddProviderAsync(Inner_Provider provider)
+        {
+            var newProvider = Mapper.UnMapProvider(provider);
+
+            _context.Providers.Add(newProvider);
+            await Save();
+
+            return Mapper.MapProvider(newProvider);
+        }
+
+        public async Task UpdateProviderAsync(Inner_Provider provider)
+        {
+            Data_Provider currentEntity = await _context.Providers.FindAsync(provider.ProviderId);
+            Data_Provider newEntity = Mapper.UnMapProvider(provider);
+
+            _context.Entry(currentEntity).CurrentValues.SetValues(newEntity);
+            await Save();
+        }
+
+        public async Task RemoveProviderAsync(int id)
         {
             var provider = await _context.Providers.FindAsync(id);
-
             if (provider is null)
             {
-                return false;
+                return;
             }
 
             _context.Providers.Remove(provider);
-            int written = await _context.SaveChangesAsync();
+            await Save();
+        }
 
-            return written > 0;
+        private async Task Save()
+        {
+            await _context.SaveChangesAsync();
         }
     }
 }
