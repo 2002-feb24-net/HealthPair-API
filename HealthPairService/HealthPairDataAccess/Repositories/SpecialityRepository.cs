@@ -2,6 +2,7 @@
 using HealthPairDataAccess.Logic;
 using HealthPairDomain.InnerModels;
 using HealthPairDomain.Interfaces;
+using HealthPairDomain.Logic;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace HealthPairDataAccess.Repositories
 {
-    public class SpecialityRepository : ISpecialtyRepository
+    public class SpecialityRepository : ISpecialtyRepository, ISave
     {
         //Private variable of context
         private readonly HealthPairContext _context;
@@ -27,7 +28,7 @@ namespace HealthPairDataAccess.Repositories
             var newSpeciality = Mapper.MapSpecialty(speciality);
 
             _context.Specialties.Add(newSpeciality);
-            await _context.SaveChangesAsync();
+            await Save();
 
             return Mapper.MapSpecialty(newSpeciality);
         }
@@ -53,24 +54,27 @@ namespace HealthPairDataAccess.Repositories
             return Mapper.MapSpecialty(speciality);
         }
 
-        public async Task<bool> RemoveSpecialityAsync(int id)
+        public async Task RemoveSpecialityAsync(int id)
         {
             var speciality = await _context.Specialties.FindAsync(id);
 
             if (speciality is null)
             {
-                return false;
+                return;
             }
 
             _context.Specialties.Remove(speciality);
-            int written = await _context.SaveChangesAsync();
-
-            return written > 0;
+            await Save();
         }
 
         public async Task<bool> SpecialityExistAsync(int id)
         {
             return await _context.Specialties.AnyAsync(a => a.SpecialtyId == id);
+        }
+
+        public async Task Save()
+        {
+            await _context.SaveChangesAsync();
         }
     }
 }
