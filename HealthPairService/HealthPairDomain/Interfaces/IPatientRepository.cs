@@ -21,7 +21,7 @@ namespace HealthPairDomain.Interfaces
 
         Task<InnerPatient> AddPatientAsync(InnerPatient patient);
 
-        Task<bool> RemovePatientAsync(int id);
+        Task RemovePatientAsync(int id);
 
         EntityState Changed(InnerPatient patient);
     }

@@ -2,6 +2,7 @@
 using HealthPairDataAccess.Logic;
 using HealthPairDomain.InnerModels;
 using HealthPairDomain.Interfaces;
+using HealthPairDomain.Logic;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace HealthPairDataAccess.Repositories
 {
-    public class PatientRepository : IPatientRepository
+    public class PatientRepository : IPatientRepository, ISave
     {
         //Private variable of context
         private readonly HealthPairContext _context;
@@ -63,19 +64,22 @@ namespace HealthPairDataAccess.Repositories
             return await _context.Patients.AnyAsync(a => a.PatientId == id);
         }
 
-        public async Task<bool> RemovePatientAsync(int id)
+        public async Task RemovePatientAsync(int id)
         {
             var patient = await _context.Patients.FindAsync(id);
 
             if (patient is null)
             {
-                return false;
+                return;
             }
 
-            _context.Patients.Remove(patient);
-            int written = await _context.SaveChangesAsync();
+            _context.Remove(patient);
+            Save();
+        }
 
-            return written > 0;
+        public void Save()
+        {
+            _context.SaveChanges();
         }
     }
 }
