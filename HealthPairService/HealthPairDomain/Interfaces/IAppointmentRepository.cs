@@ -1,4 +1,5 @@
 ﻿using HealthPairDomain.InnerModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,6 +13,17 @@ namespace HealthPairDomain.Interfaces
 
         Task<InnerAppointment> GetAppointmentByIdAsync(int id);
 
+        Task<InnerAppointment> GetAppointmentByPatientIdAsync(int id);
+
+        Task<bool> AppointExistAsync(int id);
+
+        Task<InnerAppointment> AddAppointmentAsync(InnerAppointment appointment);
+
+        Task<bool> RemoveAppointmentAsync(int id);
+
+        //Check if appontment changeg
+
+        EntityState Changed(InnerAppointment appointment);
 
     }
 }
