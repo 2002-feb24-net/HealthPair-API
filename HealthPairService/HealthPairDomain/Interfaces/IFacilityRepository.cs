@@ -19,7 +19,7 @@ namespace HealthPairDomain.Interfaces
 
         Task<InnerFacility> AddFacilityAsync(InnerFacility facility);
 
-        Task<bool> RemoveFacilityAsync(int id);
+        Task RemoveFacilityAsync(int id);
 
         EntityState ChangedAsync(InnerFacility facility);
     }
