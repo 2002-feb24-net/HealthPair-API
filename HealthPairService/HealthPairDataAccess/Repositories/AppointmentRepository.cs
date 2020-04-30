@@ -22,14 +22,18 @@ namespace HealthPairDataAccess.Repositories
             _context = context;
         }
 
-        public async Task<Inner_Appointment> AddAppointmentAsync(Inner_Appointment appointment)
+        public async Task<List<Inner_Appointment>> GetAppointmentAsync(string search = null)
         {
-            var newAppointment = Mapper.UnMapAppointments(appointment);
+            var appointments = await _context.Appointments.ToListAsync();
 
-            _context.Appointments.Add(newAppointment);
-            await _context.SaveChangesAsync();
+            return appointments.Select(Mapper.MapAppointment).ToList();
+        }
 
-            return Mapper.MapAppointments(newAppointment);
+        public async Task<Inner_Appointment> GetAppointmentByIdAsync(int id)
+        {
+            var appointment = await _context.Appointments
+                .FirstOrDefaultAsync(a => a.AppointmentId == id);
+            return Mapper.MapAppointment(appointment);
         }
 
         public async Task<bool> AppointmentExistAsync(int id)
@@ -37,34 +41,39 @@ namespace HealthPairDataAccess.Repositories
             return await _context.Appointments.AnyAsync(a => a.AppointmentId == id);
         }
 
-        public async Task<List<Inner_Appointment>> GetAppointmentAsync(string search = null)
+        public async Task<Inner_Appointment> AddAppointmentAsync(Inner_Appointment appointment)
         {
-            var appointments = await _context.Appointments.ToListAsync();
+            var newAppointment = Mapper.UnMapAppointment(appointment);
 
-            return appointments.Select(Mapper.MapAppointments).ToList();
+            _context.Appointments.Add(newAppointment);
+            await Save();
+
+            return Mapper.MapAppointment(newAppointment);
         }
 
-        public async Task<Inner_Appointment> GetAppointmentByIdAsync(int id)
+        public async Task UpdateAppointmentAsync(Inner_Appointment appointment)
         {
-            //var dataAppointment = Mapper
+            Data_Appointment currentEntity = await _context.Appointments.FindAsync(appointment.AppointmentId);
+            Data_Appointment newEntity = Mapper.UnMapAppointment(appointment);
+
+            _context.Entry(currentEntity).CurrentValues.SetValues(newEntity);
+            await Save();
+        }
+
+        public async Task RemoveAppointmentAsync(int id)
+        {
             var appointment = await _context.Appointments
                 .FirstOrDefaultAsync(a => a.AppointmentId == id);
-            return Mapper.MapAppointments(appointment);
-        }
-
-        public async Task<bool> RemoveAppointmentAsync(int id)
-        {
-            var appointment = await _context.Appointments.FindAsync(id);
-
-            if(appointment is null)
+            if(appointment == null)
             {
-                return false;
+                return;
             }
-
-            _context.Appointments.Remove(appointment);
-            int written = await _context.SaveChangesAsync();
-
-            return written > 0;
+            _context.Remove(appointment);
+            await Save();
+        }
+        private async Task Save()
+        {
+            await _context.SaveChangesAsync();
         }
     }
 }

@@ -22,15 +22,6 @@ namespace HealthPairDataAccess.Repositories
             _context = context;
         }
 
-        public async Task<Inner_Patient> AddPatientAsync(Inner_Patient patient)
-        {
-            var newAPatient = Mapper.UnMapPatient(patient);
-            _context.Patients.Add(newAPatient);
-            await _context.SaveChangesAsync();
-
-            return Mapper.MapPatient(newAPatient);
-        }
-
         public async Task<Inner_Patient> GetPatientByIdAsync(int id)
         {
             var patient = await _context.Patients
@@ -50,19 +41,40 @@ namespace HealthPairDataAccess.Repositories
             return await _context.Patients.AnyAsync(a => a.PatientId == id);
         }
 
-        public async Task<bool> RemovePatientAsync(int id)
+        public async Task<Inner_Patient> AddPatientAsync(Inner_Patient patient)
+        {
+            var newAPatient = Mapper.UnMapPatient(patient);
+            _context.Patients.Add(newAPatient);
+            await Save();
+
+            return Mapper.MapPatient(newAPatient);
+        }
+
+        public async Task UpdatePatientAsync(Inner_Patient patient)
+        {
+            Data_Patient currentEntity = await _context.Patients.FindAsync(patient.PatientId);
+            Data_Patient newEntity = Mapper.UnMapPatient(patient);
+
+            _context.Entry(currentEntity).CurrentValues.SetValues(newEntity);
+            await Save();
+        }
+
+        public async Task RemovePatientAsync(int id)
         {
             var patient = await _context.Patients.FindAsync(id);
 
             if (patient is null)
             {
-                return false;
+                return;
             }
 
             _context.Patients.Remove(patient);
-            int written = await _context.SaveChangesAsync();
+            await Save();
+        }
 
-            return written > 0;
+        private async Task Save()
+        {
+            await _context.SaveChangesAsync();
         }
     }
 }

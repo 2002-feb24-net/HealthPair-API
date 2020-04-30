@@ -13,6 +13,7 @@ namespace HealthPairDomain.Interfaces
         Task<Inner_Patient> GetPatientByIdAsync(int id);
         Task<bool> PatientExistAsync(int id);
         Task<Inner_Patient> AddPatientAsync(Inner_Patient patient);
-        Task<bool> RemovePatientAsync(int id);
+        Task UpdatePatientAsync(Inner_Patient patient);
+        Task RemovePatientAsync(int id);
     }
 }

@@ -10,7 +10,7 @@ namespace HealthPairDataAccess.Logic
 // ! ***********************************
 // ! ********* Appointments ************
 // ! ***********************************
-        public static Inner_Appointment MapAppointments(Data_Appointment appointment)
+        public static Inner_Appointment MapAppointment(Data_Appointment appointment)
         {
             return new Inner_Appointment
             {
@@ -21,7 +21,7 @@ namespace HealthPairDataAccess.Logic
             };
         }
 
-        public static Data_Appointment UnMapAppointments(Inner_Appointment appointment)
+        public static Data_Appointment UnMapAppointment(Inner_Appointment appointment)
         {
             return new Data_Appointment
             {

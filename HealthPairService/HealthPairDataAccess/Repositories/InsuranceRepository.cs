@@ -22,15 +22,6 @@ namespace HealthPairDataAccess.Repositories
             _context = context;
         }
 
-        public async Task<Inner_Insurance> AddInsuranceAsync(Inner_Insurance insurance)
-        {
-            var newInsurance = Mapper.UnMapInsurance(insurance);
-            _context.Insurances.Add(newInsurance);
-            await _context.SaveChangesAsync();
-
-            return Mapper.MapInsurance(newInsurance);
-        }
-
         public async Task<List<Inner_Insurance>> GetInsuranceAsync(string search = null)
         {
             var insurance = await _context.Insurances.ToListAsync();
@@ -50,19 +41,39 @@ namespace HealthPairDataAccess.Repositories
             return await _context.Insurances.AnyAsync(a => a.InsuranceId == id);
         }
 
-        public async Task<bool> RemoveInsuranceAsync(int id)
+        public async Task<Inner_Insurance> AddInsuranceAsync(Inner_Insurance insurance)
+        {
+            var newInsurance = Mapper.UnMapInsurance(insurance);
+            _context.Insurances.Add(newInsurance);
+            await _context.SaveChangesAsync();
+
+            return Mapper.MapInsurance(newInsurance);
+        }
+
+        public async Task UpdateInsuranceAsync(Inner_Insurance insurance)
+        {
+            Data_Insurance currentEntity = await _context.Insurances.FindAsync(insurance.InsuranceId);
+            Data_Insurance newEntity = Mapper.UnMapInsurance(insurance);
+
+            _context.Entry(currentEntity).CurrentValues.SetValues(newEntity);
+            await Save();
+        }
+
+        public async Task RemoveInsuranceAsync(int id)
         {
             var insurance = await _context.Insurances.FindAsync(id);
-
             if (insurance is null)
             {
-                return false;
+                return;
             }
 
             _context.Insurances.Remove(insurance);
-            int written = await _context.SaveChangesAsync();
+            await Save();
+        }
 
-            return written > 0;
+        private async Task Save()
+        {
+            await _context.SaveChangesAsync();
         }
     }
 }

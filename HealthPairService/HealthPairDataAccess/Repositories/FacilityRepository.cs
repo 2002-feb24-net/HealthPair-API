@@ -22,21 +22,6 @@ namespace HealthPairDataAccess.Repositories
             _context = context;
         }
 
-
-        public async Task<Inner_Facility> AddFacilityAsync(Inner_Facility facility)
-        {
-            var newFacility = Mapper.UnMapFacility(facility);
-            _context.Facilities.Add(newFacility);
-            await _context.SaveChangesAsync();
-
-            return Mapper.MapFacility(newFacility);
-        }
-
-        public async Task<bool> FacilityExistAsync(int id)
-        {
-            return await _context.Facilities.AnyAsync(a => a.FacilityId == id);
-        }
-
         public async Task<List<Inner_Facility>> GetFacilityAsync(string search = null)
         {
             var facility = await _context.Facilities.ToListAsync();
@@ -51,18 +36,45 @@ namespace HealthPairDataAccess.Repositories
             return Mapper.MapFacility(facility);
         }
 
-        public async Task<bool> RemoveFacilityAsync(int id)
+        public async Task<bool> FacilityExistAsync(int id)
+        {
+            return await _context.Facilities.AnyAsync(a => a.FacilityId == id);
+        }
+
+
+        public async Task<Inner_Facility> AddFacilityAsync(Inner_Facility facility)
+        {
+            var newFacility = Mapper.UnMapFacility(facility);
+            _context.Facilities.Add(newFacility);
+            await Save();
+
+            return Mapper.MapFacility(newFacility);
+        }
+
+        public async Task UpdateFacilityAsync(Inner_Facility facility)
+        {
+            Data_Facility currentEntity = await _context.Facilities.FindAsync(facility.FacilityId);
+            Data_Facility newEntity = Mapper.UnMapFacility(facility);
+
+            _context.Entry(currentEntity).CurrentValues.SetValues(newEntity);
+            await Save();
+        }
+
+        public async Task RemoveFacilityAsync(int id)
         {
             var facility = await _context.Facilities.FindAsync(id);
             if (facility is null)
             {
-                return false;
+                return;
             }
 
             _context.Facilities.Remove(facility);
-            int written = await _context.SaveChangesAsync();
+            await Save();
+        }
 
-            return written > 0;
+        private async Task Save()
+        {
+            await _context.SaveChangesAsync();
         }
     }
 }

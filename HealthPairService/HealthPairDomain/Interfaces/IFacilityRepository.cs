@@ -11,6 +11,7 @@ namespace HealthPairDomain.Interfaces
         Task<Inner_Facility> GetFacilityByIdAsync(int id);
         Task<bool> FacilityExistAsync(int id);
         Task<Inner_Facility> AddFacilityAsync(Inner_Facility facility);
-        Task<bool> RemoveFacilityAsync(int id);
+        Task UpdateFacilityAsync(Inner_Facility facility);
+        Task RemoveFacilityAsync(int id);
     }
 }
