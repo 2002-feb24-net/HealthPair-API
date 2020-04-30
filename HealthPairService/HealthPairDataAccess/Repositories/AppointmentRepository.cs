@@ -54,17 +54,24 @@ namespace HealthPairDataAccess.Repositories
         public async Task<InnerAppointment> GetAppointmentByIdAsync(int id)
         {
             //var dataAppointment = Mapper
-            throw new NotImplementedException();
+            var appointment = await _context.Appointments
+                .FirstOrDefaultAsync(a => a.AppointmentId == id);
+            return Mapper.MapAppointments(appointment);
         }
 
-        public Task<bool> RemoveAppointmentAsync(int id)
+        public async Task<bool> RemoveAppointmentAsync(int id)
         {
-            throw new NotImplementedException();
-        }
+            var appointmnent = await _context.Appointments.FindAsync(id);
 
-        //public Task SaveAsync()
-        //{
-        //    throw new NotImplementedException();
-        //}
+            if(appointmnent is null)
+            {
+                return false;
+            }
+
+            _context.Appointments.Remove(appointmnent);
+            int written = await _context.SaveChangesAsync();
+
+            return written > 0;
+        }
     }
 }
