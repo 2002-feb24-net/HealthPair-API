@@ -28,7 +28,7 @@ namespace HealthPairDataAccess.Repositories
             var newProvider = Mapper.MapProvier(provider);
 
             _context.Providers.Add(newProvider);
-            Save();
+            await Save();
 
             return Mapper.MapProvier(newProvider);
         }
@@ -69,12 +69,12 @@ namespace HealthPairDataAccess.Repositories
             }
 
             _context.Providers.Remove(provider);
-            Save();
+            await Save();
         }
 
-        public void Save()
+        public async Task Save()
         {
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

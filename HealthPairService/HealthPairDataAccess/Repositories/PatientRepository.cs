@@ -28,7 +28,7 @@ namespace HealthPairDataAccess.Repositories
             var newAPatient = Mapper.MapPatient(patient);
 
             _context.Patients.Add(newAPatient);
-            await _context.SaveChangesAsync();
+            await Save();
 
             return Mapper.MapPatient(newAPatient);
         }
@@ -74,12 +74,12 @@ namespace HealthPairDataAccess.Repositories
             }
 
             _context.Remove(patient);
-            Save();
+            await Save();
         }
 
-        public void Save()
+        public async Task Save()
         {
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

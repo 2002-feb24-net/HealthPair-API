@@ -29,7 +29,7 @@ namespace HealthPairDataAccess.Repositories
             var newFacility = Mapper.MapFacility(facility);
 
             _context.Facilities.Add(newFacility);
-            await _context.SaveChangesAsync();
+            await Save();
 
             return Mapper.MapFacility(newFacility);
         }
@@ -69,12 +69,12 @@ namespace HealthPairDataAccess.Repositories
                 return;
             }
             _context.Remove(facility);
-            Save();
+            await Save();
         }
 
-        public void Save()
+        public async Task Save()
         {
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

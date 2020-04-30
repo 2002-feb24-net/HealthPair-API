@@ -28,7 +28,7 @@ namespace HealthPairDataAccess.Repositories
             var newInsurance = Mapper.MapInsurance(insurance);
 
             _context.Insurances.Add(newInsurance);
-            await _context.SaveChangesAsync();
+            await Save();
 
             return Mapper.MapInsurance(newInsurance);
         }
@@ -70,12 +70,12 @@ namespace HealthPairDataAccess.Repositories
 
             _context.Insurances.Remove(insurance);
             _context.Remove(insurance);
-            Save();
+            await Save();
         }
 
-        public void Save()
+        public async Task Save()
         {
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }
