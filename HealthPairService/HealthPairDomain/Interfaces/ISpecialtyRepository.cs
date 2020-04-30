@@ -21,7 +21,7 @@ namespace HealthPairDomain.Interfaces
 
         Task<InnerSpeciality> AddspecialityAsync(InnerSpeciality speciality);
 
-        Task<bool> RemoveSpecialityAsync(int id);
+        Task RemoveSpecialityAsync(int id);
 
         EntityState Changed(InnerSpeciality speciality);
     }
