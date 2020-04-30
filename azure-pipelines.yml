@@ -1,10 +1,10 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
-- master
+  branches:
+    include:
+    - master
+  paths:
+    exclude:
+    - README.md
 
 pr:
 - master
@@ -40,12 +40,12 @@ stages:
          publishWebProjects: true
          arguments:
            --configuration $(buildConfiguration)
-           --output $(Build.ArtifactStagingDirectory)/app
+           --output $(Build.ArtifactStagingDirectory)/publish
          modifyOutputPath: false
          zipAfterPublish: false
        displayName: dotnet publish
 
-     - publish: $(Build.ArtifactStagingDirectory)/app
+     - publish: $(Build.ArtifactStagingDirectory)/publish
        artifact: app
        displayName: artifact publish app
 
@@ -63,12 +63,6 @@ stages:
       vmImage: windows-latest
 
     steps:
-
-    - task: UseDotNet@2
-      inputs:
-        packageType: sdk
-        version: $(sdkVersion)
-      displayName: dotnet $(sdkVersion)
 
     - task: SonarCloudPrepare@1
       inputs:
@@ -90,7 +84,7 @@ stages:
         --logger trx
         --no-build
         --results-directory $(Common.TestResultsDirectory)
-        --settings ./coverlet.runsettings
+        --settings ./HealthPairService/coverlet.runsettings
       continueOnError: true
       displayName: dotnet test
 
