@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.ComponentModel.DataAnnotations;
 
-namespace HealthPairDataAccess.DataModels
+namespace HealthPairDomain.InnerModels
 {
-    public class Data_Patient
+    public class InnerPatient
     {
-        [Key]
         public int PatientId { get; set; }
-        public string PatientPassword { get; set; }
         public int InsuranceId { get; set; }
-        public bool IsAdmin { get; set; }
         public string PatientFirstName { get; set; }
         public string PatientLastName { get; set; }
         public string PatientAddress1 { get; set; }
@@ -21,7 +17,7 @@ namespace HealthPairDataAccess.DataModels
         public DateTime PatientBirthDay { get; set; }
         public long PatientPhoneNumber { get; set; }
 
-        public Data_Insurance Insurance { get; set; }
-        public ICollection<Data_Appointment> Appointments { get; set; } = new List<Data_Appointment>();
+        public InnerInsurance Insurance { get; set; }
+        public ICollection<InnerAppointment> Appointments { get; set; } = new List<InnerAppointment>();
     }
 }
