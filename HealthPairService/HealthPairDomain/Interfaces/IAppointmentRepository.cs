@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HealthPairDomain.Interfaces
 {
-    interface IAppointmentRepository
+    public interface IAppointmentRepository
     {
         Task<IEnumerable<InnerAppointment>> GetAppointmentAsync(string search = null);
 
@@ -17,13 +17,11 @@ namespace HealthPairDomain.Interfaces
 
         Task<IEnumerable<InnerAppointment>> GetAppointmentByProviderId(int id);
 
-        Task<bool> AppointExistAsync(int id);
+        Task<bool> AppointmentExistAsync(int id);
 
         Task<InnerAppointment> AddAppointmentAsync(InnerAppointment appointment);
 
         Task<bool> RemoveAppointmentAsync(int id);
-
-        //Check if appontment changeg
 
         EntityState Changed(InnerAppointment appointment);
 
