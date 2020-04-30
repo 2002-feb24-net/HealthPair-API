@@ -19,10 +19,10 @@ namespace HealthPairDomain.Interfaces
 
         Task<bool> PatientExistAsync(int id);
 
-        Task<InnerPatient> AddPatientAsync(InnerPatient Patient);
+        Task<InnerPatient> AddPatientAsync(InnerPatient patient);
 
         Task<bool> RemovePatientAsync(int id);
 
-        EntityState Changed(InnerPatient Patient);
+        EntityState Changed(InnerPatient patient);
     }
 }

@@ -14,7 +14,7 @@ namespace HealthPairDomain.InnerModels
         public long ProviderPhoneNumber { get; set; }
 
         public InnerFacility Facility { get; set; }
-        //public Data_Specialty Specialty { get; set; }
+        public InnerSpeciality Specialty { get; set; }
         public ICollection<InnerAppointment> Appointments { get; set; } = new List<InnerAppointment>();
         public ICollection<InnerInsuranceProvider> InsuranceProviders { get; set; } = new List<InnerInsuranceProvider>();
     }
