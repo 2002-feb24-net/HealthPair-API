@@ -109,7 +109,11 @@ namespace HealthPairAPI.Controllers
             _logger.LogInformation($"Adding new provider.");
             Inner_Provider transformedProvider = new Inner_Provider
             {
-                
+                ProviderId = provider.ProviderId,
+                ProviderFirstName = provider.ProviderFirstName,
+                ProviderLastName = provider.ProviderLastName,
+                ProviderPhoneNumber = provider.ProviderPhoneNumber,
+                // Add more clsses
 
             };
             _repo.AddProviderAsync(transformedProvider);
@@ -135,7 +139,11 @@ namespace HealthPairAPI.Controllers
             var entity = await _repo.GetProviderByIdAsync(id);
             if (entity is Inner_Provider)
             {
-                
+                entity.ProviderId = provider.ProviderId;
+                entity.ProviderFirstName = provider.ProviderFirstName;
+                entity.ProviderLastName = provider.ProviderLastName;
+                entity.ProviderPhoneNumber = provider.ProviderPhoneNumber;
+                // Add more clsses
 
                 return NoContent();
             }
