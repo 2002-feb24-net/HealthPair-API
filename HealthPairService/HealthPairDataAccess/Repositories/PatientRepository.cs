@@ -3,33 +3,26 @@ using HealthPairDataAccess.Logic;
 using HealthPairDomain.InnerModels;
 using HealthPairDomain.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace HealthPairDataAccess.Repositories
 {
+    /// <summary> Data Access methods for Patient </summary>
     public class PatientRepository : IPatientRepository
     {
-        //Private variable of context
         private readonly HealthPairContext _context;
 
-        //Constructor
         public PatientRepository(HealthPairContext context)
         {
             _context = context;
         }
 
-        public async Task<Inner_Patient> GetPatientByIdAsync(int id)
-        {
-            var patient = await _context.Patients
-                .Include(p => p.Insurance)
-                .FirstOrDefaultAsync(a => a.PatientId == id);
-            return Mapper.MapPatient(patient);
-        }
-
+        /// <summary> Fetches all patients related to input string. Null fetches all.
+        /// <param name="search"> string - search params are looked for in multiple fields in database </param>
+        /// <returns> All patients related to input string </returns>
+        /// </summary>
         public async Task<List<Inner_Patient>> GetPatientsAsync(string search = null)
         {
             var patient = await _context.Patients
@@ -45,11 +38,31 @@ namespace HealthPairDataAccess.Repositories
             )).Select(Mapper.MapPatient).ToList();
         }
 
+        /// <summary> Fetches one patient related to input id.
+        /// <param name="id"> int - search id is looked for in id field of database </param>
+        /// <returns> One patient related to input string </returns>
+        /// </summary>
+        public async Task<Inner_Patient> GetPatientByIdAsync(int id)
+        {
+            var patient = await _context.Patients
+                .Include(p => p.Insurance)
+                .FirstOrDefaultAsync(a => a.PatientId == id);
+            return Mapper.MapPatient(patient);
+        }
+
+        /// <summary> Checks if one patient exists related to input id.
+        /// <param name="id"> int - search id is looked for in id field of database </param>
+        /// <returns> Yes/No Id is related to a value in the database </returns>
+        /// </summary>
         public async Task<bool> PatientExistAsync(int id)
         {
             return await _context.Patients.AnyAsync(a => a.PatientId == id);
         }
 
+        /// <summary> Add one patient to the database
+        /// <param name="patient"> Inner_Patient Object - represents the fields of a Patient in the database </param>
+        /// <returns> Returns inputted (and formatted) Patient </returns>
+        /// </summary>
         public async Task<Inner_Patient> AddPatientAsync(Inner_Patient patient)
         {
             var newAPatient = Mapper.UnMapPatient(patient);
@@ -59,6 +72,10 @@ namespace HealthPairDataAccess.Repositories
             return Mapper.MapPatient(newAPatient);
         }
 
+        /// <summary> Updates one existing patient in the database
+        /// <param name="patient"> Inner_Patient Object - represents the fields of a Patient in the database </param>
+        /// <returns> no return </returns>
+        /// </summary>
         public async Task UpdatePatientAsync(Inner_Patient patient)
         {
             Data_Patient currentEntity = await _context.Patients.FindAsync(patient.PatientId);
@@ -68,6 +85,10 @@ namespace HealthPairDataAccess.Repositories
             await Save();
         }
 
+        /// <summary> Removes one existing patient in the database
+        /// <param name="id"> int - search id is looked for in id field of database </param>
+        /// <returns> no return </returns>
+        /// </summary>
         public async Task RemovePatientAsync(int id)
         {
             var patient = await _context.Patients.FindAsync(id);
@@ -81,6 +102,9 @@ namespace HealthPairDataAccess.Repositories
             await Save();
         }
 
+        /// <summary> An internal save method when changes are made to the database
+        /// <returns> no return </returns>
+        /// </summary>
         private async Task Save()
         {
             await _context.SaveChangesAsync();
