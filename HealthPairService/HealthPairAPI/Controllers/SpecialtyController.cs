@@ -35,12 +35,12 @@ namespace HealthPairAPI.Controllers
             List<Transfer_Specialty> SpecialtyAll;
             if (search == null)
             {
-                _logger.LogInformation($"Retrieving all specialtys");
+                _logger.LogInformation($"Retrieving all specialties");
                 SpecialtyAll = (await _repo.GetSpecialtyAsync()).Select(Mapper.MapSpecialty).ToList();
             }
             else
             {
-                _logger.LogInformation($"Retrieving specialtys with parameters {search}.");
+                _logger.LogInformation($"Retrieving specialties with parameters {search}.");
                 SpecialtyAll = (await _repo.GetSpecialtyAsync(search)).Select(Mapper.MapSpecialty).ToList();
             }
             try
@@ -76,7 +76,7 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<Transfer_Specialty>> GetById(int id)
         {
-            _logger.LogInformation($"Retrieving specialtys with id {id}.");
+            _logger.LogInformation($"Retrieving specialties with id {id}.");
             if (await _repo.GetSpecialtyByIdAsync(id) is Inner_Specialty specialty)
             {
                 string json = JsonSerializer.Serialize(Mapper.MapSpecialty(specialty));
@@ -87,7 +87,7 @@ namespace HealthPairAPI.Controllers
                     Content = json
                 };
             }
-            _logger.LogInformation($"No specialtys found with id {id}.");
+            _logger.LogInformation($"No specialties found with id {id}.");
             return NotFound();
         }
 
@@ -143,7 +143,7 @@ namespace HealthPairAPI.Controllers
 
                 return NoContent();
             }
-            _logger.LogInformation($"No specialtys found with id {id}.");
+            _logger.LogInformation($"No specialties found with id {id}.");
             return NotFound();
         }
 
@@ -168,7 +168,7 @@ namespace HealthPairAPI.Controllers
                 await _repo.RemoveSpecialtyAsync(specialty.SpecialtyId);
                 return NoContent();
             }
-            _logger.LogInformation($"No specialtys found with id {id}.");
+            _logger.LogInformation($"No specialties found with id {id}.");
             return NotFound();
         }
     }
