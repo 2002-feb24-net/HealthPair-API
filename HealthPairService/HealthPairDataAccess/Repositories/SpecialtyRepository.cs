@@ -3,14 +3,13 @@ using HealthPairDataAccess.Logic;
 using HealthPairDomain.InnerModels;
 using HealthPairDomain.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace HealthPairDataAccess.Repositories
 {
+    /// <summary> Data Access methods for Specialty </summary>
     public class SpecialtyRepository : ISpecialtyRepository
     {
         //Private variable of context
@@ -21,6 +20,11 @@ namespace HealthPairDataAccess.Repositories
         {
             _context = context;
         }
+
+        /// <summary> Fetches all specialties related to input string. Null fetches all.
+        /// <param name="search"> string - search params are looked for in multiple fields in database </param>
+        /// <returns> All specialties related to input string </returns>
+        /// </summary>
         public async Task<List<Inner_Specialty>> GetSpecialtyAsync(string search = null)
         {
             var specialty = await _context.Specialties.ToListAsync();
@@ -28,6 +32,10 @@ namespace HealthPairDataAccess.Repositories
             return specialty.Select(Mapper.MapSpecialty).ToList();
         }
 
+       /// <summary> Fetches one specialty related to input id.
+        /// <param name="id"> int - search id is looked for in id field of database </param>
+        /// <returns> One specialty related to input string </returns>
+        /// </summary>
         public async Task<Inner_Specialty> GetSpecialtyByIdAsync(int id)
         {
             var specialty = await _context.Specialties
@@ -35,11 +43,19 @@ namespace HealthPairDataAccess.Repositories
             return Mapper.MapSpecialty(specialty);
         }
 
+        /// <summary> Checks if one specialty exists related to input id.
+        /// <param name="id"> int - search id is looked for in id field of database </param>
+        /// <returns> Yes/No Id is related to a value in the database </returns>
+        /// </summary>
         public async Task<bool> SpecialtyExistAsync(int id)
         {
             return await _context.Specialties.AnyAsync(a => a.SpecialtyId == id);
         }
 
+        /// <summary> Add one specialty to the database
+        /// <param name="specialty"> Inner_Specialty Object - represents the fields of a Specialty in the database </param>
+        /// <returns> Returns inputted (and formatted) Specialty </returns>
+        /// </summary>
         public async Task<Inner_Specialty> AddSpecialtyAsync(Inner_Specialty specialty)
         {
             var newSpecialty = Mapper.UnMapSpecialty(specialty);
@@ -49,6 +65,10 @@ namespace HealthPairDataAccess.Repositories
             return Mapper.MapSpecialty(newSpecialty);
         }
 
+        /// <summary> Updates one existing specialty in the database
+        /// <param name="specialty"> Inner_Specialty Object - represents the fields of a Specialty in the database </param>
+        /// <returns> no return </returns>
+        /// </summary>
         public async Task UpdateSpecialtyAsync(Inner_Specialty specialty)
         {
             Data_Specialty currentEntity = await _context.Specialties.FindAsync(specialty.SpecialtyId);
@@ -58,6 +78,10 @@ namespace HealthPairDataAccess.Repositories
             await Save();
         }
 
+        /// <summary> Removes one existing specialty in the database
+        /// <param name="id"> int - search id is looked for in id field of database </param>
+        /// <returns> no return </returns>
+        /// </summary>
         public async Task RemoveSpecialtyAsync(int id)
         {
             var specialty = await _context.Specialties.FindAsync(id);
@@ -70,6 +94,9 @@ namespace HealthPairDataAccess.Repositories
             await Save();
         }
 
+        /// <summary> An internal save method when changes are made to the database
+        /// <returns> no return </returns>
+        /// </summary>
         private async Task Save()
         {
             await _context.SaveChangesAsync();
