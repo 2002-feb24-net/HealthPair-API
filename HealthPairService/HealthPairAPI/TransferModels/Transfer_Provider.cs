@@ -12,12 +12,14 @@ namespace HealthPairAPI.TransferModels
         public long ProviderPhoneNumber { get; set; }
 
 
+        public int FacilityId { get; set; }
         public string FacilityName { get; set; }
         public string FacilityCity { get; set; }
         public string FacilityState { get; set; }
         public long FacilityPhoneNumber { get; set; }
 
 
+        public int SpecialtyId { get; set; }
         public string Specialty { get; set; }
     }
 }

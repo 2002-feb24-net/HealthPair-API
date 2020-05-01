@@ -15,15 +15,6 @@ namespace HealthPairAPI
     {
         public static void Main(string[] args)
         {
-            // standard Main method altered here to run database seeding in between Build() and Run(),
-            // if runtime configuration says to ("EnsureDatabaseCreated" set to true).
-            // this is needed if the DB server is running in a new container.
-
-            // setting up the database during app startup like this is a bad practice for several reasons:
-            // - concurrency problems with multiple instances of the app
-            // - requires schema-modifying privileges on the login used by the app to connect
-            // but it's good enough for dev scenarios.
-
             IHost host = CreateHostBuilder(args).Build();
 
             using (IServiceScope scope = host.Services.CreateScope())

@@ -117,6 +117,9 @@ namespace HealthPairDataAccess.DataModels
                 entity.Property(e => e.PatientLastName)
                     .IsRequired()
                     .HasMaxLength(80);
+                entity.Property(e => e.PatientPassword)
+                    .IsRequired()
+                    .HasMaxLength(80);
                 entity.Property(e => e.PatientAddress1)
                     .IsRequired()
                     .HasMaxLength(120);
@@ -132,6 +135,9 @@ namespace HealthPairDataAccess.DataModels
                     .IsRequired();
                 entity.Property(e => e.PatientPhoneNumber)
                     .IsRequired();
+                entity.Property(e => e.IsAdmin)
+                    .IsRequired()
+                    .HasDefaultValue(false);
             });
             modelBuilder.Entity<Data_Patient>().HasData(
                 new Data_Patient()
@@ -140,12 +146,14 @@ namespace HealthPairDataAccess.DataModels
                     InsuranceId = 1,
                     PatientFirstName = "TestPatientFirstName",
                     PatientLastName = "TestPatientLastName",
+                    PatientPassword = "TestPassword",
                     PatientAddress1 = "123 Test Street",
                     PatientCity = "Test City",
                     PatientState = "Test State",
                     PatientZipcode = 12345,
                     PatientBirthDay = new DateTime(2000, 1, 1),
-                    PatientPhoneNumber = 1234567890
+                    PatientPhoneNumber = 1234567890,
+                    IsAdmin = true
                 }
             );
 

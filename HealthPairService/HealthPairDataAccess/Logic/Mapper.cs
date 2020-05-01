@@ -4,7 +4,7 @@ using HealthPairDomain.InnerModels;
 
 namespace HealthPairDataAccess.Logic
 {
-    public class Mapper
+    public static class Mapper
     {
 
 // ! ***********************************
@@ -99,7 +99,9 @@ namespace HealthPairDataAccess.Logic
                 PatientZipcode = patient.PatientZipcode,
                 PatientLastName = patient.PatientLastName,
                 PatientPhoneNumber = patient.PatientPhoneNumber,
+                PatientPassword = patient.PatientPassword,
                 PatientState = patient.PatientState,
+                IsAdmin = patient.IsAdmin,
                 Insurance = MapInsurance(patient.Insurance)
             };
         }
@@ -113,11 +115,13 @@ namespace HealthPairDataAccess.Logic
                 PatientBirthDay = patient.PatientBirthDay,
                 PatientCity = patient.PatientCity,
                 PatientFirstName = patient.PatientFirstName,
+                PatientPassword = patient.PatientPassword,
                 PatientZipcode = patient.PatientZipcode,
                 PatientLastName = patient.PatientLastName,
                 PatientPhoneNumber = patient.PatientPhoneNumber,
                 PatientState = patient.PatientState,
                 InsuranceId = patient.Insurance.InsuranceId,
+                IsAdmin = patient.IsAdmin
             };
         }
 
