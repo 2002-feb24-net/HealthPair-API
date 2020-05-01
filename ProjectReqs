@@ -29,3 +29,8 @@ Technical:
 	tsdoc/jsdoc
 
 	All: Need more code coverage
+
+home button in navbar (search a doc)
+can cancel an appointment from inside my account page
+	shows current appointments
+	button to cancel appointments
