@@ -19,3 +19,13 @@ Mock database
 can specify distance from input zip
 
 Team name: HealthPair
+
+geo location to browse nearby BEFORE logging in  (optionally zip input if dont want to use geo location, or override geo location)
+options to book as existing user, book as new user
+
+Technical:
+	For Angular Documentation
+	compodoc
+	tsdoc/jsdoc
+
+	All: Need more code coverage
