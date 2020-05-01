@@ -71,7 +71,7 @@ namespace HealthPairDataAccess.Repositories
             _context.Remove(appointment);
             await Save();
         }
-        private async Task Save()
+        public async Task Save()
         {
             await _context.SaveChangesAsync();
         }
