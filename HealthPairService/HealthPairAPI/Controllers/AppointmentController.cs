@@ -1,132 +1,174 @@
+using HealthPairAPI.Logic;
 using HealthPairAPI.TransferModels;
 using HealthPairDomain.InnerModels;
 using HealthPairDomain.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
-using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 
 namespace HealthPairAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AppointmentController: ControllerBase
+    public class AppointmentController : ControllerBase
     {
         private readonly IAppointmentRepository _repo;
+        private readonly IProviderRepository _providerRepo;
+        private readonly ILogger<AppointmentController> _logger;
 
-        public AppointmentController(IAppointmentRepository repo)
+        public AppointmentController(IAppointmentRepository repo, ILogger<AppointmentController> logger)
         {
-            _repo = repo;
+            _repo = repo ?? throw new ArgumentNullException(nameof(repo));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _logger.LogInformation($"Accessed AppointmentController");
         }
 
-        // GET: api/Appointments
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<Transfer_Appointment>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(List<Transfer_Appointment>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult> GetAllAppointmentsAsync()
+        public async Task<IActionResult> GetAsync([FromQuery] string search = null)
         {
-            IEnumerable<Inner_Appointment> user = await _repo.GetAppointmentAsync();
-
-            IEnumerable<Transfer_Appointment> resource = user.Select(u => new Transfer_Appointment
+            List<Transfer_Appointment> AppointmentAll;
+            if (search == null)
             {
-                AppointmentId = u.AppointmentId,
-                AppointmentDate = u.AppointmentDate,
-                //Patient
-                //Provider
-            });
-
-            return Ok(resource);
-        }
-
-        // GET: api/Appointment/5
-        [HttpGet("{id}")]
-        [ProducesResponseType(typeof(Transfer_Appointment), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult> GetAppointment(int id)
-        {
-            Inner_Appointment appointment = await _repo.GetAppointmentByIdAsync(id);
-            var resource = new Transfer_Appointment
-            { 
-                AppointmentId = appointment.AppointmentId,
-                AppointmentDate = appointment.AppointmentDate,
-            };
-
-            if (resource == null)
-            {
-                return NotFound();
+                _logger.LogInformation($"Retrieving all appointments");
+                AppointmentAll = (await _repo.GetAppointmentAsync()).Select(Mapper.MapAppointments).ToList();
             }
-
-            return Ok(resource);
-        }
-
-        // PUT: api/Appointment/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutAppointment(int id, Inner_Appointment appointment)
-        {
-            if (id != appointment.AppointmentId)
+            else
             {
-                return BadRequest();
+                _logger.LogInformation($"Retrieving appointments with parameters {search}.");
+                AppointmentAll = (await _repo.GetAppointmentAsync(search)).Select(Mapper.MapAppointments).ToList();
             }
-            var resource = new Inner_Appointment
-            {
-               AppointmentId = appointment.AppointmentId,
-               AppointmentDate = appointment.AppointmentDate
-            };
-            await _repo.UpdateAppointmentAsync(resource);
-
             try
             {
-                await _repo.Save();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!(await AppointmentsExists(id)))
+                _logger.LogInformation($"Serializing {AppointmentAll}");
+                string json = JsonSerializer.Serialize(AppointmentAll);
+                return new ContentResult
                 {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                    StatusCode = 200,
+                    ContentType = "application/json",
+                    Content = json
+                };
             }
-
-            return NoContent();
-        }
-
-        // POST: api/Appointment
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
-        [HttpPost]
-        public async Task<ActionResult> PostAppointment(Inner_Appointment user)
-        {
-            Inner_Appointment add = await _repo.AddAppointmentAsync(user);
-            var resource = new Transfer_Appointment
+            catch (Exception e)
             {
-                AppointmentId = add.AppointmentId,
-                AppointmentDate = add.AppointmentDate,
-                //Add patient and provider
-            };
-
-            return Ok(resource);
+                _logger.LogWarning($"Error! {e.Message}.");
+                return StatusCode(500);
+            }
         }
 
-        // DELETE: api/Appointments/5
-        [HttpDelete("{id}")]
-        public ActionResult DeleteAppointments(int id)
-        {
-            var resource = _repo.RemoveAppointmentAsync(id);
-
-            return Ok(resource);
-        }
+        // GET: api/appointment/5
+        /// <summary> Fetches one appointment from the database based on input id.
+        /// <param name="id"> int - This int is searched for in the id related to appointment. </param>
+        /// <returns> A content result.
+        /// 200 with A appointment, depending on input id
+        /// 404 if no appointment with id is found
+        /// 500 if server error
+        ///  </returns>
+        /// </summary>
         [HttpGet("{id}")]
-        private Task<bool> AppointmentsExists(int id)
+        [ProducesResponseType(typeof(Transfer_Appointment), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<Transfer_Appointment>> GetById(int id)
         {
-            return _repo.AppointmentExistAsync(id);
+            _logger.LogInformation($"Retrieving appointments with id {id}.");
+            if (await _repo.GetAppointmentByIdAsync(id) is Inner_Appointment appointment)
+            {
+                string json = JsonSerializer.Serialize(Mapper.MapAppointments(appointment));
+                return new ContentResult
+                {
+                    StatusCode = 200,
+                    ContentType = "application/json",
+                    Content = json
+                };
+            }
+            _logger.LogInformation($"No appointments found with id {id}.");
+            return NotFound();
+        }
+
+        // POST: api/appointment
+        /// <summary> Adds a appointment to the database.
+        /// <param name="appointment"> Transfer_Appointment Object - This object represents all the input fields of a appointment. </param>
+        /// <returns> A content result.
+        /// 201 with the input object returned if success
+        /// 400 if incorrect fields, or data validation fails
+        /// 500 if server error
+        ///  </returns>
+        /// </summary>
+        [HttpPost]
+        [ProducesResponseType(typeof(Transfer_Appointment), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IActionResult Post(Transfer_Appointment appointment)
+        {
+            _logger.LogInformation($"Adding new appointment.");
+            Inner_Appointment transformedAppointment = new Inner_Appointment
+            {
+                AppointmentId = appointment.AppointmentId,
+                AppointmentDate = appointment.AppointmentDate,
+                
+            };
+            _repo.AddAppointmentAsync(transformedAppointment);
+            return CreatedAtAction(nameof(GetById), new { id = appointment.AppointmentId }, appointment);
+        }
+
+        // PUT: api/appointment/5
+        /// <summary> Edits one appointment based on input appointment object.
+        /// <param name="appointment"> Transfer_Appointment Object - This object represents all the input fields of a appointment. </param>
+        /// <returns> A content result.
+        /// 204 upon a successful edit
+        /// 404 if input object's id was not found
+        /// 500 if server error
+        ///  </returns>
+        /// </summary>
+        [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Put(int id, [FromBody] Transfer_Appointment appointment)
+        {
+            _logger.LogInformation($"Editing appointment with id {id}.");
+            var entity = await _repo.GetAppointmentByIdAsync(id);
+            if (entity is Inner_Appointment)
+            {
+                entity.AppointmentId = appointment.AppointmentId;
+                entity.AppointmentDate = appointment.AppointmentDate;
+
+                return NoContent();
+            }
+            _logger.LogInformation($"No appointments found with id {id}.");
+            return NotFound();
+        }
+
+        // DELETE: api/appointment/5
+        /// <summary> Edits one appointment based on input appointment object.
+        /// <param name="id"> int - This int is searched for in the id related to appointment. </param>
+        /// <returns> A content result.
+        /// 204 upon a successful delete
+        /// 404 if input id was not found
+        /// 500 if server error
+        ///  </returns>
+        /// </summary>
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Delete(int id)
+        {
+            _logger.LogInformation($"Deleting appointment with id {id}.");
+            if (await _repo.GetAppointmentByIdAsync(id) is Inner_Appointment appointment)
+            {
+                await _repo.RemoveAppointmentAsync(appointment.AppointmentId);
+                return NoContent();
+            }
+            _logger.LogInformation($"No appointments found with id {id}.");
+            return NotFound();
         }
     }
 }
