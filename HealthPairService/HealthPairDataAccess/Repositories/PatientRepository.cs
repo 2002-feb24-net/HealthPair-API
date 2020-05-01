@@ -25,15 +25,24 @@ namespace HealthPairDataAccess.Repositories
         public async Task<Inner_Patient> GetPatientByIdAsync(int id)
         {
             var patient = await _context.Patients
+                .Include(p => p.Insurance)
                 .FirstOrDefaultAsync(a => a.PatientId == id);
             return Mapper.MapPatient(patient);
         }
 
         public async Task<List<Inner_Patient>> GetPatientsAsync(string search = null)
         {
-            var patient = await _context.Patients.ToListAsync();
-
-            return patient.Select(Mapper.MapPatient).ToList();
+            var patient = await _context.Patients
+                .Include(p => p.Insurance)
+                .ToListAsync();
+            if(search == null)
+            {
+                return patient.Select(Mapper.MapPatient).ToList();
+            }
+            return (patient.FindAll(p =>
+                p.PatientFirstName.ToLower().Contains(search.ToLower()) ||
+                p.PatientLastName.ToLower().Contains(search.ToLower())
+            )).Select(Mapper.MapPatient).ToList();
         }
 
         public async Task<bool> PatientExistAsync(int id)

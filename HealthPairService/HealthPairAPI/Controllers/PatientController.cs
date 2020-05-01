@@ -122,6 +122,8 @@ namespace HealthPairAPI.Controllers
                 PatientId = patient.PatientId,
                 PatientFirstName = patient.PatientFirstName,
                 PatientLastName  = patient.PatientLastName,
+                PatientPassword = patient.PatientPassword,
+                PatientAddress1 = patient.PatientAddress1,
                 PatientCity = patient.PatientCity,
                 PatientState = patient.PatientState,
                 PatientZipcode = patient.PatientZipcode,
@@ -157,6 +159,7 @@ namespace HealthPairAPI.Controllers
                 entity.PatientCity = patient.PatientCity;
                 entity.PatientFirstName = patient.PatientFirstName;
                 entity.PatientLastName = patient.PatientLastName;
+                entity.PatientPassword = patient.PatientPassword;
                 entity.PatientPhoneNumber = patient.PatientPhoneNumber;
                 entity.PatientState = patient.PatientState;
                 entity.PatientZipcode = patient.PatientZipcode;

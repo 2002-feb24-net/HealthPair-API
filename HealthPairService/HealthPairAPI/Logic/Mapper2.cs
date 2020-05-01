@@ -70,8 +70,10 @@ namespace HealthPairAPI.Logic
                 PatientFirstName = patient.PatientFirstName,
                 PatientZipcode = patient.PatientZipcode,
                 PatientLastName = patient.PatientLastName,
+                PatientPassword = patient.PatientPassword,
                 PatientPhoneNumber = patient.PatientPhoneNumber,
                 PatientState = patient.PatientState,
+                IsAdmin = patient.IsAdmin,
                 InsuranceId = patient.Insurance.InsuranceId,
                 InsuranceName = patient.Insurance.InsuranceName
             };
