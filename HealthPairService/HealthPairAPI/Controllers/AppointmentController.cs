@@ -28,6 +28,14 @@ namespace HealthPairAPI.Controllers
             _logger.LogInformation($"Accessed AppointmentController");
         }
 
+        // GET: api/appointment
+        /// <summary> Fetches all appointments in the database. Can add a search parameter to narrow search. Null returns all.
+        /// <param name="search"> string - This string is searched for in the body of multiple fields related to appointment. </param>
+        /// <returns> A content result.
+        /// 200 with A list of appointments, depending on input search
+        /// 500 if server error
+        ///  </returns>
+        /// </summary>
         [HttpGet]
         [ProducesResponseType(typeof(List<Transfer_Appointment>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -112,7 +120,7 @@ namespace HealthPairAPI.Controllers
             {
                 AppointmentId = appointment.AppointmentId,
                 AppointmentDate = appointment.AppointmentDate,
-                
+
             };
             _repo.AddAppointmentAsync(transformedAppointment);
             return CreatedAtAction(nameof(GetById), new { id = appointment.AppointmentId }, appointment);

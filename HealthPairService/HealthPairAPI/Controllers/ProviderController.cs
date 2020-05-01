@@ -20,6 +20,14 @@ namespace HealthPairAPI.Controllers
         private readonly IProviderRepository _repo;
         private readonly ILogger<ProviderController> _logger;
 
+        // GET: api/provider
+        /// <summary> Fetches all providers in the database. Can add a search parameter to narrow search. Null returns all.
+        /// <param name="search"> string - This string is searched for in the body of multiple fields related to provider. </param>
+        /// <returns> A content result.
+        /// 200 with A list of providers, depending on input search
+        /// 500 if server error
+        ///  </returns>
+        /// </summary>
         public ProviderController(IProviderRepository repo, ILogger<ProviderController> logger)
         {
             _repo = repo ?? throw new ArgumentException(nameof(repo));

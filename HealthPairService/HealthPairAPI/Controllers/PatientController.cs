@@ -30,7 +30,7 @@ namespace HealthPairAPI.Controllers
         }
 
         // GET: api/patient
-        /// <summary> Fetches all patients to the database. Can add a search parameter to narrow search. Null returns all.
+        /// <summary> Fetches all patients in the database. Can add a search parameter to narrow search. Null returns all.
         /// <param name="search"> string - This string is searched for in the body of multiple fields related to patient. </param>
         /// <returns> A content result.
         /// 200 with A list of patients, depending on input search

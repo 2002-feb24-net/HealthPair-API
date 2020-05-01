@@ -29,6 +29,14 @@ namespace HealthPairAPI.Controllers
             _logger.LogInformation($"Accessed FacilityController");
         }
 
+        // GET: api/facility
+        /// <summary> Fetches all facilities in the database. Can add a search parameter to narrow search. Null returns all.
+        /// <param name="search"> string - This string is searched for in the body of multiple fields related to facility. </param>
+        /// <returns> A content result.
+        /// 200 with A list of facilities, depending on input search
+        /// 500 if server error
+        ///  </returns>
+        /// </summary>
         [HttpGet]
         [ProducesResponseType(typeof(List<Transfer_Facility>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -119,7 +127,7 @@ namespace HealthPairAPI.Controllers
                 FacilityZipcode = facility.FacilityZipcode,
                 FacilityPhoneNumber = facility.FacilityPhoneNumber,
                 //Providers = (_providerRepo.GetProviderByIdAsync(facility.Pr))
-                
+
             };
             _repo.AddFacilityAsync(transformedFacility);
             return CreatedAtAction(nameof(GetById), new { id = facility.FacilityId }, facility);
