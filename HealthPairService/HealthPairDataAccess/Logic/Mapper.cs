@@ -4,7 +4,7 @@ using HealthPairDomain.InnerModels;
 
 namespace HealthPairDataAccess.Logic
 {
-    public class Mapper
+    public static class Mapper
     {
 
 // ! ***********************************

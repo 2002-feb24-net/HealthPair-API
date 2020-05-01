@@ -8,7 +8,5 @@ namespace HealthPairAPI.TransferModels
     {
         public int SpecialtyId { get; set; }
         public string Specialty { get; set; }
-
-        public List<Transfer_Provider> Providers { get; set; } = new List<Transfer_Provider>();
     }
 }

@@ -9,6 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using HealthPairDataAccess.DataModels;
+using HealthPairDataAccess.Repositories;
+using HealthPairDomain.Interfaces;
 
 [assembly: ApiController]
 namespace HealthPairAPI
@@ -53,7 +55,12 @@ namespace HealthPairAPI
                 services.AddDbContext<HealthPairContext>(options => options.UseSqlServer(connection));
             }
 
-            // TODO: services.AddScoped<IRepository, Repository>();
+            services.AddScoped<IAppointmentRepository, AppointmentRepository>();
+            services.AddScoped<IFacilityRepository, FacilityRepository>();
+            services.AddScoped<IInsuranceRepository, InsuranceRepository>();
+            services.AddScoped<IPatientRepository, PatientRepository>();
+            services.AddScoped<IProviderRepository, ProviderRepository>();
+            services.AddScoped<ISpecialtyRepository, SpecialtyRepository>();
 
             services.AddSwaggerGen(c =>
             {

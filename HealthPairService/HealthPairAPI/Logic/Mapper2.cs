@@ -4,7 +4,7 @@ using HealthPairDomain.InnerModels;
 
 namespace HealthPairAPI.Logic
 {
-    public class Mapper
+    public static class Mapper
     {
 
 // ! ***********************************
@@ -16,9 +16,11 @@ namespace HealthPairAPI.Logic
             {
                 AppointmentId = appointment.AppointmentId,
                 AppointmentDate = appointment.AppointmentDate,
+                PatientId = appointment.Patient.PatientId,
                 PatientFirstName = appointment.Patient.PatientFirstName,
                 PatientLastName = appointment.Patient.PatientLastName,
                 PatientPhoneNumber = appointment.Patient.PatientPhoneNumber,
+                ProviderId = appointment.Provider.ProviderId,
                 ProviderFirstName = appointment.Provider.ProviderFirstName,
                 ProviderLastName = appointment.Provider.ProviderLastName,
                 ProviderPhoneNumber = appointment.Provider.ProviderPhoneNumber
@@ -70,6 +72,7 @@ namespace HealthPairAPI.Logic
                 PatientLastName = patient.PatientLastName,
                 PatientPhoneNumber = patient.PatientPhoneNumber,
                 PatientState = patient.PatientState,
+                InsuranceId = patient.Insurance.InsuranceId,
                 InsuranceName = patient.Insurance.InsuranceName
             };
         }
@@ -85,10 +88,12 @@ namespace HealthPairAPI.Logic
                 ProviderFirstName = provider.ProviderFirstName,
                 ProviderLastName = provider.ProviderLastName,
                 ProviderPhoneNumber = provider.ProviderPhoneNumber,
+                FacilityId = provider.Facility.FacilityId,
                 FacilityName = provider.Facility.FacilityName,
                 FacilityCity = provider.Facility.FacilityCity,
                 FacilityPhoneNumber = provider.Facility.FacilityPhoneNumber,
                 FacilityState = provider.Facility.FacilityState,
+                SpecialtyId = provider.Specialty.SpecialtyId,
                 Specialty = provider.Specialty.Specialty
             };
         }
