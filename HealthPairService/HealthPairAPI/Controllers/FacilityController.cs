@@ -37,12 +37,12 @@ namespace HealthPairAPI.Controllers
             List<Transfer_Facility> FacilityAll;
             if (search == null)
             {
-                _logger.LogInformation($"Retrieving all facilitys");
+                _logger.LogInformation($"Retrieving all facilities");
                 FacilityAll = (await _repo.GetFacilityAsync()).Select(Mapper.MapFacility).ToList();
             }
             else
             {
-                _logger.LogInformation($"Retrieving facilitys with parameters {search}.");
+                _logger.LogInformation($"Retrieving facilities with parameters {search}.");
                 FacilityAll = (await _repo.GetFacilityAsync(search)).Select(Mapper.MapFacility).ToList();
             }
             try
@@ -78,7 +78,7 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<Transfer_Facility>> GetById(int id)
         {
-            _logger.LogInformation($"Retrieving facilitys with id {id}.");
+            _logger.LogInformation($"Retrieving facilities with id {id}.");
             if (await _repo.GetFacilityByIdAsync(id) is Inner_Facility facility)
             {
                 string json = JsonSerializer.Serialize(Mapper.MapFacility(facility));
@@ -89,7 +89,7 @@ namespace HealthPairAPI.Controllers
                     Content = json
                 };
             }
-            _logger.LogInformation($"No facilitys found with id {id}.");
+            _logger.LogInformation($"No facilities found with id {id}.");
             return NotFound();
         }
 
