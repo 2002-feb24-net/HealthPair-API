@@ -27,6 +27,14 @@ namespace HealthPairAPI.Controllers
             _logger.LogInformation($"Accessed InsuranceController");
         }
 
+        // GET: api/insurance
+        /// <summary> Fetches all insurances in the database. Can add a search parameter to narrow search. Null returns all.
+        /// <param name="search"> string - This string is searched for in the body of multiple fields related to insurance. </param>
+        /// <returns> A content result.
+        /// 200 with A list of insurances, depending on input search
+        /// 500 if server error
+        ///  </returns>
+        /// </summary>
         [HttpGet]
         [ProducesResponseType(typeof(List<Transfer_Insurance>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]

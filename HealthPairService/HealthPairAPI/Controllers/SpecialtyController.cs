@@ -27,6 +27,14 @@ namespace HealthPairAPI.Controllers
             _logger.LogInformation($"Accessed SpecialtyController");
         }
 
+        // GET: api/specialty
+        /// <summary> Fetches all specialties in the database. Can add a search parameter to narrow search. Null returns all.
+        /// <param name="search"> string - This string is searched for in the body of multiple fields related to specialty. </param>
+        /// <returns> A content result.
+        /// 200 with A list of specialties, depending on input search
+        /// 500 if server error
+        ///  </returns>
+        /// </summary>
         [HttpGet]
         [ProducesResponseType(typeof(List<Transfer_Specialty>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]

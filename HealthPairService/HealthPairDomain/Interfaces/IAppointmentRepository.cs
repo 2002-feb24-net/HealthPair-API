@@ -43,6 +43,5 @@ namespace HealthPairDomain.Interfaces
         /// <returns> no return </returns>
         /// </summary>
         Task RemoveAppointmentAsync(int id);
-        Task Save();
     }
 }
