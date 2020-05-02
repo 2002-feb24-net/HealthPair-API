@@ -25,9 +25,20 @@ namespace HealthPairDataAccess.Repositories
         /// </summary>
         public async Task<List<Inner_Appointment>> GetAppointmentAsync(string search = null)
         {
-            var appointments = await _context.Appointments.ToListAsync();
-
-            return appointments.Select(Mapper.MapAppointment).ToList();
+            var appointment = await _context.Appointments
+                .Include(p => p.Patient)
+                .Include(p => p.Provider)
+                .ToListAsync();
+            if(search == null)
+            {
+                return appointment.Select(Mapper.MapAppointment).ToList();
+            }
+            return (appointment.FindAll(p =>
+                p.Patient.PatientFirstName.ToLower().Contains(search.ToLower()) ||
+                p.Patient.PatientLastName.ToLower().Contains(search.ToLower()) ||
+                p.Provider.ProviderFirstName.ToLower().Contains(search.ToLower()) ||
+                p.Provider.ProviderLastName.ToLower().Contains(search.ToLower())
+            )).Select(Mapper.MapAppointment).ToList();
         }
 
         /// <summary> Fetches one appointment related to input id.

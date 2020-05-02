@@ -25,9 +25,23 @@ namespace HealthPairDataAccess.Repositories
         /// </summary>
         public async Task<List<Inner_Provider>> GetProvidersAsync(string search = null)
         {
-            var provider = await _context.Providers.ToListAsync();
-
-            return provider.Select(Mapper.MapProvider).ToList();
+            var provider = await _context.Providers
+                .Include(p => p.Facility)
+                .Include(p => p.Specialty)
+                .ToListAsync();
+            if(search == null)
+            {
+                return provider.Select(Mapper.MapProvider).ToList();
+            }
+            return (provider.FindAll(p =>
+                p.ProviderFirstName.ToLower().Contains(search.ToLower()) ||
+                p.ProviderLastName.ToLower().Contains(search.ToLower()) ||
+                p.Facility.FacilityAddress1.ToLower().Contains(search.ToLower()) ||
+                p.Facility.FacilityCity.ToLower().Contains(search.ToLower()) ||
+                p.Facility.FacilityName.ToLower().Contains(search.ToLower()) ||
+                p.Facility.FacilityState.ToLower().Contains(search.ToLower()) ||
+                p.Specialty.Specialty.ToLower().Contains(search.ToLower())
+            )).Select(Mapper.MapProvider).ToList();
         }
 
         /// <summary> Fetches one provider related to input id.

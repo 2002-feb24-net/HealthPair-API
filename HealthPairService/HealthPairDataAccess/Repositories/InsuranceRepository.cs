@@ -25,9 +25,15 @@ namespace HealthPairDataAccess.Repositories
         /// </summary>
         public async Task<List<Inner_Insurance>> GetInsuranceAsync(string search = null)
         {
-            var insurance = await _context.Insurances.ToListAsync();
-
-            return insurance.Select(Mapper.MapInsurance).ToList();
+            var insurance = await _context.Insurances
+                .ToListAsync();
+            if(search == null)
+            {
+                return insurance.Select(Mapper.MapInsurance).ToList();
+            }
+            return (insurance.FindAll(p =>
+                p.InsuranceName.ToLower().Contains(search.ToLower())
+            )).Select(Mapper.MapInsurance).ToList();
         }
 
         /// <summary> Fetches one insurance related to input id.

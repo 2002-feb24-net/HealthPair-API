@@ -27,9 +27,15 @@ namespace HealthPairDataAccess.Repositories
         /// </summary>
         public async Task<List<Inner_Specialty>> GetSpecialtyAsync(string search = null)
         {
-            var specialty = await _context.Specialties.ToListAsync();
-
-            return specialty.Select(Mapper.MapSpecialty).ToList();
+            var specialty = await _context.Specialties
+                .ToListAsync();
+            if(search == null)
+            {
+                return specialty.Select(Mapper.MapSpecialty).ToList();
+            }
+            return (specialty.FindAll(p =>
+                p.Specialty.ToLower().Contains(search.ToLower())
+            )).Select(Mapper.MapSpecialty).ToList();;
         }
 
        /// <summary> Fetches one specialty related to input id.

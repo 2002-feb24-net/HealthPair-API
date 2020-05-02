@@ -25,9 +25,18 @@ namespace HealthPairDataAccess.Repositories
         /// </summary>
         public async Task<List<Inner_Facility>> GetFacilityAsync(string search = null)
         {
-            var facility = await _context.Facilities.ToListAsync();
-
-            return facility.Select(Mapper.MapFacility).ToList();
+            var facility = await _context.Facilities
+                .ToListAsync();
+            if(search == null)
+            {
+                return facility.Select(Mapper.MapFacility).ToList();
+            }
+            return (facility.FindAll(p =>
+                p.FacilityName.ToLower().Contains(search.ToLower()) ||
+                p.FacilityAddress1.ToLower().Contains(search.ToLower()) ||
+                p.FacilityCity.ToLower().Contains(search.ToLower()) ||
+                p.FacilityState.ToLower().Contains(search.ToLower())
+            )).Select(Mapper.MapFacility).ToList();
         }
 
         /// <summary> Fetches one facility related to input id.
