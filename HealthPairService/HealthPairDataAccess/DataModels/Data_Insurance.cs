@@ -8,6 +8,7 @@ namespace HealthPairDataAccess.DataModels
     public class Data_Insurance
     {
         [Key]
+
         public int InsuranceId { get; set; }
         public string InsuranceName { get; set; }
 

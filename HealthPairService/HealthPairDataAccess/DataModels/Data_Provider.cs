@@ -9,7 +9,14 @@ namespace HealthPairDataAccess.DataModels
     {
         [Key]
         public int ProviderId { get; set; }
+
+        [Required(ErrorMessage = "Invalid Entry, You Must Choose a Facility")]
+        [Range(1,99999, ErrorMessage = "Please Choose a Correct Facility")]
         public int FacilityId { get; set; }
+
+
+        [Required(ErrorMessage = "You Must Choose a Specialty")]
+        [Range(1, 99999, ErrorMessage = "Invalid Entry, You Must Choose a Correct ")]
         public int SpecialtyId { get; set; }
         public string ProviderFirstName { get; set; }
         public string ProviderLastName { get; set; }

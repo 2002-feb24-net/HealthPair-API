@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace HealthPairAPI.TransferModels
 {
     public class Transfer_Patient
     {
-        public int PatientId { get; set; }
+        public int PatientId { get; set; })]
         public string PatientFirstName { get; set; }
         public string PatientLastName { get; set; }
         public string PatientPassword { get; set; }
