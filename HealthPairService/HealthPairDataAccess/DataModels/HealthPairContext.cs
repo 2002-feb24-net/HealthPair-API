@@ -39,9 +39,23 @@ namespace HealthPairDataAccess.DataModels
                 new Data_Appointment()
                 {
                     AppointmentId = 1,
-                    PatientId = 1,
+                    PatientId = 3,
                     ProviderId = 1,
                     AppointmentDate = new DateTime(2020, 4, 29)
+                },
+                new Data_Appointment()
+                {
+                    AppointmentId = 2,
+                    PatientId = 2,
+                    ProviderId = 3,
+                    AppointmentDate = new DateTime(2020, 6, 29)
+                },
+                new Data_Appointment()
+                {
+                    AppointmentId = 3,
+                    PatientId = 1,
+                    ProviderId = 2,
+                    AppointmentDate = new DateTime(2020, 5, 29)
                 }
             );
 
@@ -76,6 +90,26 @@ namespace HealthPairDataAccess.DataModels
                     FacilityState = "Test State",
                     FacilityZipcode = 12345,
                     FacilityPhoneNumber = 1234567890
+                },
+                new Data_Facility()
+                {
+                    FacilityId = 2,
+                    FacilityName = "My Facility",
+                    FacilityAddress1 = "Best Place Lane",
+                    FacilityCity = "The City",
+                    FacilityState = "Wonder State",
+                    FacilityZipcode = 14556,
+                    FacilityPhoneNumber = 6715927402
+                },
+                new Data_Facility()
+                {
+                    FacilityId = 3,
+                    FacilityName = "Facility Three",
+                    FacilityAddress1 = "Your Current Location",
+                    FacilityCity = "Your City",
+                    FacilityState = "Your State",
+                    FacilityZipcode = 72910,
+                    FacilityPhoneNumber = 2852019634
                 }
             );
 
@@ -92,6 +126,16 @@ namespace HealthPairDataAccess.DataModels
                 {
                     InsuranceId = 1,
                     InsuranceName = "Test Insurance Name"
+                },
+                new Data_Insurance()
+                {
+                    InsuranceId = 2,
+                    InsuranceName = "Best Insurance"
+                },
+                new Data_Insurance()
+                {
+                    InsuranceId = 3,
+                    InsuranceName = "Worst Insurance"
                 }
             );
 
@@ -105,6 +149,33 @@ namespace HealthPairDataAccess.DataModels
                     .WithMany(b => b.InsuranceProviders)
                     .HasForeignKey(bc => bc.ProviderId);
             });
+            modelBuilder.Entity<Data_InsuranceProvider>().HasData(
+                new Data_InsuranceProvider()
+                {
+                    InsuranceId = 1,
+                    ProviderId = 1
+                },
+                new Data_InsuranceProvider()
+                {
+                    InsuranceId = 1,
+                    ProviderId = 2
+                },
+                new Data_InsuranceProvider()
+                {
+                    InsuranceId = 3,
+                    ProviderId = 1
+                },
+                new Data_InsuranceProvider()
+                {
+                    InsuranceId = 2,
+                    ProviderId = 1
+                },
+                new Data_InsuranceProvider()
+                {
+                    InsuranceId = 3,
+                    ProviderId = 2
+                }
+            );
 
             modelBuilder.Entity<Data_Patient>(entity =>
             {
@@ -158,6 +229,38 @@ namespace HealthPairDataAccess.DataModels
                     PatientPhoneNumber = 1234567890,
                     PatientEmail = "TestEmail@test.com",
                     IsAdmin = true
+                },
+                new Data_Patient()
+                {
+                    PatientId = 2,
+                    InsuranceId = 1,
+                    PatientFirstName = "Bob",
+                    PatientLastName = "Sagget",
+                    PatientPassword = "password123",
+                    PatientAddress1 = "123 Holiday Lane",
+                    PatientCity = "Georgetown",
+                    PatientState = "Georgia",
+                    PatientZipcode = 55567,
+                    PatientBirthDay = new DateTime(2000, 1, 1),
+                    PatientPhoneNumber = 1234567890,
+                    PatientEmail = "dontemailme@emailcompany.com",
+                    IsAdmin = false
+                },
+                new Data_Patient()
+                {
+                    PatientId = 3,
+                    InsuranceId = 2,
+                    PatientFirstName = "Daffy",
+                    PatientLastName = "Duck",
+                    PatientPassword = "L00nyT00nz",
+                    PatientAddress1 = "Sesame Street",
+                    PatientCity = "London",
+                    PatientState = "California",
+                    PatientZipcode = 11111,
+                    PatientBirthDay = new DateTime(2000, 1, 1),
+                    PatientPhoneNumber = 5555555555,
+                    PatientEmail = "rickrolled@rick.com",
+                    IsAdmin = false
                 }
             );
 
@@ -191,6 +294,24 @@ namespace HealthPairDataAccess.DataModels
                     ProviderFirstName = "TestProviderFirstName",
                     ProviderLastName = "TestProviderLastName",
                     ProviderPhoneNumber = 1234567890
+                },
+                new Data_Provider()
+                {
+                    ProviderId = 2,
+                    FacilityId = 3,
+                    SpecialtyId = 2,
+                    ProviderFirstName = "Deborah",
+                    ProviderLastName = "White",
+                    ProviderPhoneNumber = 6483932283
+                },
+                new Data_Provider()
+                {
+                    ProviderId = 3,
+                    FacilityId = 2,
+                    SpecialtyId = 1,
+                    ProviderFirstName = "Billy",
+                    ProviderLastName = "Joe",
+                    ProviderPhoneNumber = 6667778888
                 }
             );
 
@@ -207,6 +328,16 @@ namespace HealthPairDataAccess.DataModels
                 {
                     SpecialtyId = 1,
                     Specialty = "Test Specialty"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 2,
+                    Specialty = "Legos"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 3,
+                    Specialty = "Guns"
                 }
             );
         }
