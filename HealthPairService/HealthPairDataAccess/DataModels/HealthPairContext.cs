@@ -156,6 +156,7 @@ namespace HealthPairDataAccess.DataModels
                     PatientZipcode = 12345,
                     PatientBirthDay = new DateTime(2000, 1, 1),
                     PatientPhoneNumber = 1234567890,
+                    PatientEmail = "TestEmail@test.com",
                     IsAdmin = true
                 }
             );

@@ -1,7 +1,7 @@
 # to run api and db in docker (debugger not possible): docker-compose up --build
 
 # to run db in docker and api outside docker (debugger possible): docker-compose up data
-#   and if you have Docker Desktop, set in user secrets: "DatabaseConnection": "NotesDbPostgreSqlDockerDesktop"
+#   and if you have Docker Desktop, set in user secrets: "DatabaseConnection": "HealthPairDbPostgreSqlDockerDesktop"
 
 # api accessible at localhost:8000 / 192.168.99.100:8000
 # db accessible at localhost:5432 / 192.168.99.100:5432

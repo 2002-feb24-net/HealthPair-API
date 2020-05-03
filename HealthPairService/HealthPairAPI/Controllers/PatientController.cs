@@ -21,6 +21,7 @@ using HealthPairAPI.Helpers;
 
 namespace HealthPairAPI.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/patient")]
     public class PatientController : ControllerBase
@@ -47,6 +48,7 @@ namespace HealthPairAPI.Controllers
         /// 500 if server error
         ///  </returns>
         /// </summary>
+        [AllowAnonymous]
         [HttpGet]
         [ProducesResponseType(typeof(List<Transfer_Patient>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -193,6 +195,7 @@ namespace HealthPairAPI.Controllers
             return NotFound();
         }
 
+        [AllowAnonymous]
         [HttpPost("authenticate")]
         public async Task<IActionResult> Authenticate([FromBody]AuthenticateModel model)
         {

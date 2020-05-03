@@ -61,13 +61,6 @@ namespace HealthPairAPI
                 services.AddDbContext<HealthPairContext>(options => options.UseSqlServer(connection));
             }
 
-            services.AddScoped<IAppointmentRepository, AppointmentRepository>();
-            services.AddScoped<IFacilityRepository, FacilityRepository>();
-            services.AddScoped<IInsuranceRepository, InsuranceRepository>();
-            services.AddScoped<IPatientRepository, PatientRepository>();
-            services.AddScoped<IProviderRepository, ProviderRepository>();
-            services.AddScoped<ISpecialtyRepository, SpecialtyRepository>();
-
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "HealthPair API", Version = "v1" });
@@ -134,6 +127,14 @@ namespace HealthPairAPI
                     ValidateAudience = false
                 };
             });
+
+            services.AddScoped<IAppointmentRepository, AppointmentRepository>();
+            services.AddScoped<IFacilityRepository, FacilityRepository>();
+            services.AddScoped<IInsuranceRepository, InsuranceRepository>();
+            services.AddScoped<IPatientRepository, PatientRepository>();
+            services.AddScoped<IProviderRepository, ProviderRepository>();
+            services.AddScoped<ISpecialtyRepository, SpecialtyRepository>();
+            services.AddScoped<AppSettings>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
