@@ -11,7 +11,7 @@ namespace HealthPairDataAccess.DataModels
         public int AppointmentId { get; set; }
         public int PatientId { get; set; }
         public int ProviderId { get; set; }
-        public DateTime AppointmentDate { get; set; } = DateTime.Now;
+        public DateTime AppointmentDate { get; set; }
 
         public Data_Patient Patient { get; set; }
         public Data_Provider Provider { get; set; }

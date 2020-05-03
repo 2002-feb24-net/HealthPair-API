@@ -51,6 +51,8 @@ namespace HealthPairDataAccess.Repositories
         public async Task<Inner_Provider> GetProviderByIdAsync(int id)
         {
             var provider = await _context.Providers
+                .Include(p => p.Facility)
+                .Include(p => p.Specialty)
                 .FirstOrDefaultAsync(a => a.ProviderId == id);
             return Mapper.MapProvider(provider);
         }

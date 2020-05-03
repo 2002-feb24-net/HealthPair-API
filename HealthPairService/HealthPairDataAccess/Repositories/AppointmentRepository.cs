@@ -51,6 +51,11 @@ namespace HealthPairDataAccess.Repositories
         public async Task<Inner_Appointment> GetAppointmentByIdAsync(int id)
         {
             var appointment = await _context.Appointments
+                .Include(p => p.Patient)
+                .ThenInclude(p => p.Insurance)
+                .Include(p => p.Provider)
+                .Include(p => p.Provider.Specialty)
+                .Include( p => p.Provider.Facility)
                 .FirstOrDefaultAsync(a => a.AppointmentId == id);
             return Mapper.MapAppointment(appointment);
         }

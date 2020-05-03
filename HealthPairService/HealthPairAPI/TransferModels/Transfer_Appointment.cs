@@ -7,8 +7,10 @@ namespace HealthPairAPI.TransferModels
 {
     public class Transfer_Appointment
     {
-        
+
         public int AppointmentId { get; set; }
+        [Required(ErrorMessage = "Must Choose a Date")]
+        [DataType(DataType.Date)]
         public DateTime AppointmentDate { get; set; }
 
 

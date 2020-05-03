@@ -9,8 +9,6 @@ namespace HealthPairDomain.InnerModels
     {
         public int AppointmentId { get; set; }
 
-        [Required(ErrorMessage = "Must Choose a Date")]
-        [DataType(DataType.Date)]
         public DateTime AppointmentDate { get; set; }
 
         public Inner_Patient Patient { get; set; }
