@@ -17,7 +17,9 @@ namespace HealthPairAPI.Controllers
     [ApiController]
     public class ProviderController : ControllerBase
     {
-        private readonly IProviderRepository _repo;
+        private readonly IProviderRepository _providerRepository;
+        private readonly IFacilityRepository _facilityRepository;
+        private readonly ISpecialtyRepository _specialtyRepository;
         private readonly ILogger<ProviderController> _logger;
 
         // GET: api/provider
@@ -28,9 +30,11 @@ namespace HealthPairAPI.Controllers
         /// 500 if server error
         ///  </returns>
         /// </summary>
-        public ProviderController(IProviderRepository repo, ILogger<ProviderController> logger)
+        public ProviderController(IProviderRepository providerRepository, IFacilityRepository facilityRepository, ISpecialtyRepository specialtyRepository, ILogger<ProviderController> logger)
         {
-            _repo = repo ?? throw new ArgumentException(nameof(repo));
+            _providerRepository = providerRepository ?? throw new ArgumentException(nameof(providerRepository));
+            _facilityRepository = facilityRepository ?? throw new ArgumentException(nameof(facilityRepository));
+            _specialtyRepository = specialtyRepository ?? throw new ArgumentException(nameof(specialtyRepository));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _logger.LogInformation($"Accessed ProviderController");
         }
@@ -44,23 +48,17 @@ namespace HealthPairAPI.Controllers
             if (search == null)
             {
                 _logger.LogInformation($"Retrieving all providers");
-                ProviderAll = (await _repo.GetProvidersAsync()).Select(Mapper.MapProvider).ToList();
+                ProviderAll = (await _providerRepository.GetProvidersAsync()).Select(Mapper.MapProvider).ToList();
             }
             else
             {
                 _logger.LogInformation($"Retrieving providers with parameters {search}.");
-                ProviderAll = (await _repo.GetProvidersAsync(search)).Select(Mapper.MapProvider).ToList();
+                ProviderAll = (await _providerRepository.GetProvidersAsync(search)).Select(Mapper.MapProvider).ToList();
             }
             try
             {
-                _logger.LogInformation($"Serializing {ProviderAll}");
-                string json = JsonSerializer.Serialize(ProviderAll);
-                return new ContentResult
-                {
-                    StatusCode = 200,
-                    ContentType = "application/json",
-                    Content = json
-                };
+                _logger.LogInformation($"Sending {ProviderAll.Count} Providers.");
+                return Ok(ProviderAll);
             }
             catch (Exception e)
             {
@@ -85,15 +83,9 @@ namespace HealthPairAPI.Controllers
         public async Task<ActionResult<Transfer_Provider>> GetById(int id)
         {
             _logger.LogInformation($"Retrieving providers with id {id}.");
-            if (await _repo.GetProviderByIdAsync(id) is Inner_Provider provider)
+            if (await _providerRepository.GetProviderByIdAsync(id) is Inner_Provider provider)
             {
-                string json = JsonSerializer.Serialize(Mapper.MapProvider(provider));
-                return new ContentResult
-                {
-                    StatusCode = 200,
-                    ContentType = "application/json",
-                    Content = json
-                };
+                return Ok(provider);
             }
             _logger.LogInformation($"No providers found with id {id}.");
             return NotFound();
@@ -117,14 +109,15 @@ namespace HealthPairAPI.Controllers
             _logger.LogInformation($"Adding new provider.");
             Inner_Provider transformedProvider = new Inner_Provider
             {
-                ProviderId = provider.ProviderId,
+                ProviderId = 0,
                 ProviderFirstName = provider.ProviderFirstName,
                 ProviderLastName = provider.ProviderLastName,
                 ProviderPhoneNumber = provider.ProviderPhoneNumber,
-                // Add more clsses
+                Facility = (_facilityRepository.GetFacilityByIdAsync(provider.FacilityId)).Result,
+                Specialty = (_specialtyRepository.GetSpecialtyByIdAsync(provider.FacilityId)).Result
 
             };
-            _repo.AddProviderAsync(transformedProvider);
+            _providerRepository.AddProviderAsync(transformedProvider);
             return CreatedAtAction(nameof(GetById), new { id = provider.ProviderId }, provider);
         }
 
@@ -144,14 +137,12 @@ namespace HealthPairAPI.Controllers
         public async Task<IActionResult> Put(int id, [FromBody] Transfer_Provider provider)
         {
             _logger.LogInformation($"Editing provider with id {id}.");
-            var entity = await _repo.GetProviderByIdAsync(id);
+            var entity = await _providerRepository.GetProviderByIdAsync(id);
             if (entity is Inner_Provider)
             {
-                entity.ProviderId = provider.ProviderId;
                 entity.ProviderFirstName = provider.ProviderFirstName;
                 entity.ProviderLastName = provider.ProviderLastName;
                 entity.ProviderPhoneNumber = provider.ProviderPhoneNumber;
-                // Add more clsses
 
                 return NoContent();
             }
@@ -175,9 +166,9 @@ namespace HealthPairAPI.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             _logger.LogInformation($"Deleting provider with id {id}.");
-            if (await _repo.GetProviderByIdAsync(id) is Inner_Provider provider)
+            if (await _providerRepository.GetProviderByIdAsync(id) is Inner_Provider provider)
             {
-                await _repo.RemoveProviderAsync(provider.ProviderId);
+                await _providerRepository.RemoveProviderAsync(provider.ProviderId);
                 return NoContent();
             }
             _logger.LogInformation($"No providers found with id {id}.");

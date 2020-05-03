@@ -27,7 +27,10 @@ namespace HealthPairDataAccess.Repositories
         {
             var appointment = await _context.Appointments
                 .Include(p => p.Patient)
+                .ThenInclude(p => p.Insurance)
                 .Include(p => p.Provider)
+                .Include(p => p.Provider.Specialty)
+                .Include( p => p.Provider.Facility)
                 .ToListAsync();
             if(search == null)
             {

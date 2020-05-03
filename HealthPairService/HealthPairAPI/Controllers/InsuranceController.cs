@@ -17,12 +17,12 @@ namespace HealthPairAPI.Controllers
     [ApiController]
     public class InsuranceController : ControllerBase
     {
-        private readonly IInsuranceRepository _repo;
+        private readonly IInsuranceRepository _insuranceRepository;
         private readonly ILogger<InsuranceController> _logger;
 
-        public InsuranceController(IInsuranceRepository repo, ILogger<InsuranceController> logger)
+        public InsuranceController(IInsuranceRepository insuranceRepository, ILogger<InsuranceController> logger)
         {
-            _repo = repo ?? throw new ArgumentNullException(nameof(repo));
+            _insuranceRepository = insuranceRepository ?? throw new ArgumentNullException(nameof(insuranceRepository));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _logger.LogInformation($"Accessed InsuranceController");
         }
@@ -44,23 +44,17 @@ namespace HealthPairAPI.Controllers
             if (search == null)
             {
                 _logger.LogInformation($"Retrieving all insurances");
-                InsuranceAll = (await _repo.GetInsuranceAsync()).Select(Mapper.MapInsurance).ToList();
+                InsuranceAll = (await _insuranceRepository.GetInsuranceAsync()).Select(Mapper.MapInsurance).ToList();
             }
             else
             {
                 _logger.LogInformation($"Retrieving insurances with parameters {search}.");
-                InsuranceAll = (await _repo.GetInsuranceAsync(search)).Select(Mapper.MapInsurance).ToList();
+                InsuranceAll = (await _insuranceRepository.GetInsuranceAsync(search)).Select(Mapper.MapInsurance).ToList();
             }
             try
             {
-                _logger.LogInformation($"Serializing {InsuranceAll}");
-                string json = JsonSerializer.Serialize(InsuranceAll);
-                return new ContentResult
-                {
-                    StatusCode = 200,
-                    ContentType = "application/json",
-                    Content = json
-                };
+                _logger.LogInformation($"Sending {InsuranceAll.Count} Insurance.");
+                return Ok(InsuranceAll);
             }
             catch (Exception e)
             {
@@ -85,15 +79,9 @@ namespace HealthPairAPI.Controllers
         public async Task<ActionResult<Transfer_Insurance>> GetById(int id)
         {
             _logger.LogInformation($"Retrieving insurances with id {id}.");
-            if (await _repo.GetInsuranceByIdAsync(id) is Inner_Insurance insurance)
+            if (await _insuranceRepository.GetInsuranceByIdAsync(id) is Inner_Insurance insurance)
             {
-                string json = JsonSerializer.Serialize(Mapper.MapInsurance(insurance));
-                return new ContentResult
-                {
-                    StatusCode = 200,
-                    ContentType = "application/json",
-                    Content = json
-                };
+                return Ok(insurance);
             }
             _logger.LogInformation($"No insurances found with id {id}.");
             return NotFound();
@@ -117,13 +105,10 @@ namespace HealthPairAPI.Controllers
             _logger.LogInformation($"Adding new insurance.");
             Inner_Insurance transformedInsurance = new Inner_Insurance
             {
-                InsuranceId = insurance.InsuranceId,
-                InsuranceName = insurance.InsuranceName,
-                //Patients
-                //Providers
-
+                InsuranceId = 0,
+                InsuranceName = insurance.InsuranceName
             };
-            _repo.AddInsuranceAsync(transformedInsurance);
+            _insuranceRepository.AddInsuranceAsync(transformedInsurance);
             return CreatedAtAction(nameof(GetById), new { id = insurance.InsuranceId }, insurance);
         }
 
@@ -143,13 +128,10 @@ namespace HealthPairAPI.Controllers
         public async Task<IActionResult> Put(int id, [FromBody] Transfer_Insurance insurance)
         {
             _logger.LogInformation($"Editing insurance with id {id}.");
-            var entity = await _repo.GetInsuranceByIdAsync(id);
+            var entity = await _insuranceRepository.GetInsuranceByIdAsync(id);
             if (entity is Inner_Insurance)
             {
-                entity.InsuranceId = insurance.InsuranceId;
                 entity.InsuranceName = insurance.InsuranceName;
-                //Patients
-                //Providers
 
                 return NoContent();
             }
@@ -173,9 +155,9 @@ namespace HealthPairAPI.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             _logger.LogInformation($"Deleting insurance with id {id}.");
-            if (await _repo.GetInsuranceByIdAsync(id) is Inner_Insurance insurance)
+            if (await _insuranceRepository.GetInsuranceByIdAsync(id) is Inner_Insurance insurance)
             {
-                await _repo.RemoveInsuranceAsync(insurance.InsuranceId);
+                await _insuranceRepository.RemoveInsuranceAsync(insurance.InsuranceId);
                 return NoContent();
             }
             _logger.LogInformation($"No insurances found with id {id}.");
