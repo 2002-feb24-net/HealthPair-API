@@ -7,11 +7,25 @@ namespace HealthPairDomain.InnerModels
 {
     public class Inner_Appointment
     {
-        public int AppointmentId { get; set; }
+        private int _id;
 
-        [Required(ErrorMessage = "Must Choose a Date")]
-        [DataType(DataType.Date)]
-        public DateTime AppointmentDate { get; set; } = DateTime.Now;
+        public int AppointmentId
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if(value < 0)
+                {
+                    throw new ArgumentException("There can not be a negative id!");
+                }
+                _id = value;
+            }
+        }
+
+        public DateTime AppointmentDate { get; set; }
 
         public Inner_Patient Patient { get; set; }
         public Inner_Provider Provider { get; set; }

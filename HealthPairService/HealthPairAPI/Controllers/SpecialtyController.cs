@@ -17,12 +17,12 @@ namespace HealthPairAPI.Controllers
     [ApiController]
     public class SpeacilityController : ControllerBase
     {
-        private readonly ISpecialtyRepository _repo;
+        private readonly ISpecialtyRepository _specialtyRepository;
         private readonly ILogger<SpeacilityController> _logger;
 
-        public SpeacilityController(ISpecialtyRepository repo, ILogger<SpeacilityController> logger)
+        public SpeacilityController(ISpecialtyRepository specialtyRepository, ILogger<SpeacilityController> logger)
         {
-            _repo = repo ?? throw new ArgumentException(nameof(repo));
+            _specialtyRepository = specialtyRepository ?? throw new ArgumentException(nameof(specialtyRepository));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _logger.LogInformation($"Accessed SpecialtyController");
         }
@@ -44,23 +44,17 @@ namespace HealthPairAPI.Controllers
             if (search == null)
             {
                 _logger.LogInformation($"Retrieving all specialties");
-                SpecialtyAll = (await _repo.GetSpecialtyAsync()).Select(Mapper.MapSpecialty).ToList();
+                SpecialtyAll = (await _specialtyRepository.GetSpecialtyAsync()).Select(Mapper.MapSpecialty).ToList();
             }
             else
             {
                 _logger.LogInformation($"Retrieving specialties with parameters {search}.");
-                SpecialtyAll = (await _repo.GetSpecialtyAsync(search)).Select(Mapper.MapSpecialty).ToList();
+                SpecialtyAll = (await _specialtyRepository.GetSpecialtyAsync(search)).Select(Mapper.MapSpecialty).ToList();
             }
             try
             {
-                _logger.LogInformation($"Serializing {SpecialtyAll}");
-                string json = JsonSerializer.Serialize(SpecialtyAll);
-                return new ContentResult
-                {
-                    StatusCode = 200,
-                    ContentType = "application/json",
-                    Content = json
-                };
+                _logger.LogInformation($"Sending {SpecialtyAll.Count} Specialties.");
+                return Ok(SpecialtyAll);
             }
             catch (Exception e)
             {
@@ -85,15 +79,9 @@ namespace HealthPairAPI.Controllers
         public async Task<ActionResult<Transfer_Specialty>> GetById(int id)
         {
             _logger.LogInformation($"Retrieving specialties with id {id}.");
-            if (await _repo.GetSpecialtyByIdAsync(id) is Inner_Specialty specialty)
+            if (await _specialtyRepository.GetSpecialtyByIdAsync(id) is Inner_Specialty specialty)
             {
-                string json = JsonSerializer.Serialize(Mapper.MapSpecialty(specialty));
-                return new ContentResult
-                {
-                    StatusCode = 200,
-                    ContentType = "application/json",
-                    Content = json
-                };
+                return Ok(specialty);
             }
             _logger.LogInformation($"No specialties found with id {id}.");
             return NotFound();
@@ -117,12 +105,11 @@ namespace HealthPairAPI.Controllers
             _logger.LogInformation($"Adding new specialty.");
             Inner_Specialty transformedSpecialty = new Inner_Specialty
             {
-                SpecialtyId = specialty.SpecialtyId,
+                SpecialtyId = 0,
                 Specialty = specialty.Specialty
-                // Add more clsses
 
             };
-            _repo.AddSpecialtyAsync(transformedSpecialty);
+            _specialtyRepository.AddSpecialtyAsync(transformedSpecialty);
             return CreatedAtAction(nameof(GetById), new { id = specialty.SpecialtyId }, specialty);
         }
 
@@ -142,12 +129,10 @@ namespace HealthPairAPI.Controllers
         public async Task<IActionResult> Put(int id, [FromBody] Transfer_Specialty specialty)
         {
             _logger.LogInformation($"Editing specialty with id {id}.");
-            var entity = await _repo.GetSpecialtyByIdAsync(id);
+            var entity = await _specialtyRepository.GetSpecialtyByIdAsync(id);
             if (entity is Inner_Specialty)
             {
-                entity.SpecialtyId = specialty.SpecialtyId;
                 entity.Specialty = specialty.Specialty;
-                // Add more clsses
 
                 return NoContent();
             }
@@ -171,9 +156,9 @@ namespace HealthPairAPI.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             _logger.LogInformation($"Deleting specialty with id {id}.");
-            if (await _repo.GetSpecialtyByIdAsync(id) is Inner_Specialty specialty)
+            if (await _specialtyRepository.GetSpecialtyByIdAsync(id) is Inner_Specialty specialty)
             {
-                await _repo.RemoveSpecialtyAsync(specialty.SpecialtyId);
+                await _specialtyRepository.RemoveSpecialtyAsync(specialty.SpecialtyId);
                 return NoContent();
             }
             _logger.LogInformation($"No specialties found with id {id}.");

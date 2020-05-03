@@ -17,13 +17,16 @@ namespace HealthPairAPI.Controllers
     [ApiController]
     public class AppointmentController : ControllerBase
     {
-        private readonly IAppointmentRepository _repo;
-        private readonly IProviderRepository _providerRepo;
+        private readonly IAppointmentRepository _appointmentRepository;
+        private readonly IProviderRepository _providerRepository;
+        private readonly IPatientRepository _patientRepository;
         private readonly ILogger<AppointmentController> _logger;
 
-        public AppointmentController(IAppointmentRepository repo, ILogger<AppointmentController> logger)
+        public AppointmentController(IAppointmentRepository appointmentRepository, IProviderRepository providerRepository, IPatientRepository patientRepository, ILogger<AppointmentController> logger)
         {
-            _repo = repo ?? throw new ArgumentNullException(nameof(repo));
+            _appointmentRepository = appointmentRepository ?? throw new ArgumentNullException(nameof(appointmentRepository));
+            _providerRepository = providerRepository ?? throw new ArgumentNullException(nameof(providerRepository));
+            _patientRepository = patientRepository ?? throw new ArgumentNullException(nameof(patientRepository));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _logger.LogInformation($"Accessed AppointmentController");
         }
@@ -45,23 +48,17 @@ namespace HealthPairAPI.Controllers
             if (search == null)
             {
                 _logger.LogInformation($"Retrieving all appointments");
-                AppointmentAll = (await _repo.GetAppointmentAsync()).Select(Mapper.MapAppointments).ToList();
+                AppointmentAll = (await _appointmentRepository.GetAppointmentAsync()).Select(Mapper.MapAppointments).ToList();
             }
             else
             {
                 _logger.LogInformation($"Retrieving appointments with parameters {search}.");
-                AppointmentAll = (await _repo.GetAppointmentAsync(search)).Select(Mapper.MapAppointments).ToList();
+                AppointmentAll = (await _appointmentRepository.GetAppointmentAsync(search)).Select(Mapper.MapAppointments).ToList();
             }
             try
             {
-                _logger.LogInformation($"Serializing {AppointmentAll}");
-                string json = JsonSerializer.Serialize(AppointmentAll);
-                return new ContentResult
-                {
-                    StatusCode = 200,
-                    ContentType = "application/json",
-                    Content = json
-                };
+                _logger.LogInformation($"Sending {AppointmentAll.Count} Appointments.");
+                return Ok(AppointmentAll);
             }
             catch (Exception e)
             {
@@ -86,15 +83,9 @@ namespace HealthPairAPI.Controllers
         public async Task<ActionResult<Transfer_Appointment>> GetById(int id)
         {
             _logger.LogInformation($"Retrieving appointments with id {id}.");
-            if (await _repo.GetAppointmentByIdAsync(id) is Inner_Appointment appointment)
+            if (await _appointmentRepository.GetAppointmentByIdAsync(id) is Inner_Appointment appointment)
             {
-                string json = JsonSerializer.Serialize(Mapper.MapAppointments(appointment));
-                return new ContentResult
-                {
-                    StatusCode = 200,
-                    ContentType = "application/json",
-                    Content = json
-                };
+                return Ok(appointment);
             }
             _logger.LogInformation($"No appointments found with id {id}.");
             return NotFound();
@@ -115,15 +106,23 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Post(Transfer_Appointment appointment)
         {
-            _logger.LogInformation($"Adding new appointment.");
-            Inner_Appointment transformedAppointment = new Inner_Appointment
+            try
             {
-                AppointmentId = appointment.AppointmentId,
-                AppointmentDate = appointment.AppointmentDate,
-
-            };
-            _repo.AddAppointmentAsync(transformedAppointment);
-            return CreatedAtAction(nameof(GetById), new { id = appointment.AppointmentId }, appointment);
+                _logger.LogInformation($"Adding new appointment.");
+                Inner_Appointment transformedAppointment = new Inner_Appointment
+                {
+                    AppointmentId = 0,
+                    AppointmentDate = (DateTime)appointment.AppointmentDate,
+                    Patient = (_patientRepository.GetPatientByIdAsync(appointment.PatientId)).Result,
+                    Provider = (_providerRepository.GetProviderByIdAsync(appointment.ProviderId)).Result
+                };
+                _appointmentRepository.AddAppointmentAsync(transformedAppointment);
+                return CreatedAtAction(nameof(GetById), new { id = appointment.AppointmentId }, appointment);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         // PUT: api/appointment/5
@@ -142,11 +141,10 @@ namespace HealthPairAPI.Controllers
         public async Task<IActionResult> Put(int id, [FromBody] Transfer_Appointment appointment)
         {
             _logger.LogInformation($"Editing appointment with id {id}.");
-            var entity = await _repo.GetAppointmentByIdAsync(id);
+            var entity = await _appointmentRepository.GetAppointmentByIdAsync(id);
             if (entity is Inner_Appointment)
             {
-                entity.AppointmentId = appointment.AppointmentId;
-                entity.AppointmentDate = appointment.AppointmentDate;
+                entity.AppointmentDate = (DateTime)appointment.AppointmentDate;
 
                 return NoContent();
             }
@@ -170,9 +168,9 @@ namespace HealthPairAPI.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             _logger.LogInformation($"Deleting appointment with id {id}.");
-            if (await _repo.GetAppointmentByIdAsync(id) is Inner_Appointment appointment)
+            if (await _appointmentRepository.GetAppointmentByIdAsync(id) is Inner_Appointment appointment)
             {
-                await _repo.RemoveAppointmentAsync(appointment.AppointmentId);
+                await _appointmentRepository.RemoveAppointmentAsync(appointment.AppointmentId);
                 return NoContent();
             }
             _logger.LogInformation($"No appointments found with id {id}.");

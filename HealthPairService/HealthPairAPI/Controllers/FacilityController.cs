@@ -17,13 +17,13 @@ namespace HealthPairAPI.Controllers
     [ApiController]
     public class FacilityController : ControllerBase
     {
-        private readonly IFacilityRepository _repo;
+        private readonly IFacilityRepository _facilityRepository;
         private readonly IProviderRepository _providerRepo;
         private readonly ILogger<FacilityController> _logger;
 
-        public FacilityController(IFacilityRepository repo, IProviderRepository providerRepo, ILogger<FacilityController> logger)
+        public FacilityController(IFacilityRepository facilityRepository, IProviderRepository providerRepo, ILogger<FacilityController> logger)
         {
-            _repo = repo ?? throw new ArgumentNullException(nameof(repo));
+            _facilityRepository = facilityRepository ?? throw new ArgumentNullException(nameof(facilityRepository));
             _providerRepo = providerRepo ?? throw new ArgumentException(nameof(providerRepo));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _logger.LogInformation($"Accessed FacilityController");
@@ -46,23 +46,17 @@ namespace HealthPairAPI.Controllers
             if (search == null)
             {
                 _logger.LogInformation($"Retrieving all facilities");
-                FacilityAll = (await _repo.GetFacilityAsync()).Select(Mapper.MapFacility).ToList();
+                FacilityAll = (await _facilityRepository.GetFacilityAsync()).Select(Mapper.MapFacility).ToList();
             }
             else
             {
                 _logger.LogInformation($"Retrieving facilities with parameters {search}.");
-                FacilityAll = (await _repo.GetFacilityAsync(search)).Select(Mapper.MapFacility).ToList();
+                FacilityAll = (await _facilityRepository.GetFacilityAsync(search)).Select(Mapper.MapFacility).ToList();
             }
             try
             {
-                _logger.LogInformation($"Serializing {FacilityAll}");
-                string json = JsonSerializer.Serialize(FacilityAll);
-                return new ContentResult
-                {
-                    StatusCode = 200,
-                    ContentType = "application/json",
-                    Content = json
-                };
+                _logger.LogInformation($"Sending {FacilityAll.Count} Facilities.");
+                return Ok(FacilityAll);
             }
             catch (Exception e)
             {
@@ -87,15 +81,9 @@ namespace HealthPairAPI.Controllers
         public async Task<ActionResult<Transfer_Facility>> GetById(int id)
         {
             _logger.LogInformation($"Retrieving facilities with id {id}.");
-            if (await _repo.GetFacilityByIdAsync(id) is Inner_Facility facility)
+            if (await _facilityRepository.GetFacilityByIdAsync(id) is Inner_Facility facility)
             {
-                string json = JsonSerializer.Serialize(Mapper.MapFacility(facility));
-                return new ContentResult
-                {
-                    StatusCode = 200,
-                    ContentType = "application/json",
-                    Content = json
-                };
+                return Ok(facility);
             }
             _logger.LogInformation($"No facilities found with id {id}.");
             return NotFound();
@@ -119,17 +107,15 @@ namespace HealthPairAPI.Controllers
             _logger.LogInformation($"Adding new facility.");
             Inner_Facility transformedFacility = new Inner_Facility
             {
-                FacilityId = facility.FacilityId,
+                FacilityId = 0,
                 FacilityAddress1 = facility.FacilityAddress1,
                 FacilityCity = facility.FacilityCity,
                 FacilityName = facility.FacilityName,
                 FacilityState = facility.FacilityState,
                 FacilityZipcode = facility.FacilityZipcode,
                 FacilityPhoneNumber = facility.FacilityPhoneNumber,
-                //Providers = (_providerRepo.GetProviderByIdAsync(facility.Pr))
-
             };
-            _repo.AddFacilityAsync(transformedFacility);
+            _facilityRepository.AddFacilityAsync(transformedFacility);
             return CreatedAtAction(nameof(GetById), new { id = facility.FacilityId }, facility);
         }
 
@@ -149,10 +135,9 @@ namespace HealthPairAPI.Controllers
         public async Task<IActionResult> Put(int id, [FromBody] Transfer_Facility facility)
         {
             _logger.LogInformation($"Editing facility with id {id}.");
-            var entity = await _repo.GetFacilityByIdAsync(id);
+            var entity = await _facilityRepository.GetFacilityByIdAsync(id);
             if (entity is Inner_Facility)
             {
-                entity.FacilityId = facility.FacilityId;
                 entity.FacilityAddress1 = facility.FacilityAddress1;
                 entity.FacilityCity = facility.FacilityCity;
                 entity.FacilityName = facility.FacilityName;
@@ -162,7 +147,7 @@ namespace HealthPairAPI.Controllers
 
                 return NoContent();
             }
-            _logger.LogInformation($"No facilitys found with id {id}.");
+            _logger.LogInformation($"No facilities found with id {id}.");
             return NotFound();
         }
 
@@ -182,12 +167,12 @@ namespace HealthPairAPI.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             _logger.LogInformation($"Deleting facility with id {id}.");
-            if (await _repo.GetFacilityByIdAsync(id) is Inner_Facility facility)
+            if (await _facilityRepository.GetFacilityByIdAsync(id) is Inner_Facility facility)
             {
-                await _repo.RemoveFacilityAsync(facility.FacilityId);
+                await _facilityRepository.RemoveFacilityAsync(facility.FacilityId);
                 return NoContent();
             }
-            _logger.LogInformation($"No facilitys found with id {id}.");
+            _logger.LogInformation($"No facilities found with id {id}.");
             return NotFound();
         }
     }

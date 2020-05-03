@@ -55,14 +55,8 @@ namespace HealthPairAPI.Controllers
             }
             try
             {
-                _logger.LogInformation($"Serializing {patientAll}");
-                string json = JsonSerializer.Serialize(patientAll);
-                return new ContentResult
-                {
-                    StatusCode = 200,
-                    ContentType = "application/json",
-                    Content = json
-                };
+                _logger.LogInformation($"Sending {patientAll.Count} Patients.");
+                return Ok(patientAll);
             }
             catch (Exception e)
             {
@@ -89,13 +83,7 @@ namespace HealthPairAPI.Controllers
             _logger.LogInformation($"Retrieving patients with id {id}.");
             if (await _patientRepository.GetPatientByIdAsync(id) is Inner_Patient patient)
             {
-                string json = JsonSerializer.Serialize(Mapper.MapPatient(patient));
-                return new ContentResult
-                {
-                    StatusCode = 200,
-                    ContentType = "application/json",
-                    Content = json
-                };
+                return Ok(patient);
             }
             _logger.LogInformation($"No patients found with id {id}.");
             return NotFound();
@@ -119,7 +107,7 @@ namespace HealthPairAPI.Controllers
             _logger.LogInformation($"Adding new patient.");
             Inner_Patient transformedPatient = new Inner_Patient
             {
-                PatientId = patient.PatientId,
+                PatientId = 0,
                 PatientFirstName = patient.PatientFirstName,
                 PatientLastName  = patient.PatientLastName,
                 PatientPassword = patient.PatientPassword,
