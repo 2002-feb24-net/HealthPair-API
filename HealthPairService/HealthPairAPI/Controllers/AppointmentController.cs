@@ -106,16 +106,23 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Post(Transfer_Appointment appointment)
         {
-            _logger.LogInformation($"Adding new appointment.");
-            Inner_Appointment transformedAppointment = new Inner_Appointment
+            try
             {
-                AppointmentId = 0,
-                AppointmentDate = appointment.AppointmentDate,
-                Patient = (_patientRepository.GetPatientByIdAsync(appointment.PatientId)).Result,
-                Provider = (_providerRepository.GetProviderByIdAsync(appointment.ProviderId)).Result
-            };
-            _appointmentRepository.AddAppointmentAsync(transformedAppointment);
-            return CreatedAtAction(nameof(GetById), new { id = appointment.AppointmentId }, appointment);
+                _logger.LogInformation($"Adding new appointment.");
+                Inner_Appointment transformedAppointment = new Inner_Appointment
+                {
+                    AppointmentId = 0,
+                    AppointmentDate = (DateTime)appointment.AppointmentDate,
+                    Patient = (_patientRepository.GetPatientByIdAsync(appointment.PatientId)).Result,
+                    Provider = (_providerRepository.GetProviderByIdAsync(appointment.ProviderId)).Result
+                };
+                _appointmentRepository.AddAppointmentAsync(transformedAppointment);
+                return CreatedAtAction(nameof(GetById), new { id = appointment.AppointmentId }, appointment);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
         }
 
         // PUT: api/appointment/5
@@ -137,7 +144,7 @@ namespace HealthPairAPI.Controllers
             var entity = await _appointmentRepository.GetAppointmentByIdAsync(id);
             if (entity is Inner_Appointment)
             {
-                entity.AppointmentDate = appointment.AppointmentDate;
+                entity.AppointmentDate = (DateTime)appointment.AppointmentDate;
 
                 return NoContent();
             }
