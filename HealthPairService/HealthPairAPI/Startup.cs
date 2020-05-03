@@ -93,8 +93,8 @@ namespace HealthPairAPI
             services.Configure<AppSettings>(appSettingsSection);
 
             // configure jwt authentication
-            var appSettings = appSettingsSection.Get<AppSettings>();
-            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+            var AppSettings = appSettingsSection.Get<AppSettings>();
+            var key = Encoding.ASCII.GetBytes(AppSettings.Secret);
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -106,9 +106,9 @@ namespace HealthPairAPI
                 {
                     OnTokenValidated = context =>
                     {
-                        var userService = context.HttpContext.RequestServices.GetRequiredService<IPatientRepository>();
+                        var UserService = context.HttpContext.RequestServices.GetRequiredService<IPatientRepository>();
                         var userId = int.Parse(context.Principal.Identity.Name);
-                        var user = userService.GetPatientByIdAsync(userId);
+                        var user = UserService.GetPatientByIdAsync(userId);
                         if (user == null)
                         {
                             // return unauthorized if user no longer exists
@@ -128,13 +128,13 @@ namespace HealthPairAPI
                 };
             });
 
+            //services.AddScoped<AppSettings>();
             services.AddScoped<IAppointmentRepository, AppointmentRepository>();
             services.AddScoped<IFacilityRepository, FacilityRepository>();
             services.AddScoped<IInsuranceRepository, InsuranceRepository>();
             services.AddScoped<IPatientRepository, PatientRepository>();
             services.AddScoped<IProviderRepository, ProviderRepository>();
             services.AddScoped<ISpecialtyRepository, SpecialtyRepository>();
-            services.AddScoped<AppSettings>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -154,6 +154,7 @@ namespace HealthPairAPI
             app.UseCors(CorsPolicyName);
 
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseSwagger();
 

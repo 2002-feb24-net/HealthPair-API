@@ -31,12 +31,12 @@ namespace HealthPairAPI.Controllers
         private readonly ILogger<PatientController> _logger;
         private readonly AppSettings _appSettings;
 
-        public PatientController(IPatientRepository patientRepository, IInsuranceRepository insuranceRepository, ILogger<PatientController> logger, AppSettings appSettings)
+        public PatientController(IPatientRepository patientRepository, IInsuranceRepository insuranceRepository, ILogger<PatientController> logger, IOptions<AppSettings> appSettings)
         {
             _patientRepository = patientRepository ?? throw new ArgumentNullException(nameof(patientRepository));
             _insuranceRepository = insuranceRepository ?? throw new ArgumentNullException(nameof(insuranceRepository));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            _appSettings = appSettings ?? throw new ArgumentNullException(nameof(appSettings));
+            _appSettings = appSettings.Value ?? throw new ArgumentNullException(nameof(appSettings.Value));
             _logger.LogInformation($"Accessed PatientController");
         }
 
