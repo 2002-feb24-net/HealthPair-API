@@ -20,6 +20,12 @@ namespace HealthPairDomain.Interfaces
         /// </summary>
         Task<Inner_Patient> GetPatientByIdAsync(int id);
 
+        /// <summary> Fetches one patient related to input string.
+        /// <param name="email"> string - search email is looked for in email field of database </param>
+        /// <returns> One patient related to input string </returns>
+        /// </summary>
+        Task<Inner_Patient> GetPatientByEmailAsync(string email);
+
         /// <summary> Checks if one patient exists related to input id.
         /// <param name="id"> int - search id is looked for in id field of database </param>
         /// <returns> Yes/No Id is related to a value in the database </returns>

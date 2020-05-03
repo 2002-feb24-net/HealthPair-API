@@ -135,6 +135,9 @@ namespace HealthPairDataAccess.DataModels
                     .IsRequired();
                 entity.Property(e => e.PatientPhoneNumber)
                     .IsRequired();
+                entity.Property(e => e.PatientEmail)
+                    .IsRequired()
+                    .HasMaxLength(120);
                 entity.Property(e => e.IsAdmin)
                     .IsRequired()
                     .HasDefaultValue(false);

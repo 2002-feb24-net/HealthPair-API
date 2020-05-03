@@ -18,6 +18,7 @@ namespace HealthPairAPI.TransferModels
         public DateTime PatientBirthDay { get; set; }
         public long PatientPhoneNumber { get; set; }
         public bool IsAdmin { get; set; }
+        public string Token { get; set; }
 
 
         public int InsuranceId { get; set; }

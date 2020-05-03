@@ -6,10 +6,18 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authorization;
+
 using HealthPairDomain.InnerModels;
 using HealthPairDomain.Interfaces;
 using HealthPairAPI.TransferModels;
 using HealthPairAPI.Logic;
+using HealthPairAPI.Helpers;
 
 namespace HealthPairAPI.Controllers
 {
@@ -20,12 +28,14 @@ namespace HealthPairAPI.Controllers
         private readonly IPatientRepository _patientRepository;
         private readonly IInsuranceRepository _insuranceRepository;
         private readonly ILogger<PatientController> _logger;
+        private readonly AppSettings _appSettings;
 
-        public PatientController(IPatientRepository patientRepository, IInsuranceRepository insuranceRepository, ILogger<PatientController> logger)
+        public PatientController(IPatientRepository patientRepository, IInsuranceRepository insuranceRepository, ILogger<PatientController> logger, AppSettings appSettings)
         {
             _patientRepository = patientRepository ?? throw new ArgumentNullException(nameof(patientRepository));
             _insuranceRepository = insuranceRepository ?? throw new ArgumentNullException(nameof(insuranceRepository));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _appSettings = appSettings ?? throw new ArgumentNullException(nameof(appSettings));
             _logger.LogInformation($"Accessed PatientController");
         }
 
@@ -181,6 +191,47 @@ namespace HealthPairAPI.Controllers
             }
             _logger.LogInformation($"No patients found with id {id}.");
             return NotFound();
+        }
+
+        [HttpPost("authenticate")]
+        public async Task<IActionResult> Authenticate([FromBody]AuthenticateModel model)
+        {
+            var user = await _patientRepository.GetPatientByEmailAsync(model.Email);
+
+            if (user == null)
+                return BadRequest(new { message = "Email or password is incorrect" });
+
+            if(user.PatientPassword != model.Password)
+                return BadRequest(new { message = "Email or password is incorrect" });
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                    new Claim(ClaimTypes.Name, user.PatientId.ToString())
+                }),
+                Expires = DateTime.UtcNow.AddDays(7),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            var tokenString = tokenHandler.WriteToken(token);
+
+            // return basic user info and authentication token
+            return Ok(new Transfer_Patient
+            {
+                PatientId = user.PatientId,
+                PatientFirstName = user.PatientFirstName,
+                PatientLastName = user.PatientLastName,
+                PatientAddress1 = user.PatientAddress1,
+                PatientCity = user.PatientCity,
+                PatientState = user.PatientState,
+                PatientZipcode = user.PatientZipcode,
+                PatientBirthDay = user.PatientBirthDay,
+                PatientPhoneNumber = user.PatientPhoneNumber,
+                Token = tokenString
+            });
         }
     }
 }
