@@ -8,11 +8,12 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HealthPairAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AppointmentController : ControllerBase
@@ -109,6 +110,8 @@ namespace HealthPairAPI.Controllers
             try
             {
                 _logger.LogInformation($"Adding new appointment.");
+                var myChecker = new CheckerClass(_patientRepository);
+                myChecker.Check(appointment);
                 Inner_Appointment transformedAppointment = new Inner_Appointment
                 {
                     AppointmentId = 0,
