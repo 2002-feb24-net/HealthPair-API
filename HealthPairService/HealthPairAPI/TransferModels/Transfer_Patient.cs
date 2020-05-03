@@ -17,6 +17,7 @@ namespace HealthPairAPI.TransferModels
         public int PatientZipcode { get; set; }
         public DateTime PatientBirthDay { get; set; }
         public long PatientPhoneNumber { get; set; }
+        public string PatientEmail { get; set; }
         public bool IsAdmin { get; set; }
         public string Token { get; set; }
 
