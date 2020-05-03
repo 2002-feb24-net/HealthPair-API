@@ -135,6 +135,9 @@ namespace HealthPairDataAccess.DataModels
                     .IsRequired();
                 entity.Property(e => e.PatientPhoneNumber)
                     .IsRequired();
+                entity.Property(e => e.PatientEmail)
+                    .IsRequired()
+                    .HasMaxLength(120);
                 entity.Property(e => e.IsAdmin)
                     .IsRequired()
                     .HasDefaultValue(false);
@@ -153,6 +156,7 @@ namespace HealthPairDataAccess.DataModels
                     PatientZipcode = 12345,
                     PatientBirthDay = new DateTime(2000, 1, 1),
                     PatientPhoneNumber = 1234567890,
+                    PatientEmail = "TestEmail@test.com",
                     IsAdmin = true
                 }
             );

@@ -50,6 +50,18 @@ namespace HealthPairDataAccess.Repositories
             return Mapper.MapPatient(patient);
         }
 
+        /// <summary> Fetches one patient related to input string.
+        /// <param name="email"> string - search email is looked for in email field of database </param>
+        /// <returns> One patient related to input string </returns>
+        /// </summary>
+        public async Task<Inner_Patient> GetPatientByEmailAsync(string email)
+        {
+            var patient = await _context.Patients
+                .Include(p => p.Insurance)
+                .FirstOrDefaultAsync(a => a.PatientEmail.ToLower() == email.ToLower());
+            return Mapper.MapPatient(patient);
+        }
+
         /// <summary> Checks if one patient exists related to input id.
         /// <param name="id"> int - search id is looked for in id field of database </param>
         /// <returns> Yes/No Id is related to a value in the database </returns>

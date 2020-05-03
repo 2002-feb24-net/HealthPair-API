@@ -73,6 +73,7 @@ namespace HealthPairAPI.Logic
                 PatientPassword = patient.PatientPassword,
                 PatientPhoneNumber = patient.PatientPhoneNumber,
                 PatientState = patient.PatientState,
+                PatientEmail = patient.PatientEmail,
                 IsAdmin = patient.IsAdmin,
                 InsuranceId = patient.Insurance.InsuranceId,
                 InsuranceName = patient.Insurance.InsuranceName

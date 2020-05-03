@@ -20,6 +20,7 @@ namespace HealthPairDataAccess.DataModels
         public int PatientZipcode { get; set; }
         public DateTime PatientBirthDay { get; set; }
         public long PatientPhoneNumber { get; set; }
+        public string PatientEmail { get; set; }
 
         public Data_Insurance Insurance { get; set; }
         public ICollection<Data_Appointment> Appointments { get; set; } = new List<Data_Appointment>();

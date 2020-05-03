@@ -39,7 +39,7 @@ namespace HealthPairDomain.InnerModels
         [Required(ErrorMessage = "You Must Enter Your Phone Number")]
         [DataType(DataType.PhoneNumber)]
         public long PatientPhoneNumber { get; set; }
-        [Required(ErrorMessage = "You Must Choose an option")]
+        public string PatientEmail { get; set; }
         public bool IsAdmin { get; set; }
 
         public Inner_Insurance Insurance { get; set; }

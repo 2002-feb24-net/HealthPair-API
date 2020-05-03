@@ -101,6 +101,7 @@ namespace HealthPairDataAccess.Logic
                 PatientPhoneNumber = patient.PatientPhoneNumber,
                 PatientPassword = patient.PatientPassword,
                 PatientState = patient.PatientState,
+                PatientEmail = patient.PatientEmail,
                 IsAdmin = patient.IsAdmin,
                 Insurance = MapInsurance(patient.Insurance)
             };
