@@ -128,7 +128,6 @@ namespace HealthPairAPI
                 };
             });
 
-            //services.AddScoped<AppSettings>();
             services.AddScoped<IAppointmentRepository, AppointmentRepository>();
             services.AddScoped<IFacilityRepository, FacilityRepository>();
             services.AddScoped<IInsuranceRepository, InsuranceRepository>();

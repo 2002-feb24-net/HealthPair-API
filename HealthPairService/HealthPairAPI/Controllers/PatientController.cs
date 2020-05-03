@@ -41,16 +41,17 @@ namespace HealthPairAPI.Controllers
         }
 
         // GET: api/patient
-        /// <summary> Fetches all patients in the database. Can add a search parameter to narrow search. Null returns all.
+        /// <summary> Fetches all patients in the database. Can add a search parameter to narrow search. Null returns all. </summary>
         /// <param name="search"> string - This string is searched for in the body of multiple fields related to patient. </param>
         /// <returns> A content result.
         /// 200 with A list of patients, depending on input search
+        /// 401 if you are not authenticated
         /// 500 if server error
         ///  </returns>
-        /// </summary>
         [AllowAnonymous]
         [HttpGet]
         [ProducesResponseType(typeof(List<Transfer_Patient>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAsync([FromQuery] string search = null)
         {
@@ -82,6 +83,7 @@ namespace HealthPairAPI.Controllers
         /// <param name="id"> int - This int is searched for in the id related to patient. </param>
         /// <returns> A content result.
         /// 200 with A patient, depending on input id
+        /// 401 if you are not authenticated
         /// 404 if no patient with id is found
         /// 500 if server error
         ///  </returns>
@@ -95,7 +97,8 @@ namespace HealthPairAPI.Controllers
             _logger.LogInformation($"Retrieving patients with id {id}.");
             if (await _patientRepository.GetPatientByIdAsync(id) is Inner_Patient patient)
             {
-                return Ok(patient);
+                var transformedPatient = Mapper.MapPatient(patient);
+                return Ok(transformedPatient);
             }
             _logger.LogInformation($"No patients found with id {id}.");
             return NotFound();
@@ -106,6 +109,7 @@ namespace HealthPairAPI.Controllers
         /// <param name="patient"> Transfer_Patient Object - This object represents all the input fields of a patient. </param>
         /// <returns> A content result.
         /// 201 with the input object returned if success
+        /// 401 if you are not authenticated
         /// 400 if incorrect fields, or data validation fails
         /// 500 if server error
         ///  </returns>
@@ -140,6 +144,7 @@ namespace HealthPairAPI.Controllers
         /// <param name="patient"> Transfer_Patient Object - This object represents all the input fields of a patient. </param>
         /// <returns> A content result.
         /// 204 upon a successful edit
+        /// 401 if you are not authenticated
         /// 404 if input object's id was not found
         /// 500 if server error
         ///  </returns>
@@ -175,6 +180,7 @@ namespace HealthPairAPI.Controllers
         /// <param name="id"> int - This int is searched for in the id related to patient. </param>
         /// <returns> A content result.
         /// 204 upon a successful delete
+        /// 401 if you are not authenticated
         /// 404 if input id was not found
         /// 500 if server error
         ///  </returns>
@@ -195,8 +201,20 @@ namespace HealthPairAPI.Controllers
             return NotFound();
         }
 
+        // POST: api/patient/authenticate
+        /// <summary> Send data to the database to be checked for authentication purposes.
+        /// <param name="model"> Object AuthenticateModel - This object represents the data required to authenticate a user. </param>
+        /// <returns> A content result, and a user object (without the password) (with a authentification token) if successful
+        /// 200 upon a successful authentification
+        /// 400 if you are not authenticated
+        /// 500 if server error
+        ///  </returns>
+        /// </summary>
         [AllowAnonymous]
         [HttpPost("authenticate")]
+        [ProducesResponseType(typeof(Transfer_Patient), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Authenticate([FromBody]AuthenticateModel model)
         {
             var user = await _patientRepository.GetPatientByEmailAsync(model.Email);
