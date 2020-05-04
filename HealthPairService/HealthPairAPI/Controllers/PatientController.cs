@@ -120,23 +120,33 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Post(Transfer_Patient patient)
         {
-            _logger.LogInformation($"Adding new patient.");
-            Inner_Patient transformedPatient = new Inner_Patient
+
+            try
             {
-                PatientId = 0,
-                PatientFirstName = patient.PatientFirstName,
-                PatientLastName  = patient.PatientLastName,
-                PatientPassword = patient.PatientPassword,
-                PatientAddress1 = patient.PatientAddress1,
-                PatientCity = patient.PatientCity,
-                PatientState = patient.PatientState,
-                PatientZipcode = patient.PatientZipcode,
-                PatientBirthDay = patient.PatientBirthDay,
-                PatientPhoneNumber = patient.PatientPhoneNumber,
-                Insurance = (_insuranceRepository.GetInsuranceByIdAsync(patient.InsuranceId)).Result
-            };
-            _patientRepository.AddPatientAsync(transformedPatient);
-            return CreatedAtAction(nameof(GetById), new { id = patient.PatientId }, patient);
+                _logger.LogInformation($"Adding new patient.");
+                var checkPatient = new CheckerClass(_patientRepository);
+                checkPatient.CheckPatient(patient);
+                Inner_Patient transformedPatient = new Inner_Patient
+                {
+                    PatientId = 0,
+                    PatientFirstName = patient.PatientFirstName,
+                    PatientLastName = patient.PatientLastName,
+                    PatientPassword = patient.PatientPassword,
+                    PatientAddress1 = patient.PatientAddress1,
+                    PatientCity = patient.PatientCity,
+                    PatientState = patient.PatientState,
+                    PatientZipcode = patient.PatientZipcode,
+                    PatientBirthDay = patient.PatientBirthDay,
+                    PatientPhoneNumber = patient.PatientPhoneNumber,
+                    Insurance = (_insuranceRepository.GetInsuranceByIdAsync(patient.InsuranceId)).Result
+                };
+                _patientRepository.AddPatientAsync(transformedPatient);
+                return CreatedAtAction(nameof(GetById), new { id = patient.PatientId }, patient);
+            }
+            catch(Exception ex)
+            {
+             return BadRequest(ex.Message);
+            }
         }
 
         // PUT: api/patient/5
