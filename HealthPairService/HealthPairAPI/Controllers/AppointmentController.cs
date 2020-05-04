@@ -110,8 +110,8 @@ namespace HealthPairAPI.Controllers
             try
             {
                 _logger.LogInformation($"Adding new appointment.");
-                var myChecker = new CheckerClass(_patientRepository, _providerRepository);
-                myChecker.Check(appointment);
+                var myChecker = new CheckerClass(_patientRepository, _providerRepository, _appointmentRepository);
+                myChecker.CheckAppointment(appointment);
                 Inner_Appointment transformedAppointment = new Inner_Appointment
                 {
                     AppointmentId = 0,

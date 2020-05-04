@@ -104,19 +104,28 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Post(Transfer_Facility facility)
         {
-            _logger.LogInformation($"Adding new facility.");
-            Inner_Facility transformedFacility = new Inner_Facility
+            try
             {
-                FacilityId = 0,
-                FacilityAddress1 = facility.FacilityAddress1,
-                FacilityCity = facility.FacilityCity,
-                FacilityName = facility.FacilityName,
-                FacilityState = facility.FacilityState,
-                FacilityZipcode = facility.FacilityZipcode,
-                FacilityPhoneNumber = facility.FacilityPhoneNumber,
-            };
-            _facilityRepository.AddFacilityAsync(transformedFacility);
-            return CreatedAtAction(nameof(GetById), new { id = facility.FacilityId }, facility);
+                _logger.LogInformation($"Adding new facility.");
+                var validCheck = new CheckerClass(_facilityRepository);
+                validCheck.CheckFacility(facility);
+                Inner_Facility transformedFacility = new Inner_Facility
+                {
+                    FacilityId = 0,
+                    FacilityAddress1 = facility.FacilityAddress1,
+                    FacilityCity = facility.FacilityCity,
+                    FacilityName = facility.FacilityName,
+                    FacilityState = facility.FacilityState,
+                    FacilityZipcode = facility.FacilityZipcode,
+                    FacilityPhoneNumber = facility.FacilityPhoneNumber,
+                };
+                _facilityRepository.AddFacilityAsync(transformedFacility);
+                return CreatedAtAction(nameof(GetById), new { id = facility.FacilityId }, facility);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         // PUT: api/facility/5
