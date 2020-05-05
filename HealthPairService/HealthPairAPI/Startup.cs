@@ -68,25 +68,25 @@ namespace HealthPairAPI
 
             //support switching between database providers using runtime configuration
 
-            var allowedOrigins = Configuration.GetSection("CorsOrigins").Get<string[]>();
-            services.AddCors(options =>
-            {
-                options.AddPolicy(CorsPolicyName, builder =>
-                    builder.WithOrigins(allowedOrigins ?? Array.Empty<string>())
-                        .AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .AllowCredentials());
-            });
-
+            // var allowedOrigins = Configuration.GetSection("CorsOrigins").Get<string[]>();
             // services.AddCors(options =>
             // {
             //     options.AddPolicy(CorsPolicyName, builder =>
-            //         builder.WithOrigins("http://healthpair-client.azurewebsites.net",
-            //                             "http://localhost:4200")
+            //         builder.WithOrigins(allowedOrigins ?? Array.Empty<string>())
             //             .AllowAnyMethod()
             //             .AllowAnyHeader()
             //             .AllowCredentials());
             // });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(CorsPolicyName, builder =>
+                    builder.WithOrigins("http://healthpair-client.azurewebsites.net",
+                                        "http://localhost:4200")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials());
+            });
 
 
 
