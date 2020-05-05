@@ -106,19 +106,29 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Post(Transfer_Provider provider)
         {
-            _logger.LogInformation($"Adding new provider.");
-            Inner_Provider transformedProvider = new Inner_Provider
-            {
-                ProviderId = 0,
-                ProviderFirstName = provider.ProviderFirstName,
-                ProviderLastName = provider.ProviderLastName,
-                ProviderPhoneNumber = provider.ProviderPhoneNumber,
-                Facility = (_facilityRepository.GetFacilityByIdAsync(provider.FacilityId)).Result,
-                Specialty = (_specialtyRepository.GetSpecialtyByIdAsync(provider.FacilityId)).Result
 
-            };
-            _providerRepository.AddProviderAsync(transformedProvider);
-            return CreatedAtAction(nameof(GetById), new { id = provider.ProviderId }, provider);
+            try
+            {
+                _logger.LogInformation($"Adding new provider.");
+                var checkProvider = new CheckerClass(_facilityRepository, _specialtyRepository);
+                checkProvider.CheckProvider(provider);
+                Inner_Provider transformedProvider = new Inner_Provider
+                {
+                    ProviderId = 0,
+                    ProviderFirstName = provider.ProviderFirstName,
+                    ProviderLastName = provider.ProviderLastName,
+                    ProviderPhoneNumber = provider.ProviderPhoneNumber,
+                    Facility = (_facilityRepository.GetFacilityByIdAsync(provider.FacilityId)).Result,
+                    Specialty = (_specialtyRepository.GetSpecialtyByIdAsync(provider.FacilityId)).Result
+
+                };
+                _providerRepository.AddProviderAsync(transformedProvider);
+                return CreatedAtAction(nameof(GetById), new { id = provider.ProviderId }, provider);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         // PUT: api/provider/5

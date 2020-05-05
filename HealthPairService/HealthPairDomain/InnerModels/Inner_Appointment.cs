@@ -17,7 +17,7 @@ namespace HealthPairDomain.InnerModels
             }
             set
             {
-                if(value < 0)
+                if (value < 0)
                 {
                     throw new ArgumentException("There can not be a negative id!");
                 }
@@ -25,7 +25,20 @@ namespace HealthPairDomain.InnerModels
             }
         }
 
-        public DateTime AppointmentDate { get; set; }
+        public DateTime AppointmentDate
+        {
+            get
+            {
+                return AppointmentDate;
+            }
+            set
+            {
+                if (AppointmentDate >= AppointmentDate.AddMonths(6))
+                {
+                    throw new ArgumentException("You cannot make an appointment 6 months in advance");
+                }
+            }
+        }
 
         public Inner_Patient Patient { get; set; }
         public Inner_Provider Provider { get; set; }
