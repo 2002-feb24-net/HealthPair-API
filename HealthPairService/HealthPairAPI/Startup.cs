@@ -161,8 +161,8 @@ namespace HealthPairAPI
 
             app.UseRouting();
 
-            //app.UseCors(CorsPolicyName);
-            app.UseCors("AllowLocalAndAppServiceAngular");
+            app.UseCors(CorsPolicyName);
+            //app.UseCors("AllowLocalAndAppServiceAngular");
 
 
             app.UseAuthorization();
