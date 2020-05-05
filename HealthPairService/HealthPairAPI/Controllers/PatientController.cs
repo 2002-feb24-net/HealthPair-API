@@ -251,6 +251,7 @@ namespace HealthPairAPI.Controllers
                 PatientZipcode = user.PatientZipcode,
                 PatientBirthDay = user.PatientBirthDay,
                 PatientPhoneNumber = user.PatientPhoneNumber,
+                IsAdmin = user.IsAdmin,
                 Token = tokenString
             });
         }
