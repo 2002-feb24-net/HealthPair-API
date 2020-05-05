@@ -68,7 +68,6 @@ namespace HealthPairAPI
 
             // support switching between database providers using runtime configuration
 
-            /* old cors
             var allowedOrigins = Configuration.GetSection("CorsOrigins").Get<string[]>();
             services.AddCors(options =>
             {
@@ -78,17 +77,16 @@ namespace HealthPairAPI
                         .AllowAnyHeader()
                         .AllowCredentials());
             });
-            */
 
-            services.AddCors(options =>
-            {
-                options.AddPolicy("AllowLocalAndAppServiceAngular", builder =>
-                    builder.WithOrigins("http://healthpair-client.azurewebsites.net",
-                                        "http://localhost:5000")
-                        .AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .AllowCredentials());
-            });
+            // services.AddCors(options =>
+            // {
+            //     options.AddPolicy("AllowLocalAndAppServiceAngular", builder =>
+            //         builder.WithOrigins("http://healthpair-client.azurewebsites.net",
+            //                             "http://localhost:4200")
+            //             .AllowAnyMethod()
+            //             .AllowAnyHeader()
+            //             .AllowCredentials());
+            // });
 
 
 
