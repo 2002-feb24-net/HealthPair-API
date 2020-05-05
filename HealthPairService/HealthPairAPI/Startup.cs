@@ -66,7 +66,7 @@ namespace HealthPairAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "HealthPair API", Version = "v1" });
             });
 
-            // support switching between database providers using runtime configuration
+            //support switching between database providers using runtime configuration
 
             var allowedOrigins = Configuration.GetSection("CorsOrigins").Get<string[]>();
             services.AddCors(options =>
@@ -80,7 +80,7 @@ namespace HealthPairAPI
 
             // services.AddCors(options =>
             // {
-            //     options.AddPolicy("AllowLocalAndAppServiceAngular", builder =>
+            //     options.AddPolicy(CorsPolicyName, builder =>
             //         builder.WithOrigins("http://healthpair-client.azurewebsites.net",
             //                             "http://localhost:4200")
             //             .AllowAnyMethod()
@@ -162,8 +162,6 @@ namespace HealthPairAPI
             app.UseRouting();
 
             app.UseCors(CorsPolicyName);
-            //app.UseCors("AllowLocalAndAppServiceAngular");
-
 
             app.UseAuthorization();
             app.UseAuthentication();
