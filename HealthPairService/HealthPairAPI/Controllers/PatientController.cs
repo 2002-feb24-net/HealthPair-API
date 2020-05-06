@@ -178,6 +178,7 @@ namespace HealthPairAPI.Controllers
                 entity.PatientPhoneNumber = patient.PatientPhoneNumber;
                 entity.PatientState = patient.PatientState;
                 entity.PatientZipcode = patient.PatientZipcode;
+                entity.Insurance = _insuranceRepository.GetInsuranceByIdAsync(patient.InsuranceId).Result;
                 await _patientRepository.UpdatePatientAsync(entity);
                 return NoContent();
             }
