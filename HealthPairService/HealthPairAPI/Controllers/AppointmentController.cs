@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace HealthPairAPI.Controllers
 {
-    [Authorize]
+
     [Route("api/[controller]")]
     [ApiController]
     public class AppointmentController : ControllerBase
