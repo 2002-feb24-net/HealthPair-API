@@ -22,5 +22,7 @@ namespace HealthPairAPI.TransferModels
 
         public int SpecialtyId { get; set; }
         public string Specialty { get; set; }
+
+        public int[] InsuranceIds { get; set; }
     }
 }

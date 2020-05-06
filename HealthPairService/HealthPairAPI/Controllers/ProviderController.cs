@@ -20,6 +20,7 @@ namespace HealthPairAPI.Controllers
         private readonly IProviderRepository _providerRepository;
         private readonly IFacilityRepository _facilityRepository;
         private readonly ISpecialtyRepository _specialtyRepository;
+        private readonly IProvInsurRepository _provInsurRepository;
         private readonly ILogger<ProviderController> _logger;
 
         // GET: api/provider
@@ -30,11 +31,12 @@ namespace HealthPairAPI.Controllers
         /// 500 if server error
         ///  </returns>
         /// </summary>
-        public ProviderController(IProviderRepository providerRepository, IFacilityRepository facilityRepository, ISpecialtyRepository specialtyRepository, ILogger<ProviderController> logger)
+        public ProviderController(IProviderRepository providerRepository, IFacilityRepository facilityRepository, ISpecialtyRepository specialtyRepository, IProvInsurRepository provInsurRepository, ILogger<ProviderController> logger)
         {
             _providerRepository = providerRepository ?? throw new ArgumentException(nameof(providerRepository));
             _facilityRepository = facilityRepository ?? throw new ArgumentException(nameof(facilityRepository));
             _specialtyRepository = specialtyRepository ?? throw new ArgumentException(nameof(specialtyRepository));
+            _provInsurRepository = provInsurRepository ?? throw new ArgumentException(nameof(provInsurRepository));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _logger.LogInformation($"Accessed ProviderController");
         }
@@ -57,6 +59,10 @@ namespace HealthPairAPI.Controllers
             }
             try
             {
+                foreach(var val in ProviderAll)
+                {
+                    val.InsuranceIds = await _provInsurRepository.GetInsuranceCoverage(val.ProviderId);
+                }
                 _logger.LogInformation($"Sending {ProviderAll.Count} Providers.");
                 return Ok(ProviderAll);
             }
@@ -85,7 +91,9 @@ namespace HealthPairAPI.Controllers
             _logger.LogInformation($"Retrieving providers with id {id}.");
             if (await _providerRepository.GetProviderByIdAsync(id) is Inner_Provider provider)
             {
-                return Ok(provider);
+                Transfer_Provider providerReal = Mapper.MapProvider(provider);
+                providerReal.InsuranceIds = await _provInsurRepository.GetInsuranceCoverage(providerReal.ProviderId);
+                return Ok(providerReal);
             }
             _logger.LogInformation($"No providers found with id {id}.");
             return NotFound();
@@ -120,7 +128,6 @@ namespace HealthPairAPI.Controllers
                     ProviderPhoneNumber = provider.ProviderPhoneNumber,
                     Facility = (_facilityRepository.GetFacilityByIdAsync(provider.FacilityId)).Result,
                     Specialty = (_specialtyRepository.GetSpecialtyByIdAsync(provider.FacilityId)).Result
-
                 };
                 _providerRepository.AddProviderAsync(transformedProvider);
                 return CreatedAtAction(nameof(GetById), new { id = provider.ProviderId }, provider);
