@@ -134,6 +134,7 @@ namespace HealthPairAPI
             services.AddScoped<IPatientRepository, PatientRepository>();
             services.AddScoped<IProviderRepository, ProviderRepository>();
             services.AddScoped<ISpecialtyRepository, SpecialtyRepository>();
+            services.AddScoped<IProvInsurRepository, ProvInsurRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
