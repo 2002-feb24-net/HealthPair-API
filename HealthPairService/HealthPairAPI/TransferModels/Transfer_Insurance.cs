@@ -9,5 +9,7 @@ namespace HealthPairAPI.TransferModels
     {
         public int InsuranceId { get; set; }
         public string InsuranceName { get; set; }
+
+        public int[] ProviderIds { get; set; }
     }
 }

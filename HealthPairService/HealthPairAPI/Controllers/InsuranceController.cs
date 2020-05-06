@@ -18,11 +18,13 @@ namespace HealthPairAPI.Controllers
     public class InsuranceController : ControllerBase
     {
         private readonly IInsuranceRepository _insuranceRepository;
+        private readonly IProvInsurRepository _provInsurRepository;
         private readonly ILogger<InsuranceController> _logger;
 
-        public InsuranceController(IInsuranceRepository insuranceRepository, ILogger<InsuranceController> logger)
+        public InsuranceController(IInsuranceRepository insuranceRepository, IProvInsurRepository provInsurRepository, ILogger<InsuranceController> logger)
         {
             _insuranceRepository = insuranceRepository ?? throw new ArgumentNullException(nameof(insuranceRepository));
+            _provInsurRepository = provInsurRepository ?? throw new ArgumentException(nameof(provInsurRepository));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _logger.LogInformation($"Accessed InsuranceController");
         }
@@ -53,6 +55,10 @@ namespace HealthPairAPI.Controllers
             }
             try
             {
+                foreach(var val in InsuranceAll)
+                {
+                    val.ProviderIds = await _provInsurRepository.GetInsuranceCoverage(val.InsuranceId);
+                }
                 _logger.LogInformation($"Sending {InsuranceAll.Count} Insurance.");
                 return Ok(InsuranceAll);
             }

@@ -66,17 +66,6 @@ namespace HealthPairAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "HealthPair API", Version = "v1" });
             });
 
-            //support switching between database providers using runtime configuration
-
-            // var allowedOrigins = Configuration.GetSection("CorsOrigins").Get<string[]>();
-            // services.AddCors(options =>
-            // {
-            //     options.AddPolicy(CorsPolicyName, builder =>
-            //         builder.WithOrigins(allowedOrigins ?? Array.Empty<string>())
-            //             .AllowAnyMethod()
-            //             .AllowAnyHeader()
-            //             .AllowCredentials());
-            // });
 
             services.AddCors(options =>
             {

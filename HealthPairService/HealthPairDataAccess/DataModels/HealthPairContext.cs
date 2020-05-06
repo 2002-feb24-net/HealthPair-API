@@ -17,6 +17,7 @@ namespace HealthPairDataAccess.DataModels
         public DbSet<Data_Provider> Providers { get; set; }
         public DbSet<Data_Specialty> Specialties { get; set; }
         public DbSet<Data_Facility> Facilities { get; set; }
+        public DbSet<Data_InsuranceProvider> InsurProvs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -210,21 +211,21 @@ namespace HealthPairDataAccess.DataModels
                     .HasForeignKey(bc => bc.ProviderId);
             });
             modelBuilder.Entity<Data_InsuranceProvider>().HasData(
-                new Data_InsuranceProvider()
-                {
-                    InsuranceId = 1,
-                    ProviderId = 1
-                },
+                // new Data_InsuranceProvider()
+                // {
+                //     InsuranceId = 1,
+                //     ProviderId = 1
+                // },
                 new Data_InsuranceProvider()
                 {
                     InsuranceId = 1,
                     ProviderId = 2
                 },
-                new Data_InsuranceProvider()
-                {
-                    InsuranceId = 3,
-                    ProviderId = 1
-                },
+                // new Data_InsuranceProvider()
+                // {
+                //     InsuranceId = 1,
+                //     ProviderId = 3
+                // },
                 new Data_InsuranceProvider()
                 {
                     InsuranceId = 2,
@@ -232,8 +233,208 @@ namespace HealthPairDataAccess.DataModels
                 },
                 new Data_InsuranceProvider()
                 {
-                    InsuranceId = 3,
+                    InsuranceId = 2,
                     ProviderId = 2
+                },
+                new Data_InsuranceProvider()
+                {
+                    InsuranceId = 2,
+                    ProviderId = 3
+                },
+                new Data_InsuranceProvider()
+                {
+                    InsuranceId = 3,
+                    ProviderId = 1
+                },
+                // new Data_InsuranceProvider()
+                // {
+                //     InsuranceId = 3,
+                //     ProviderId = 2
+                // },
+                new Data_InsuranceProvider()
+                {
+                    InsuranceId = 3,
+                    ProviderId = 3
+                },
+                new Data_InsuranceProvider()
+                {
+                    InsuranceId = 4,
+                    ProviderId = 1
+                },
+                // new Data_InsuranceProvider()
+                // {
+                //     InsuranceId = 4,
+                //     ProviderId = 2
+                // },
+                new Data_InsuranceProvider()
+                {
+                    InsuranceId = 4,
+                    ProviderId = 3
+                },
+                new Data_InsuranceProvider()
+                {
+                    InsuranceId = 5,
+                    ProviderId = 1
+                },
+                // new Data_InsuranceProvider()
+                // {
+                //     InsuranceId = 5,
+                //     ProviderId = 2
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     InsuranceId = 5,
+                //     ProviderId = 3
+                // },
+                new Data_InsuranceProvider()
+                {
+                    InsuranceId = 6,
+                    ProviderId = 1
+                },
+                // new Data_InsuranceProvider()
+                // {
+                //     InsuranceId = 6,
+                //     ProviderId = 2
+                // },
+                new Data_InsuranceProvider()
+                {
+                    InsuranceId = 6,
+                    ProviderId = 3
+                },
+                new Data_InsuranceProvider()
+                {
+                    InsuranceId = 7,
+                    ProviderId = 1
+                },
+                // new Data_InsuranceProvider()
+                // {
+                //     InsuranceId = 7,
+                //     ProviderId = 2
+                // },
+                new Data_InsuranceProvider()
+                {
+                    InsuranceId = 7,
+                    ProviderId = 3
+                },
+                new Data_InsuranceProvider()
+                {
+                    InsuranceId = 8,
+                    ProviderId = 1
+                },
+                // new Data_InsuranceProvider()
+                // {
+                //     InsuranceId = 8,
+                //     ProviderId = 2
+                // },
+                new Data_InsuranceProvider()
+                {
+                    InsuranceId = 8,
+                    ProviderId = 3
+                },
+                // new Data_InsuranceProvider()
+                // {
+                //     InsuranceId = 9,
+                //     ProviderId = 1
+                // },
+                new Data_InsuranceProvider()
+                {
+                    InsuranceId = 9,
+                    ProviderId = 2
+                },
+                new Data_InsuranceProvider()
+                {
+                    InsuranceId = 9,
+                    ProviderId = 3
+                },
+                new Data_InsuranceProvider()
+                {
+                    InsuranceId = 10,
+                    ProviderId = 1
+                },
+                // new Data_InsuranceProvider()
+                // {
+                //     InsuranceId = 10,
+                //     ProviderId = 2
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     InsuranceId = 10,
+                //     ProviderId = 3
+                // },
+                new Data_InsuranceProvider()
+                {
+                    InsuranceId = 11,
+                    ProviderId = 1
+                },
+                new Data_InsuranceProvider()
+                {
+                    InsuranceId = 11,
+                    ProviderId = 2
+                },
+                new Data_InsuranceProvider()
+                {
+                    InsuranceId = 11,
+                    ProviderId = 3
+                },
+                new Data_InsuranceProvider()
+                {
+                    InsuranceId = 12,
+                    ProviderId = 1
+                },
+                new Data_InsuranceProvider()
+                {
+                    InsuranceId = 12,
+                    ProviderId = 2
+                },
+                // new Data_InsuranceProvider()
+                // {
+                //     InsuranceId = 12,
+                //     ProviderId = 3
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     InsuranceId = 13,
+                //     ProviderId = 1
+                // },
+                new Data_InsuranceProvider()
+                {
+                    InsuranceId = 13,
+                    ProviderId = 2
+                },
+                // new Data_InsuranceProvider()
+                // {
+                //     InsuranceId = 13,
+                //     ProviderId = 3
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     InsuranceId = 14,
+                //     ProviderId = 1
+                // },
+                new Data_InsuranceProvider()
+                {
+                    InsuranceId = 14,
+                    ProviderId = 2
+                },
+                new Data_InsuranceProvider()
+                {
+                    InsuranceId = 14,
+                    ProviderId = 3
+                },
+                new Data_InsuranceProvider()
+                {
+                    InsuranceId = 15,
+                    ProviderId = 1
+                },
+                // new Data_InsuranceProvider()
+                // {
+                //     InsuranceId = 15,
+                //     ProviderId = 2
+                // },
+                new Data_InsuranceProvider()
+                {
+                    InsuranceId = 15,
+                    ProviderId = 3
                 }
             );
 
