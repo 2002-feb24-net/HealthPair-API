@@ -125,17 +125,77 @@ namespace HealthPairDataAccess.DataModels
                 new Data_Insurance()
                 {
                     InsuranceId = 1,
-                    InsuranceName = "Test Insurance Name"
+                    InsuranceName = "Cigna"
                 },
                 new Data_Insurance()
                 {
                     InsuranceId = 2,
-                    InsuranceName = "Best Insurance"
+                    InsuranceName = "Humana"
                 },
                 new Data_Insurance()
                 {
                     InsuranceId = 3,
-                    InsuranceName = "Worst Insurance"
+                    InsuranceName = "UnitedHealth"
+                },
+                new Data_Insurance()
+                {
+                    InsuranceId = 4,
+                    InsuranceName = "Blue Cross Blue Shield Association"
+                },
+                new Data_Insurance()
+                {
+                    InsuranceId = 5,
+                    InsuranceName = "Aetna"
+                },
+                new Data_Insurance()
+                {
+                    InsuranceId = 6,
+                    InsuranceName = "Anthem Inc."
+                },
+                new Data_Insurance()
+                {
+                    InsuranceId = 7,
+                    InsuranceName = "Kaiser Foundation"
+                },
+                new Data_Insurance()
+                {
+                    InsuranceId = 8,
+                    InsuranceName = "HCSC"
+                },
+                new Data_Insurance()
+                {
+                    InsuranceId = 9,
+                    InsuranceName = "Centene"
+                },
+                new Data_Insurance()
+                {
+                    InsuranceId = 10,
+                    InsuranceName = "EmblemHealth"
+                },
+                new Data_Insurance()
+                {
+                    InsuranceId = 11,
+                    InsuranceName = "Wellcare"
+                },
+                new Data_Insurance()
+                {
+                    InsuranceId = 12,
+                    InsuranceName = "CVS"
+                },
+                new Data_Insurance()
+                {
+                    InsuranceId = 13,
+                    InsuranceName = "Molina Healthcare Inc."
+                },
+                new Data_Insurance()
+                {
+                    InsuranceId = 14,
+                    InsuranceName = "Independence Health Group Inc."
+                },
+                new Data_Insurance()
+                {
+                    InsuranceId = 15,
+                    InsuranceName = "Highmark Group"
                 }
             );
 
