@@ -23,7 +23,7 @@ namespace HealthPairAPI.Controllers
 {
     [Authorize]
     [ApiController]
-    [Route("api/patient")]
+    [Route("api/[controller]")]
     public class PatientController : ControllerBase
     {
         private readonly IPatientRepository _patientRepository;
