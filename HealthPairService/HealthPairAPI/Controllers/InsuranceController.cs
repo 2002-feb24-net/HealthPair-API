@@ -57,7 +57,7 @@ namespace HealthPairAPI.Controllers
             {
                 foreach(var val in InsuranceAll)
                 {
-                    val.ProviderIds = await _provInsurRepository.GetInsuranceCoverage(val.InsuranceId);
+                    val.ProviderIds = await _provInsurRepository.GetProviderCoverage(val.InsuranceId);
                 }
                 _logger.LogInformation($"Sending {InsuranceAll.Count} Insurance.");
                 return Ok(InsuranceAll);
@@ -65,7 +65,7 @@ namespace HealthPairAPI.Controllers
             catch (Exception e)
             {
                 _logger.LogWarning($"Error! {e.Message}.");
-                return StatusCode(500);
+                return StatusCode(500,e);
             }
         }
 

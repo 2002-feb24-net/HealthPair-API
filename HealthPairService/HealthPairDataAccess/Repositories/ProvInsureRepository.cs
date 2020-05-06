@@ -21,7 +21,7 @@ namespace HealthPairDataAccess.Repositories
         public async Task<int[]> GetInsuranceCoverage(int id)
         {
             List<int> myIntList = new List<int>();
-            var coverage = await _context.InsurProvs.ToListAsync();
+            var coverage = await _context.InsuranceProviders.ToListAsync();
             coverage = coverage.FindAll(p => p.ProviderId == id);
             foreach (var val in coverage)
             {
@@ -33,7 +33,7 @@ namespace HealthPairDataAccess.Repositories
         public async Task<int[]> GetProviderCoverage(int id)
         {
             List<int> myIntList = new List<int>();
-            var coverage = await _context.InsurProvs.ToListAsync();
+            var coverage = await _context.InsuranceProviders.ToListAsync();
             coverage = coverage.FindAll(p => p.InsuranceId == id);
             foreach (var val in coverage)
             {

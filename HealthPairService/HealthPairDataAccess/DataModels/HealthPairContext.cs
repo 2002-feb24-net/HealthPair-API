@@ -17,7 +17,7 @@ namespace HealthPairDataAccess.DataModels
         public DbSet<Data_Provider> Providers { get; set; }
         public DbSet<Data_Specialty> Specialties { get; set; }
         public DbSet<Data_Facility> Facilities { get; set; }
-        public DbSet<Data_InsuranceProvider> InsurProvs { get; set; }
+        public DbSet<Data_InsuranceProvider> InsuranceProviders { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -202,7 +202,10 @@ namespace HealthPairDataAccess.DataModels
 
             modelBuilder.Entity<Data_InsuranceProvider>(entity =>
             {
-                entity.HasKey(bc => new { bc.InsuranceId, bc.ProviderId });
+                entity.Property(e => e.IPId)
+                    .IsRequired();
+                entity.HasIndex(e => e.InsuranceId);
+                entity.HasIndex(e => e.ProviderId);
                 entity.HasOne(bc => bc.Insurance)
                     .WithMany(b => b.InsuranceProviders)
                     .HasForeignKey(bc => bc.InsuranceId);
@@ -213,226 +216,271 @@ namespace HealthPairDataAccess.DataModels
             modelBuilder.Entity<Data_InsuranceProvider>().HasData(
                 // new Data_InsuranceProvider()
                 // {
+                //     IPId = 1,
                 //     InsuranceId = 1,
                 //     ProviderId = 1
                 // },
                 new Data_InsuranceProvider()
                 {
+                    IPId = 2,
                     InsuranceId = 1,
                     ProviderId = 2
                 },
                 // new Data_InsuranceProvider()
                 // {
+                //     IPId = 3,
                 //     InsuranceId = 1,
                 //     ProviderId = 3
                 // },
                 new Data_InsuranceProvider()
                 {
+                    IPId = 4,
                     InsuranceId = 2,
                     ProviderId = 1
                 },
                 new Data_InsuranceProvider()
                 {
+                    IPId = 5,
                     InsuranceId = 2,
                     ProviderId = 2
                 },
                 new Data_InsuranceProvider()
                 {
+                    IPId = 6,
                     InsuranceId = 2,
                     ProviderId = 3
                 },
                 new Data_InsuranceProvider()
                 {
+                    IPId = 7,
                     InsuranceId = 3,
                     ProviderId = 1
                 },
                 // new Data_InsuranceProvider()
                 // {
+                //     IPId = 8,
                 //     InsuranceId = 3,
                 //     ProviderId = 2
                 // },
                 new Data_InsuranceProvider()
                 {
+                    IPId = 9,
                     InsuranceId = 3,
                     ProviderId = 3
                 },
                 new Data_InsuranceProvider()
                 {
+                    IPId = 10,
                     InsuranceId = 4,
                     ProviderId = 1
                 },
                 // new Data_InsuranceProvider()
                 // {
+                //     IPId = 11,
                 //     InsuranceId = 4,
                 //     ProviderId = 2
                 // },
                 new Data_InsuranceProvider()
                 {
+                    IPId = 12,
                     InsuranceId = 4,
                     ProviderId = 3
                 },
                 new Data_InsuranceProvider()
                 {
+                    IPId = 13,
                     InsuranceId = 5,
                     ProviderId = 1
                 },
                 // new Data_InsuranceProvider()
                 // {
+                //     IPId = 14,
                 //     InsuranceId = 5,
                 //     ProviderId = 2
                 // },
                 // new Data_InsuranceProvider()
                 // {
+                //     IPId = 15,
                 //     InsuranceId = 5,
                 //     ProviderId = 3
                 // },
                 new Data_InsuranceProvider()
                 {
+                    IPId = 16,
                     InsuranceId = 6,
                     ProviderId = 1
                 },
                 // new Data_InsuranceProvider()
                 // {
+                //     IPId = 17,
                 //     InsuranceId = 6,
                 //     ProviderId = 2
                 // },
                 new Data_InsuranceProvider()
                 {
+                    IPId = 18,
                     InsuranceId = 6,
                     ProviderId = 3
                 },
                 new Data_InsuranceProvider()
                 {
+                    IPId = 19,
                     InsuranceId = 7,
                     ProviderId = 1
                 },
                 // new Data_InsuranceProvider()
                 // {
+                //     IPId = 20,
                 //     InsuranceId = 7,
                 //     ProviderId = 2
                 // },
                 new Data_InsuranceProvider()
                 {
+                    IPId = 21,
                     InsuranceId = 7,
                     ProviderId = 3
                 },
                 new Data_InsuranceProvider()
                 {
+                    IPId = 22,
                     InsuranceId = 8,
                     ProviderId = 1
                 },
                 // new Data_InsuranceProvider()
                 // {
+                //     IPId = 23,
                 //     InsuranceId = 8,
                 //     ProviderId = 2
                 // },
                 new Data_InsuranceProvider()
                 {
+                    IPId = 24,
                     InsuranceId = 8,
                     ProviderId = 3
                 },
                 // new Data_InsuranceProvider()
                 // {
+                //     IPId = 25,
                 //     InsuranceId = 9,
                 //     ProviderId = 1
                 // },
                 new Data_InsuranceProvider()
                 {
+                    IPId = 26,
                     InsuranceId = 9,
                     ProviderId = 2
                 },
                 new Data_InsuranceProvider()
                 {
+                    IPId = 27,
                     InsuranceId = 9,
                     ProviderId = 3
                 },
                 new Data_InsuranceProvider()
                 {
+                    IPId = 28,
                     InsuranceId = 10,
                     ProviderId = 1
                 },
                 // new Data_InsuranceProvider()
                 // {
+                //     IPId = 29,
                 //     InsuranceId = 10,
                 //     ProviderId = 2
                 // },
                 // new Data_InsuranceProvider()
                 // {
+                //     IPId = 30,
                 //     InsuranceId = 10,
                 //     ProviderId = 3
                 // },
                 new Data_InsuranceProvider()
                 {
+                    IPId = 31,
                     InsuranceId = 11,
                     ProviderId = 1
                 },
                 new Data_InsuranceProvider()
                 {
+                    IPId = 32,
                     InsuranceId = 11,
                     ProviderId = 2
                 },
                 new Data_InsuranceProvider()
                 {
+                    IPId = 33,
                     InsuranceId = 11,
                     ProviderId = 3
                 },
                 new Data_InsuranceProvider()
                 {
+                    IPId = 34,
                     InsuranceId = 12,
                     ProviderId = 1
                 },
                 new Data_InsuranceProvider()
                 {
+                    IPId = 35,
                     InsuranceId = 12,
                     ProviderId = 2
                 },
                 // new Data_InsuranceProvider()
                 // {
+                //     IPId = 36,
                 //     InsuranceId = 12,
                 //     ProviderId = 3
                 // },
                 // new Data_InsuranceProvider()
                 // {
+                //     IPId = 37,
                 //     InsuranceId = 13,
                 //     ProviderId = 1
                 // },
                 new Data_InsuranceProvider()
                 {
+                    IPId = 38,
                     InsuranceId = 13,
                     ProviderId = 2
                 },
                 // new Data_InsuranceProvider()
                 // {
+                //     IPId = 39,
                 //     InsuranceId = 13,
                 //     ProviderId = 3
                 // },
                 // new Data_InsuranceProvider()
                 // {
+                //     IPId = 40,
                 //     InsuranceId = 14,
                 //     ProviderId = 1
                 // },
                 new Data_InsuranceProvider()
                 {
+                    IPId = 41,
                     InsuranceId = 14,
                     ProviderId = 2
                 },
                 new Data_InsuranceProvider()
                 {
+                    IPId = 42,
                     InsuranceId = 14,
                     ProviderId = 3
                 },
                 new Data_InsuranceProvider()
                 {
+                    IPId = 43,
                     InsuranceId = 15,
                     ProviderId = 1
                 },
                 // new Data_InsuranceProvider()
                 // {
+                //     IPId = 44,
                 //     InsuranceId = 15,
                 //     ProviderId = 2
                 // },
                 new Data_InsuranceProvider()
                 {
+                    IPId = 45,
                     InsuranceId = 15,
                     ProviderId = 3
                 }
@@ -588,17 +636,352 @@ namespace HealthPairDataAccess.DataModels
                 new Data_Specialty()
                 {
                     SpecialtyId = 1,
-                    Specialty = "Test Specialty"
+                    Specialty = "Addiction Medicine"
                 },
                 new Data_Specialty()
                 {
                     SpecialtyId = 2,
-                    Specialty = "Legos"
+                    Specialty = "Addiction Psychiatry"
                 },
                 new Data_Specialty()
                 {
                     SpecialtyId = 3,
-                    Specialty = "Guns"
+                    Specialty = "Allergy & Immunology"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 4,
+                    Specialty = "Alternative Medicine"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 5,
+                    Specialty = "Anesthesiology"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 6,
+                    Specialty = "Audiology - Hearing Health"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 7,
+                    Specialty = "Bariatric Medicine"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 8,
+                    Specialty = "Bariatric Surgery"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 9,
+                    Specialty = "Cancer Care"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 10,
+                    Specialty = "Cardiac Electrophysiology"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 11,
+                    Specialty = "Cardiology"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 12,
+                    Specialty = "Cardiothoracic Surgery"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 13,
+                    Specialty = "Child & Adolescent Psychiatry"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 14,
+                    Specialty = "Chiropractic Medicine"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 15,
+                    Specialty = "Colon & Rectal Surgery"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 16,
+                    Specialty = "Critical Care Medicine"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 17,
+                    Specialty = "Dentistry"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 18,
+                    Specialty = "Dermatology"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 19,
+                    Specialty = "Emergency Medicine"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 20,
+                    Specialty = "Endocrinology, Diabetes & Metabolism"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 21,
+                    Specialty = "Family Medicine"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 22,
+                    Specialty = "Gastroenterology - Digestive Health"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 23,
+                    Specialty = "General Surgery"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 24,
+                    Specialty = "Genetics"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 25,
+                    Specialty = "Geriatric Medicine"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 26,
+                    Specialty = "Gynecologic Oncology"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 27,
+                    Specialty = "Gynecology"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 28,
+                    Specialty = "Head & Neck Surgery"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 29,
+                    Specialty = "Hematology"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 30,
+                    Specialty = "Hospice/Palliative Medicine"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 31,
+                    Specialty = "Hospital Medicine"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 32,
+                    Specialty = "Infectious Disease"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 33,
+                    Specialty = "Internal Medicine"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 34,
+                    Specialty = "Maternal & Fetal Medicine"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 35,
+                    Specialty = "Neonatal - Perinatal Medicine"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 36,
+                    Specialty = "Nephrology - Kidney Health"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 37,
+                    Specialty = "Neurology"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 38,
+                    Specialty = "Neuropsychology"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 39,
+                    Specialty = "Neuroradiology"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 40,
+                    Specialty = "Neurosurgery"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 41,
+                    Specialty = "Obstetrics"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 42,
+                    Specialty = "Ophthalmology - Eye Disease"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 43,
+                    Specialty = "Optometry"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 44,
+                    Specialty = "Oral & Maxillofacial Surgery"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 45,
+                    Specialty = "Orthodontics"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 46,
+                    Specialty = "Orthopedics"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 47,
+                    Specialty = "Orthopedic Surgery"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 48,
+                    Specialty = "Otolaryngology - Ear, Nose & Throat"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 49,
+                    Specialty = "Pathology"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 50,
+                    Specialty = "Pediatrics"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 51,
+                    Specialty = "Physical Medicine & Rehabilitation"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 52,
+                    Specialty = "Plastic/Cosmetic Surgery"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 53,
+                    Specialty = "Podiatry - Foot Health"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 54,
+                    Specialty = "Primary Care"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 55,
+                    Specialty = "Psychiatry"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 56,
+                    Specialty = "Psychology"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 57,
+                    Specialty = "Public Health and General Preventive Medicine"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 58,
+                    Specialty = "Pulmonary Medicine"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 59,
+                    Specialty = "Radiation Oncology"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 60,
+                    Specialty = "Radiology"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 61,
+                    Specialty = "Reproductive Endocrinology/Infertility"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 62,
+                    Specialty = "Rheumatology - Arthritis"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 63,
+                    Specialty = "Sleep Medicine"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 64,
+                    Specialty = "Sports Medicine"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 65,
+                    Specialty = "Surgical Critical Care - Trauma"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 66,
+                    Specialty = "Surgical Oncology"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 67,
+                    Specialty = "Thoracic Surgery"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 68,
+                    Specialty = "Urgent Care"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 69,
+                    Specialty = "Urology"
+                },
+                new Data_Specialty()
+                {
+                    SpecialtyId = 70,
+                    Specialty = "Vascular Surgery"
                 }
             );
         }
