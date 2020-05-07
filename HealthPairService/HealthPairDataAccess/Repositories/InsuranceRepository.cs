@@ -63,6 +63,7 @@ namespace HealthPairDataAccess.Repositories
         public async Task<Inner_Insurance> AddInsuranceAsync(Inner_Insurance insurance)
         {
             var newInsurance = Mapper.UnMapInsurance(insurance);
+            newInsurance.InsuranceId = GetInsuranceAsync().Result.Max(p => p.InsuranceId)+1;
             _context.Insurances.Add(newInsurance);
             await _context.SaveChangesAsync();
 

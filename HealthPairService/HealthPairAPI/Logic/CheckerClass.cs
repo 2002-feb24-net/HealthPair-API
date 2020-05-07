@@ -76,7 +76,7 @@ namespace HealthPairAPI.Logic
 
         public void CheckPatient(Transfer_Patient patient)
         {
-            if(_patientRepo.PatientExistAsync(patient.InsuranceId).Result)
+            if(!(_patientRepo.PatientExistAsync(patient.InsuranceId).Result))
             {
                 throw new HealthPairAppException("The insurance you chose does not exist, please choose the correct insurance");
             }
