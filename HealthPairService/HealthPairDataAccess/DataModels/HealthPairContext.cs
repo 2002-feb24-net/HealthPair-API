@@ -85,32 +85,152 @@ namespace HealthPairDataAccess.DataModels
                 new Data_Facility()
                 {
                     FacilityId = 1,
-                    FacilityName = "Test Facility Name",
-                    FacilityAddress1 = "123 Test Street",
-                    FacilityCity = "Test City",
-                    FacilityState = "Test State",
-                    FacilityZipcode = 12345,
-                    FacilityPhoneNumber = 1234567890
+                    FacilityName = "Houston Methodist San Jacinto Hospital Alexander Campus",
+                    FacilityAddress1 = "1700 James Bowie Drive",
+                    FacilityCity = "Baytown",
+                    FacilityState = "TX",
+                    FacilityZipcode = 77520,
+                    FacilityPhoneNumber = 2814208765
                 },
                 new Data_Facility()
                 {
-                    FacilityId = 2,
-                    FacilityName = "My Facility",
-                    FacilityAddress1 = "Best Place Lane",
-                    FacilityCity = "The City",
-                    FacilityState = "Wonder State",
-                    FacilityZipcode = 14556,
-                    FacilityPhoneNumber = 6715927402
+                FacilityId = 2,
+                FacilityName = "Providence Hospital of North Houston LLC",
+                FacilityAddress1 = "16750 Red Oak Drive",
+                FacilityCity = "Houston",
+                FacilityState = "TX",
+                FacilityZipcode = 77090,
+                FacilityPhoneNumber = 2814537110
                 },
                 new Data_Facility()
                 {
-                    FacilityId = 3,
-                    FacilityName = "Facility Three",
-                    FacilityAddress1 = "Your Current Location",
-                    FacilityCity = "Your City",
-                    FacilityState = "Your State",
-                    FacilityZipcode = 72910,
-                    FacilityPhoneNumber = 2852019634
+                FacilityId = 3,
+                FacilityName = "McCallen Medical Center",
+                FacilityAddress1 = "301 West Expressway 83",
+                FacilityCity = "McAllen",
+                FacilityState = "TX",
+                FacilityZipcode = 78590,
+                FacilityPhoneNumber = 9566324000
+                },
+                new Data_Facility()
+                {
+                FacilityId = 4,
+                FacilityName = "Faith Community Hospital",
+                FacilityAddress1 = "215 Chisholm Trail",
+                FacilityCity = "Jacksboro",
+                FacilityState = "TX",
+                FacilityZipcode = 76458,
+                FacilityPhoneNumber = 9405676633
+                },
+                new Data_Facility()
+                {
+                FacilityId = 5,
+                FacilityName = "Covenant Medical Center – Lakeside",
+                FacilityAddress1 = "4000 24th Street",
+                FacilityCity = "Lubbock",
+                FacilityState = "TX",
+                FacilityZipcode = 79410,
+                FacilityPhoneNumber = 8067250536
+                },
+                new Data_Facility()
+                {
+                FacilityId = 6,
+                FacilityName = "Woodlands Specialty Hospita",
+                FacilityAddress1 = "25440 I 45 North",
+                FacilityCity = "The Woodlands",
+                FacilityState = "TX",
+                FacilityZipcode = 77386,
+                FacilityPhoneNumber = 2816028160
+                },
+                new Data_Facility()
+                {
+                FacilityId = 7,
+                FacilityName = "Christus Spohn Hospital Corpus Christi Shoreline",
+                FacilityAddress1 = "600 Elizabeth Street",
+                FacilityCity = "Corpus Christi",
+                FacilityState = "TX",
+                FacilityZipcode = 78404,
+                FacilityPhoneNumber = 3619024690
+                },
+                new Data_Facility()
+                {
+                FacilityId = 8,
+                FacilityName = "The Corpus Christi Medical Center – Northwest",
+                FacilityAddress1 = "13725 Northwest Blvd",
+                FacilityCity = "Corpus Christi",
+                FacilityState = "TX",
+                FacilityZipcode = 78410,
+                FacilityPhoneNumber = 3617674300
+                },
+                new Data_Facility()
+                {
+                FacilityId = 9,
+                FacilityName = "Reagan Memorial Hospital",
+                FacilityAddress1 = "1300 N Main Ave",
+                FacilityCity = "Big Lake",
+                FacilityState = "TX",
+                FacilityZipcode = 76932,
+                FacilityPhoneNumber = 3258842561
+                },
+                new Data_Facility()
+                {
+                FacilityId = 10,
+                FacilityName = "Baylor Emergency Medical Center",
+                FacilityAddress1 = "1975 Alpha, Suite 100",
+                FacilityCity = "Rockwall",
+                FacilityState = "TX",
+                FacilityZipcode = 75087,
+                FacilityPhoneNumber = 2142946200
+                },
+                new Data_Facility()
+                {
+                FacilityId = 11,
+                FacilityName = "Baylor Emergency Medical Center",
+                FacilityAddress1 = "620 South Main, Suite 100",
+                FacilityCity = "Keller",
+                FacilityState = "TX",
+                FacilityZipcode = 76248,
+                FacilityPhoneNumber = 2142946100
+                },
+                new Data_Facility()
+                {
+                FacilityId = 12,
+                FacilityName = "Baylor Emergency Medical Center",
+                FacilityAddress1 = "12500 South Freeway, Suite 100",
+                FacilityCity = "Burleson",
+                FacilityState = "TX",
+                FacilityZipcode = 76028,
+                FacilityPhoneNumber = 2142946250
+                },
+                new Data_Facility()
+                {
+                FacilityId = 13,
+                FacilityName = "Baylor Emergency Medical Center",
+                FacilityAddress1 = "1776 North Us 287, Suite 100",
+                FacilityCity = "Mansfield",
+                FacilityState = "TX",
+                FacilityZipcode = 76063,
+                FacilityPhoneNumber = 2142946300
+                },
+                new Data_Facility()
+                {
+                FacilityId = 14,
+                FacilityName = "Baylor Emergency Medical Center",
+                FacilityAddress1 = "5500 Colleyville Boulevard",
+                FacilityCity = "Colleyville",
+                FacilityState = "TX",
+                FacilityZipcode = 76034,
+                FacilityPhoneNumber = 2142946350
+                },
+                new Data_Facility()
+                {
+                FacilityId = 15,
+                FacilityName = "Medical Center of Alliance",
+                FacilityAddress1 = "3101 North Tarrant Parkway",
+                FacilityCity = "Fort Worth",
+                FacilityState = "TX",
+                FacilityZipcode = 76177,
+                FacilityPhoneNumber = 8176391100
                 }
             );
 
