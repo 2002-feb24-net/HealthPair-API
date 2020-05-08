@@ -118,6 +118,7 @@ namespace HealthPairAPI
                         }
                         return Task.CompletedTask;
                     }
+
                 };
                 x.RequireHttpsMetadata = false;
                 x.SaveToken = true;
