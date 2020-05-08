@@ -72,9 +72,8 @@ namespace HealthPairAPI
             {
                 options.AddPolicy(CorsPolicyName, builder =>
                     builder.WithOrigins(
-                                        "https://healthpair-client.azurewebsites.net",
-                                        "http://localhost:4200",
-                                        "https://localhost:4200")
+                            "https://healthpair-client.azurewebsites.net",
+                            "http://localhost:4200")
                         .AllowAnyMethod()
                         .AllowAnyHeader()
                         .AllowCredentials());
