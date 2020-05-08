@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: healhpair-db
+  labels:
+    app: healthpair
+    role: db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: healthpair
+      role: db
+  template:
+    metadata:
+      labels:
+        app: notes
+        role: db
+    spec:
+      containers:
+      - name: healthpair-db
+        image: kyranbryant/healthpair-db:1.0
+        ports:
+        - containerPort: 5432
