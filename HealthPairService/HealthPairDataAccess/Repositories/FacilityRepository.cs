@@ -66,6 +66,7 @@ namespace HealthPairDataAccess.Repositories
         public async Task<Inner_Facility> AddFacilityAsync(Inner_Facility facility)
         {
             var newFacility = Mapper.UnMapFacility(facility);
+            newFacility.FacilityId = GetFacilityAsync().Result.Max(p => p.FacilityId)+1;
             _context.Facilities.Add(newFacility);
             await Save();
 

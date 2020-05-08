@@ -13,6 +13,7 @@ namespace HealthPairAPI.TransferModels
 
 
         public int FacilityId { get; set; }
+        public string FacilityAddress1 { get; set; }
         public string FacilityName { get; set; }
         public string FacilityCity { get; set; }
         public string FacilityState { get; set; }
@@ -21,5 +22,7 @@ namespace HealthPairAPI.TransferModels
 
         public int SpecialtyId { get; set; }
         public string Specialty { get; set; }
+
+        public int[] InsuranceIds { get; set; }
     }
 }

@@ -93,6 +93,7 @@ namespace HealthPairAPI.Logic
                 ProviderPhoneNumber = provider.ProviderPhoneNumber,
                 FacilityId = provider.Facility.FacilityId,
                 FacilityName = provider.Facility.FacilityName,
+                FacilityAddress1 = provider.Facility.FacilityAddress1,
                 FacilityCity = provider.Facility.FacilityCity,
                 FacilityPhoneNumber = provider.Facility.FacilityPhoneNumber,
                 FacilityState = provider.Facility.FacilityState,

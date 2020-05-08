@@ -30,6 +30,7 @@ namespace HealthPairAPI
             Configuration = configuration;
         }
 
+
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
@@ -66,18 +67,20 @@ namespace HealthPairAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "HealthPair API", Version = "v1" });
             });
 
-            // support switching between database providers using runtime configuration
-
-            var allowedOrigins = Configuration.GetSection("CorsOrigins").Get<string[]>();
 
             services.AddCors(options =>
             {
                 options.AddPolicy(CorsPolicyName, builder =>
-                    builder.WithOrigins(allowedOrigins ?? Array.Empty<string>())
+                    builder.WithOrigins(
+                                        "https://healthpair-client.azurewebsites.net",
+                                        "http://localhost:4200",
+                                        "https://localhost:4200")
                         .AllowAnyMethod()
                         .AllowAnyHeader()
                         .AllowCredentials());
             });
+
+
 
             services.AddControllers(options =>
             {
@@ -116,6 +119,7 @@ namespace HealthPairAPI
                         }
                         return Task.CompletedTask;
                     }
+
                 };
                 x.RequireHttpsMetadata = false;
                 x.SaveToken = true;
@@ -134,6 +138,7 @@ namespace HealthPairAPI
             services.AddScoped<IPatientRepository, PatientRepository>();
             services.AddScoped<IProviderRepository, ProviderRepository>();
             services.AddScoped<ISpecialtyRepository, SpecialtyRepository>();
+            services.AddScoped<IProvInsurRepository, ProvInsurRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -21,9 +21,8 @@ using HealthPairAPI.Helpers;
 
 namespace HealthPairAPI.Controllers
 {
-    [Authorize]
     [ApiController]
-    [Route("api/patient")]
+    [Route("api/[controller]")]
     public class PatientController : ControllerBase
     {
         private readonly IPatientRepository _patientRepository;
@@ -48,7 +47,6 @@ namespace HealthPairAPI.Controllers
         /// 401 if you are not authenticated
         /// 500 if server error
         ///  </returns>
-        [AllowAnonymous]
         [HttpGet]
         [ProducesResponseType(typeof(List<Transfer_Patient>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -90,6 +88,7 @@ namespace HealthPairAPI.Controllers
         /// </summary>
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(Transfer_Patient), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<Transfer_Patient>> GetById(int id)
@@ -120,7 +119,6 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Post(Transfer_Patient patient)
         {
-
             try
             {
                 _logger.LogInformation($"Adding new patient.");
@@ -178,6 +176,7 @@ namespace HealthPairAPI.Controllers
                 entity.PatientPhoneNumber = patient.PatientPhoneNumber;
                 entity.PatientState = patient.PatientState;
                 entity.PatientZipcode = patient.PatientZipcode;
+                entity.Insurance = _insuranceRepository.GetInsuranceByIdAsync(patient.InsuranceId).Result;
                 await _patientRepository.UpdatePatientAsync(entity);
                 return NoContent();
             }
@@ -220,7 +219,6 @@ namespace HealthPairAPI.Controllers
         /// 500 if server error
         ///  </returns>
         /// </summary>
-        [AllowAnonymous]
         [HttpPost("authenticate")]
         [ProducesResponseType(typeof(Transfer_Patient), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -261,6 +259,10 @@ namespace HealthPairAPI.Controllers
                 PatientZipcode = user.PatientZipcode,
                 PatientBirthDay = user.PatientBirthDay,
                 PatientPhoneNumber = user.PatientPhoneNumber,
+                PatientEmail = user.PatientEmail,
+                InsuranceId = user.Insurance.InsuranceId,
+                InsuranceName = user.Insurance.InsuranceName,
+                IsAdmin = user.IsAdmin,
                 Token = tokenString
             });
         }

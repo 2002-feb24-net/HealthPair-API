@@ -13,7 +13,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace HealthPairAPI.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AppointmentController : ControllerBase
@@ -98,11 +97,13 @@ namespace HealthPairAPI.Controllers
         /// <returns> A content result.
         /// 201 with the input object returned if success
         /// 400 if incorrect fields, or data validation fails
+        /// 401 is not authenticated
         /// 500 if server error
         ///  </returns>
         /// </summary>
         [HttpPost]
         [ProducesResponseType(typeof(Transfer_Appointment), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Post(Transfer_Appointment appointment)

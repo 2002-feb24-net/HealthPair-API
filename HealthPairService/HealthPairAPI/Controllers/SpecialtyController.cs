@@ -15,12 +15,12 @@ namespace HealthPairAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SpecialityController : ControllerBase
+    public class SpecialtyController : ControllerBase
     {
         private readonly ISpecialtyRepository _specialtyRepository;
-        private readonly ILogger<SpecialityController> _logger;
+        private readonly ILogger<SpecialtyController> _logger;
 
-        public SpecialityController(ISpecialtyRepository specialtyRepository, ILogger<SpecialityController> logger)
+        public SpecialtyController(ISpecialtyRepository specialtyRepository, ILogger<SpecialtyController> logger)
         {
             _specialtyRepository = specialtyRepository ?? throw new ArgumentException(nameof(specialtyRepository));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));

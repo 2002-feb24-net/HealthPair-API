@@ -8,6 +8,7 @@ namespace HealthPairDomain.InnerModels
     public class Inner_Appointment
     {
         private int _id;
+        private DateTime _appointmentDate;
 
         public int AppointmentId
         {
@@ -29,7 +30,7 @@ namespace HealthPairDomain.InnerModels
         {
             get
             {
-                return AppointmentDate;
+                return _appointmentDate;
             }
             set
             {
@@ -37,6 +38,7 @@ namespace HealthPairDomain.InnerModels
                 {
                     throw new ArgumentException("You cannot make an appointment 6 months in advance");
                 }
+                _appointmentDate = value;
             }
         }
 
