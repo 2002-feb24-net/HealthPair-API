@@ -30,6 +30,7 @@ namespace HealthPairAPI
             Configuration = configuration;
         }
 
+
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
@@ -70,7 +71,7 @@ namespace HealthPairAPI
             services.AddCors(options =>
             {
                 options.AddPolicy(CorsPolicyName, builder =>
-                    builder.WithOrigins("http://healthpair-client.azurewebsites.net",
+                    builder.WithOrigins(
                                         "https://healthpair-client.azurewebsites.net",
                                         "http://localhost:4200",
                                         "https://localhost:4200")
