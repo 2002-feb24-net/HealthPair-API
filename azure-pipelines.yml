@@ -116,6 +116,37 @@ stages:
 
   jobs:
 
+  - job: push
+
+    pool:
+      vmImage: ubuntu-latest
+
+    steps:
+
+    - task: DockerCompose@0
+      displayName: docker-compose build
+      inputs:
+        containerregistrytype: 'Container Registry'
+        dockerRegistryEndpoint: 'HealthPairDocker'
+        dockerComposeFile: 'docker-compose-prod.yml'
+        action: 'Build services'
+
+    - task: DockerCompose@0
+      displayName: docker-compose push
+      inputs:
+        containerregistrytype: 'Container Registry'
+        dockerRegistryEndpoint: 'HealthPairDocker'
+        dockerComposeFile: 'docker-compose-prod.yml'
+        action: 'Push services'
+
+    - task: PublishPipelineArtifact@1
+      displayName: k8s manifest publish
+      inputs:
+        targetPath: 'k8s'
+        artifact: 'k8s'
+        publishLocation: 'pipeline'
+
+
   - deployment: deploy_dev
 
     pool:
@@ -128,29 +159,24 @@ stages:
         deploy:
           steps:
 
-          - checkout: self
 
-          - download: none
-
-          - task: DockerCompose@0
+          - task: KubernetesManifest@0
+            displayName: kubectl apply
             inputs:
-              containerregistrytype: 'Container Registry'
-              dockerRegistryEndpoint: 'HealthPairDocker'
-              dockerComposeFile: 'docker-compose-prod.yml'
-              action: 'Build services'
-            displayName: docker-compose build
+              action: 'deploy'
+              kubernetesServiceConnection: 'dev-default-1588783708961'
+              namespace: 'default'
+              manifests: '$(Pipeline.Workspace)/k8s/**/*.yml'
 
-          - task: DockerCompose@0
+          - task: Kubernetes@1
+            displayName: kubectl rollout restart
             inputs:
-              containerregistrytype: 'Container Registry'
-              dockerRegistryEndpoint: 'HealthPairDocker'
-              dockerComposeFile: 'docker-compose-prod.yml'
-              action: 'Push services'
-            displayName: docker-compose push
-
-          - task: AzureWebAppContainer@1
-            inputs:
-              azureSubscription: 'HealthPairAPIConnection'
-              appName: 'HealthPair-API'
-              multicontainerConfigFile: 'docker-compose-prod.yml'
-            displayName: azure app service deploy
+              connectionType: 'Kubernetes Service Connection'
+              kubernetesServiceEndpoint: 'dev-default-1588783708961'
+              namespace: 'default'
+              command: 'rollout'
+              useConfigurationFile: true
+              configuration: '$(Pipeline.Workspace)/k8s/deployment'
+              arguments: 'restart'
+              secretType: 'dockerRegistry'
+              containerRegistryType: 'Azure Container Registry'
