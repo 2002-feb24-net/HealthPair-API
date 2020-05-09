@@ -14,11 +14,12 @@ spec:
   template:
     metadata:
       labels:
-        app: notes
+        app: healthpair
         role: db
     spec:
       containers:
       - name: healthpair-db
         image: kyranbryant/healthpair-db:1.0
+        imagePullPolicy: Always
         ports:
         - containerPort: 5432
