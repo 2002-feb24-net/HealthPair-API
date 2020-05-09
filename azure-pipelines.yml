@@ -141,7 +141,7 @@ stages:
     - task: PublishPipelineArtifact@1
       displayName: k8s manifest publish
       inputs:
-        targetPath: '$(Pipeline.Workspace)/K8s'
+        targetPath: 'K8s'
         artifact: 'K8s'
         publishLocation: 'pipeline'
 
@@ -166,7 +166,7 @@ stages:
               action: 'deploy'
               kubernetesServiceConnection: 'dev-default-1588982326204'
               namespace: 'default'
-              manifests: '$(Pipeline.Workspace)/K8s/deployment'
+              manifests: '$(Pipeline.Workspace)/K8s/**/*.yml'
 
           - task: Kubernetes@1
             displayName: kubectl rollout restart
