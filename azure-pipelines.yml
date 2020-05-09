@@ -141,7 +141,7 @@ stages:
     - task: PublishPipelineArtifact@1
       displayName: k8s manifest publish
       inputs:
-        targetPath: 'k8s'
+        targetPath: '$(Pipeline.Workspace)/k8s'
         artifact: 'k8s'
         publishLocation: 'pipeline'
 
