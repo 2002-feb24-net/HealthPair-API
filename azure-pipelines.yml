@@ -166,7 +166,7 @@ stages:
               action: 'deploy'
               kubernetesServiceConnection: 'dev-default-1588982326204'
               namespace: 'default'
-              manifests: 'k8s/**/*.yml'
+              manifests: '$(Pipeline.Workspace)/K8s/deployment'
 
           - task: Kubernetes@1
             displayName: kubectl rollout restart
@@ -176,7 +176,7 @@ stages:
               namespace: 'default'
               command: 'rollout'
               useConfigurationFile: true
-              configuration: 'k8s/deployment'
+              configuration: '$(Pipeline.Workspace)/K8s/deployment'
               arguments: 'restart'
               secretType: 'dockerRegistry'
               containerRegistryType: 'Azure Container Registry'
