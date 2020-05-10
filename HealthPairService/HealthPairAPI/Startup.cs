@@ -67,14 +67,12 @@ namespace HealthPairAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "HealthPair API", Version = "v1" });
             });
 
+            var allowedOrigins = Configuration.GetSection("CorsOrigins").Get<string[]>();
 
             services.AddCors(options =>
             {
                 options.AddPolicy(CorsPolicyName, builder =>
-                    builder.WithOrigins(
-                            "https://healthpair-client.azurewebsites.net",
-                            "http://localhost:4200",
-                            "http://a846dd4e8e4e14701bf08588e007d22b-636555553.us-east-2.elb.amazonaws.com/")
+                    builder.WithOrigins(allowedOrigins ?? Array.Empty<string>())
                         .AllowAnyMethod()
                         .AllowAnyHeader()
                         .AllowCredentials());
