@@ -1,7 +1,7 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build-env
 WORKDIR /app
 
-COPY ./HealthPair.sln ./
+COPY *.sln ./
 COPY HealthPairAPI/*.csproj HealthPairAPI/
 COPY HealthPairDomain/*.csproj HealthPairDomain/
 COPY HealthPairDataAccess/*.csproj HealthPairDataAccess/
