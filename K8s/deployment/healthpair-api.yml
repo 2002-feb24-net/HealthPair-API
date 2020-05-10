@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: healthpair-api
-        image: kyranbryant/healthpairapi:1.0
+        image: kyranbryant/healthpair-api:1.0
         imagePullPolicy: Always
         ports:
         - containerPort: 80
