@@ -98,7 +98,8 @@ namespace HealthPairAPI.Logic
                 FacilityPhoneNumber = provider.Facility.FacilityPhoneNumber,
                 FacilityState = provider.Facility.FacilityState,
                 SpecialtyId = provider.Specialty.SpecialtyId,
-                Specialty = provider.Specialty.Specialty
+                Specialty = provider.Specialty.Specialty,
+                Distance = 0
             };
         }
 

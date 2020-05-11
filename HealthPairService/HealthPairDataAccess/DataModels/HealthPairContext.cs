@@ -603,6 +603,231 @@ namespace HealthPairDataAccess.DataModels
                     IPId = 45,
                     InsuranceId = 15,
                     ProviderId = 3
+                },
+// ! EDRFTVGHBJNOWSZEXDCFVGBNJMKL<HDXCFVGBHNJK<ML>
+// ! EDRFTVGHBJNOWSZEXDCFVGBNJMKL<HDXCFVGBHNJK<ML>
+// ! EDRFTVGHBJNOWSZEXDCFVGBNJMKL<HDXCFVGBHNJK<ML>
+                new Data_InsuranceProvider()
+                {
+                    IPId = 46,
+                    InsuranceId = 1,
+                    ProviderId = 4
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 47,
+                    InsuranceId = 1,
+                    ProviderId = 5
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 48,
+                    InsuranceId = 1,
+                    ProviderId = 6
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 49,
+                    InsuranceId = 1,
+                    ProviderId = 7
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 50,
+                    InsuranceId = 1,
+                    ProviderId = 8
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 51,
+                    InsuranceId = 1,
+                    ProviderId = 9
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 52,
+                    InsuranceId = 1,
+                    ProviderId = 10
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 53,
+                    InsuranceId = 1,
+                    ProviderId = 11
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 54,
+                    InsuranceId = 1,
+                    ProviderId = 12
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 55,
+                    InsuranceId = 1,
+                    ProviderId = 13
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 56,
+                    InsuranceId = 1,
+                    ProviderId = 14
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 57,
+                    InsuranceId = 1,
+                    ProviderId = 15
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 58,
+                    InsuranceId = 1,
+                    ProviderId = 16
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 59,
+                    InsuranceId = 1,
+                    ProviderId = 17
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 60,
+                    InsuranceId = 1,
+                    ProviderId = 18
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 61,
+                    InsuranceId = 1,
+                    ProviderId = 19
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 62,
+                    InsuranceId = 1,
+                    ProviderId = 20
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 63,
+                    InsuranceId = 1,
+                    ProviderId = 21
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 64,
+                    InsuranceId = 1,
+                    ProviderId = 22
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 65,
+                    InsuranceId = 1,
+                    ProviderId = 23
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 66,
+                    InsuranceId = 1,
+                    ProviderId = 24
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 67,
+                    InsuranceId = 1,
+                    ProviderId = 25
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 68,
+                    InsuranceId = 1,
+                    ProviderId = 26
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 69,
+                    InsuranceId = 1,
+                    ProviderId = 27
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 70,
+                    InsuranceId = 1,
+                    ProviderId = 28
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 71,
+                    InsuranceId = 1,
+                    ProviderId = 29
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 72,
+                    InsuranceId = 1,
+                    ProviderId = 30
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 73,
+                    InsuranceId = 1,
+                    ProviderId = 31
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 74,
+                    InsuranceId = 1,
+                    ProviderId = 32
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 75,
+                    InsuranceId = 1,
+                    ProviderId = 33
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 76,
+                    InsuranceId = 1,
+                    ProviderId = 34
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 77,
+                    InsuranceId = 1,
+                    ProviderId = 35
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 78,
+                    InsuranceId = 1,
+                    ProviderId = 36
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 79,
+                    InsuranceId = 1,
+                    ProviderId = 37
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 80,
+                    InsuranceId = 1,
+                    ProviderId = 38
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 81,
+                    InsuranceId = 1,
+                    ProviderId = 39
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 82,
+                    InsuranceId = 1,
+                    ProviderId = 40
                 }
             );
 
@@ -645,7 +870,84 @@ namespace HealthPairDataAccess.DataModels
             modelBuilder.Entity<Data_Patient>().HasData(
                 new Data_Patient()
                 {
-                    PatientId = 1,
+	                PatientId = 1,
+	                InsuranceId = 1,
+	                PatientFirstName = "Josh",
+	                PatientLastName = "Kraus",
+	                PatientPassword = "Password1",
+	                PatientAddress1 = "8401 Ronnie St",
+	                PatientCity = "White Settlement",
+	                PatientState = "TX",
+	                PatientZipcode = 76108,
+	                PatientBirthDay = new DateTime(2000, 4, 12),
+	                PatientPhoneNumber = 7167787419,
+	                PatientEmail = "ifawdry0@si.edu",
+	                IsAdmin = true
+                },
+                new Data_Patient()
+                {
+                    PatientId = 2,
+                    InsuranceId = 3,
+                    PatientFirstName = "Devin",
+                    PatientLastName = "Holt",
+                    PatientPassword = "Password2",
+                    PatientAddress1 = "2500 Victory Ave",
+                    PatientCity = "Dallas", PatientState = "TX",
+                    PatientZipcode = 75201,
+                    PatientBirthDay = new DateTime(1988,  11, 30),
+                    PatientPhoneNumber = 3619033062,
+                    PatientEmail = "wotimony1@shop-pro.jp",
+                    IsAdmin = true
+                },
+                new Data_Patient()
+                {
+                    PatientId = 3,
+                    InsuranceId = 5,
+                    PatientFirstName = "Zach",
+                    PatientLastName = "Zellner",
+                    PatientPassword = "Password3",
+                    PatientAddress1 = "5919 Peg Street",
+                    PatientCity = "Houston",
+                    PatientState = "TX",
+                    PatientZipcode = 77092,
+                    PatientBirthDay = new DateTime(2002, 10,  31),
+                    PatientPhoneNumber = 2452488647,
+                    PatientEmail = "lsiward2@cnbc.com",
+                    IsAdmin = false
+                },
+                new Data_Patient()
+                {
+                    PatientId = 4,
+                    InsuranceId = 7,
+                    PatientFirstName = "Don",
+                    PatientLastName = "Robbins",
+                    PatientPassword = "Password4",
+                    PatientAddress1 = "10810 Spring Cypress Rd.",
+                    PatientCity = "Tomball", PatientState = "TX",
+                    PatientZipcode = 77375,
+                    PatientBirthDay = new DateTime(1999, 1, 9),
+                    PatientPhoneNumber = 8823701130,
+                    PatientEmail = "mindgs3@microsoft.com",
+                    IsAdmin = false
+                },
+                new Data_Patient()
+                {
+                    PatientId = 5,
+                    InsuranceId = 7,
+                    PatientFirstName = "Don",
+                    PatientLastName = "Robbins",
+                    PatientPassword = "Password4",
+                    PatientAddress1 = "10810 Spring Cypress Rd.",
+                    PatientCity = "Tomball", PatientState = "TX",
+                    PatientZipcode = 77375,
+                    PatientBirthDay = new DateTime(1999, 1, 9),
+                    PatientPhoneNumber = 8823701130,
+                    PatientEmail = "mindgs3@microsoft.com",
+                    IsAdmin = false
+                },
+                new Data_Patient()
+                {
+                    PatientId = 5,
                     InsuranceId = 1,
                     PatientFirstName = "TestPatientFirstName",
                     PatientLastName = "TestPatientLastName",
@@ -658,38 +960,6 @@ namespace HealthPairDataAccess.DataModels
                     PatientPhoneNumber = 1234567890,
                     PatientEmail = "TestEmail@test.com",
                     IsAdmin = true
-                },
-                new Data_Patient()
-                {
-                    PatientId = 2,
-                    InsuranceId = 1,
-                    PatientFirstName = "Bob",
-                    PatientLastName = "Sagget",
-                    PatientPassword = "password123",
-                    PatientAddress1 = "123 Holiday Lane",
-                    PatientCity = "Georgetown",
-                    PatientState = "Georgia",
-                    PatientZipcode = 55567,
-                    PatientBirthDay = new DateTime(2000, 1, 1),
-                    PatientPhoneNumber = 1234567890,
-                    PatientEmail = "dontemailme@emailcompany.com",
-                    IsAdmin = false
-                },
-                new Data_Patient()
-                {
-                    PatientId = 3,
-                    InsuranceId = 2,
-                    PatientFirstName = "Daffy",
-                    PatientLastName = "Duck",
-                    PatientPassword = "L00nyT00nz",
-                    PatientAddress1 = "Sesame Street",
-                    PatientCity = "London",
-                    PatientState = "California",
-                    PatientZipcode = 11111,
-                    PatientBirthDay = new DateTime(2000, 1, 1),
-                    PatientPhoneNumber = 5555555555,
-                    PatientEmail = "rickrolled@rick.com",
-                    IsAdmin = false
                 }
             );
 
@@ -715,32 +985,365 @@ namespace HealthPairDataAccess.DataModels
                     .HasForeignKey(p => p.SpecialtyId);
             });
             modelBuilder.Entity<Data_Provider>().HasData(
-                new Data_Provider()
+                new Data_Provider
                 {
                     ProviderId = 1,
                     FacilityId = 1,
-                    SpecialtyId = 1,
-                    ProviderFirstName = "TestProviderFirstName",
-                    ProviderLastName = "TestProviderLastName",
-                    ProviderPhoneNumber = 1234567890
+                    SpecialtyId = 6,
+                    ProviderFirstName = "Devin",
+                    ProviderLastName = "Kraus",
+                    ProviderPhoneNumber = 7167787419
                 },
-                new Data_Provider()
+                new Data_Provider
                 {
                     ProviderId = 2,
-                    FacilityId = 3,
-                    SpecialtyId = 2,
-                    ProviderFirstName = "Deborah",
-                    ProviderLastName = "White",
-                    ProviderPhoneNumber = 6483932283
+                    FacilityId = 2,
+                    SpecialtyId = 13,
+                    ProviderFirstName = "Zach",
+                    ProviderLastName = "Holt",
+                    ProviderPhoneNumber = 3619033062
                 },
-                new Data_Provider()
+                new Data_Provider
                 {
                     ProviderId = 3,
-                    FacilityId = 2,
+                    FacilityId = 3,
+                    SpecialtyId = 5,
+                    ProviderFirstName = "Josh",
+                    ProviderLastName = "Zellner",
+                    ProviderPhoneNumber = 2452488647
+                },
+                new Data_Provider
+                {
+                    ProviderId = 4,
+                    FacilityId = 4,
+                    SpecialtyId = 8,
+                    ProviderFirstName = "Josh",
+                    ProviderLastName = "Robins",
+                    ProviderPhoneNumber = 8823701130
+                },
+                new Data_Provider
+                {
+                    ProviderId = 5,
+                    FacilityId = 5,
+                    SpecialtyId = 11,
+                    ProviderFirstName = "Donald",
+                    ProviderLastName = "Mullen",
+                    ProviderPhoneNumber = 9016226625
+                },
+                new Data_Provider
+                {
+                    ProviderId = 6,
+                    FacilityId = 6,
+                    SpecialtyId = 4,
+                    ProviderFirstName = "Maury",
+                    ProviderLastName = "Chitter",
+                    ProviderPhoneNumber = 2577977019
+                },
+                new Data_Provider
+                {
+                    ProviderId = 7,
+                    FacilityId = 7,
+                    SpecialtyId = 8,
+                    ProviderFirstName = "Philomena",
+                    ProviderLastName = "Capon",
+                    ProviderPhoneNumber = 2834986226
+                },
+                new Data_Provider
+                {
+                    ProviderId = 8,
+                    FacilityId = 8,
+                    SpecialtyId = 4,
+                    ProviderFirstName = "Michail",
+                    ProviderLastName= "Minkin",
+                    ProviderPhoneNumber = 4487593448
+                },
+                new Data_Provider
+                {
+                    ProviderId = 9,
+                    FacilityId = 9,
+                    SpecialtyId = 2,
+                    ProviderFirstName = "Boothe",
+                    ProviderLastName = "Gurrado",
+                    ProviderPhoneNumber = 9373233203
+                },
+                new Data_Provider
+                {
+                    ProviderId = 10,
+                    FacilityId = 10,
                     SpecialtyId = 1,
-                    ProviderFirstName = "Billy",
-                    ProviderLastName = "Joe",
-                    ProviderPhoneNumber = 6667778888
+                    ProviderFirstName = "Kendall",
+                    ProviderLastName = "Mulqueen",
+                    ProviderPhoneNumber = 9033544326
+                },
+                new Data_Provider
+                {
+                    ProviderId = 11,
+                    FacilityId = 11,
+                    SpecialtyId = 14,
+                    ProviderFirstName = "Onfre",
+                    ProviderLastName = "Grazier",
+                    ProviderPhoneNumber = 8503233858
+                },
+                new Data_Provider
+                {
+                    ProviderId = 12,
+                    FacilityId = 12,
+                    SpecialtyId = 8,
+                    ProviderFirstName = "Mauricio",
+                    ProviderLastName = "Rowes",
+                    ProviderPhoneNumber = 3259067361
+                },
+                new Data_Provider
+                {
+                    ProviderId = 13,
+                    FacilityId = 13,
+                    SpecialtyId = 6,
+                    ProviderFirstName = "Elana",
+                    ProviderLastName = "Dollman",
+                    ProviderPhoneNumber = 8696441600
+                },
+                new Data_Provider
+                {
+                    ProviderId = 14,
+                    FacilityId = 14,
+                    SpecialtyId = 10,
+                    ProviderFirstName = "Georg",
+                    ProviderLastName = "Yakunchikov",
+                    ProviderPhoneNumber = 3464020514
+                },
+                new Data_Provider
+                {
+                    ProviderId = 15,
+                    FacilityId = 15,
+                    SpecialtyId = 3,
+                    ProviderFirstName = "Nanny",
+                    ProviderLastName = "Stead",
+                    ProviderPhoneNumber = 7705745366
+                },
+                new Data_Provider
+                {
+                    ProviderId = 16,
+                    FacilityId = 1,
+                    SpecialtyId = 8,
+                    ProviderFirstName = "Jorie",
+                    ProviderLastName = "Atwool",
+                    ProviderPhoneNumber = 9363687510
+                },
+                new Data_Provider
+                {
+                    ProviderId = 17,
+                    FacilityId = 2,
+                    SpecialtyId = 11,
+                    ProviderFirstName = "Alfons",
+                    ProviderLastName = "Shee",
+                    ProviderPhoneNumber = 6445427083
+                },
+                new Data_Provider
+                {
+                    ProviderId = 18,
+                    FacilityId = 3,
+                    SpecialtyId = 7,
+                    ProviderFirstName = "Netta",
+                    ProviderLastName = "Fincken",
+                    ProviderPhoneNumber = 5252048919
+                },
+                new Data_Provider
+                {
+                    ProviderId = 19,
+                    FacilityId = 4,
+                    SpecialtyId = 14,
+                    ProviderFirstName = "Melli",
+                    ProviderLastName = "Hansford",
+                    ProviderPhoneNumber = 5024459183
+                },
+                new Data_Provider
+                {
+                    ProviderId = 20,
+                    FacilityId = 5,
+                    SpecialtyId = 14,
+                    ProviderFirstName = "Kathryne",
+                    ProviderLastName = "Pawlaczyk",
+                    ProviderPhoneNumber = 6981610466
+                },
+                new Data_Provider
+                {
+                    ProviderId = 21,
+                    FacilityId = 6,
+                    SpecialtyId = 13,
+                    ProviderFirstName = "Dex",
+                    ProviderLastName = "Rawstron",
+                    ProviderPhoneNumber = 5243227555
+                },
+                new Data_Provider
+                {
+                    ProviderId = 22,
+                    FacilityId = 7,
+                    SpecialtyId = 4,
+                    ProviderFirstName = "Dorie",
+                    ProviderLastName = "O'Dreain",
+                    ProviderPhoneNumber = 5123716488
+                },
+                new Data_Provider
+                {
+                    ProviderId = 23,
+                    FacilityId = 8,
+                    SpecialtyId = 10,
+                    ProviderFirstName = "Leonora",
+                    ProviderLastName = "Pitford",
+                    ProviderPhoneNumber = 2138363970
+                },
+                new Data_Provider
+                {
+                    ProviderId = 24,
+                    FacilityId = 9,
+                    SpecialtyId = 1,
+                    ProviderFirstName = "Whitney",
+                    ProviderLastName = "Sevior",
+                    ProviderPhoneNumber = 6174183997
+                },
+                new Data_Provider
+                {
+                    ProviderId = 25,
+                    FacilityId = 10,
+                    SpecialtyId = 8,
+                    ProviderFirstName = "Zora",
+                    ProviderLastName = "Paolucci",
+                    ProviderPhoneNumber = 1909364291
+                },
+                new Data_Provider
+                {
+                    ProviderId = 26,
+                    FacilityId = 11,
+                    SpecialtyId = 10,
+                    ProviderFirstName = "Jayson",
+                    ProviderLastName = "Wookey",
+                    ProviderPhoneNumber = 8982665744
+                },
+                new Data_Provider
+                {
+                    ProviderId = 27,
+                    FacilityId = 12,
+                    SpecialtyId = 8,
+                    ProviderFirstName = "Rock",
+                    ProviderLastName = "Sharville",
+                    ProviderPhoneNumber = 5864186454
+                },
+                new Data_Provider
+                {
+                    ProviderId = 28,
+                    FacilityId = 13,
+                    SpecialtyId = 10,
+                    ProviderFirstName = "Dani",
+                    ProviderLastName = "Broadwell",
+                    ProviderPhoneNumber = 4221047432
+                },
+                new Data_Provider
+                {
+                    ProviderId = 29,
+                    FacilityId = 14,
+                    SpecialtyId = 2,
+                    ProviderFirstName = "Virginia",
+                    ProviderLastName = "McAvinchey",
+                    ProviderPhoneNumber = 8769325946
+                },
+                new Data_Provider
+                {
+                    ProviderId = 30,
+                    FacilityId = 15,
+                    SpecialtyId = 15,
+                    ProviderFirstName = "Neala",
+                    ProviderLastName = "Cianelli",
+                    ProviderPhoneNumber = 4504879923
+                },
+                new Data_Provider
+                {
+                    ProviderId = 31,
+                    FacilityId = 6,
+                    SpecialtyId = 6,
+                    ProviderFirstName = "Pooh",
+                    ProviderLastName = "Florio",
+                    ProviderPhoneNumber = 3317751153
+                },
+                new Data_Provider
+                {
+                    ProviderId = 32,
+                    FacilityId = 14,
+                    SpecialtyId = 14,
+                    ProviderFirstName = "Portia",
+                    ProviderLastName = "Treadwell",
+                    ProviderPhoneNumber = 3609514708
+                },
+                new Data_Provider
+                {
+                    ProviderId = 33,
+                    FacilityId = 4,
+                    SpecialtyId = 4,
+                    ProviderFirstName = "Tucky",
+                    ProviderLastName = "Dreher",
+                    ProviderPhoneNumber = 1313561327
+                },
+                new Data_Provider
+                {
+                    ProviderId = 34,
+                    FacilityId = 15,
+                    SpecialtyId = 15,
+                    ProviderFirstName = "Gardie",
+                    ProviderLastName = "Drakes",
+                    ProviderPhoneNumber = 6921919943
+                },
+                new Data_Provider
+                {
+                    ProviderId = 35,
+                    FacilityId = 7,
+                    SpecialtyId = 7,
+                    ProviderFirstName = "Phillip",
+                    ProviderLastName = "Sharville",
+                    ProviderPhoneNumber = 9529171778
+                },
+                new Data_Provider
+                {
+                    ProviderId = 36,
+                    FacilityId = 8,
+                    SpecialtyId = 8,
+                    ProviderFirstName = "Byrle",
+                    ProviderLastName = "Shuttleworth",
+                    ProviderPhoneNumber = 2717398518
+                },
+                new Data_Provider
+                {
+                    ProviderId = 37,
+                    FacilityId = 14,
+                    SpecialtyId = 14,
+                    ProviderFirstName = "Hy",
+                    ProviderLastName = "Hamflett",
+                    ProviderPhoneNumber = 1206169437
+                },
+                new Data_Provider
+                {
+                    ProviderId = 38,
+                    FacilityId = 12,
+                    SpecialtyId = 12,
+                    ProviderFirstName = "Eadie",
+                    ProviderLastName = "Taill",
+                    ProviderPhoneNumber = 7997088826
+                },
+                new Data_Provider
+                {
+                    ProviderId = 39,
+                    FacilityId = 2,
+                    SpecialtyId = 2,
+                    ProviderFirstName = "Timi",
+                    ProviderLastName = "Kestian",
+                    ProviderPhoneNumber = 2894355254
+                },
+                new Data_Provider
+                {
+                    ProviderId = 40,
+                    FacilityId = 11,
+                    SpecialtyId = 11,
+                    ProviderFirstName = "Gearalt",
+                    ProviderLastName = "Dows",
+                    ProviderPhoneNumber = 7618424391
                 }
             );
 
