@@ -12,12 +12,9 @@ RUN dotnet restore
 COPY .config ./
 RUN dotnet tool restore
 
-# Copy everything else and generate SQL script from migrations
 COPY . ./
-RUN dotnet ef migrations script -p HealthPairDataAccess -s HealthPairAPI -o init-db.sql
 
 # Build runtime image
 FROM postgres:12.0
 WORKDIR /docker-entrypoint-initdb.d
 ENV POSTGRES_PASSWORD Pass@word
-COPY --from=build-env /app/init-db.sql .

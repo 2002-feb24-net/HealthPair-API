@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System;
+using Microsoft.Extensions.Logging;
 
 namespace HealthPairDataAccess.Repositories
 {
@@ -13,10 +15,13 @@ namespace HealthPairDataAccess.Repositories
     public class AppointmentRepository : IAppointmentRepository
     {
         private readonly HealthPairContext _context;
+        private readonly ILogger<AppointmentRepository> _logger;
 
-        public AppointmentRepository(HealthPairContext context)
+        public AppointmentRepository(HealthPairContext context, ILogger<AppointmentRepository> logger)
         {
-            _context = context;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+
         }
 
         /// <summary> Fetches all appointments related to input string. Null fetches all.

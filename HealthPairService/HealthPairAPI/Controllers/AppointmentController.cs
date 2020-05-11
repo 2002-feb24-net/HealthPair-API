@@ -44,11 +44,18 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAsync([FromQuery] string search = null)
         {
-            List<Transfer_Appointment> AppointmentAll;
+            List<Transfer_Appointment> AppointmentAll = new List<Transfer_Appointment>();
             if (search == null)
             {
-                _logger.LogInformation($"Retrieving all appointments");
-                AppointmentAll = (await _appointmentRepository.GetAppointmentAsync()).Select(Mapper.MapAppointments).ToList();
+                try
+                {
+                    _logger.LogInformation($"Retrieving all appointments");
+                    AppointmentAll = (await _appointmentRepository.GetAppointmentAsync()).Select(Mapper.MapAppointments).ToList();
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogInformation(ex.Message);
+                }
             }
             else
             {

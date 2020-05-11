@@ -67,7 +67,7 @@ namespace HealthPairAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "HealthPair API", Version = "v1" });
             });
 
-            
+
 
             services.AddCors(options =>
             {
@@ -152,6 +152,8 @@ namespace HealthPairAPI
             {
                 app.UseHttpsRedirection();
             }
+
+            //app.UseSerilogRequestLogging();
 
             app.UseRouting();
 
