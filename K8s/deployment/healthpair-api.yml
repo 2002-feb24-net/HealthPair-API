@@ -42,5 +42,9 @@ spec:
           value: https://healthpair-client-docker.azurewebsites.net
         - name: CorsOrigins__6
           value: http://a846dd4e8e4e14701bf08588e007d22b-636555553.us-east-2.elb.amazonaws.com
+        - name: CorsOrigins__7
+          value: http://healthpair.2002.revaturelabs.com
+        - name: CorsOrigins__8
+          value: https://healthpair.2002.revaturelabs.com
         - name: UseHttpsRedirection
           value: 'false'
