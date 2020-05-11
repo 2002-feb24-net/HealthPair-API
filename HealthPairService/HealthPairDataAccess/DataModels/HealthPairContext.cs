@@ -947,7 +947,7 @@ namespace HealthPairDataAccess.DataModels
                 },
                 new Data_Patient()
                 {
-                    PatientId = 5,
+                    PatientId = 6,
                     InsuranceId = 1,
                     PatientFirstName = "TestPatientFirstName",
                     PatientLastName = "TestPatientLastName",
