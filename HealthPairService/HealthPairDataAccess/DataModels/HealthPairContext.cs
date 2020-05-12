@@ -334,6 +334,7 @@ namespace HealthPairDataAccess.DataModels
                     .HasForeignKey(bc => bc.ProviderId);
             });
             modelBuilder.Entity<Data_InsuranceProvider>().HasData(
+// ! insurance 1
                 // new Data_InsuranceProvider()
                 // {
                 //     IPId = 1,
@@ -354,6 +355,229 @@ namespace HealthPairDataAccess.DataModels
                 // },
                 new Data_InsuranceProvider()
                 {
+                    IPId = 46,
+                    InsuranceId = 1,
+                    ProviderId = 4
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 47,
+                    InsuranceId = 1,
+                    ProviderId = 5
+                },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 48,
+                //     InsuranceId = 1,
+                //     ProviderId = 6
+                // },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 49,
+                    InsuranceId = 1,
+                    ProviderId = 7
+                },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 50,
+                //     InsuranceId = 1,
+                //     ProviderId = 8
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 51,
+                //     InsuranceId = 1,
+                //     ProviderId = 9
+                // },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 52,
+                    InsuranceId = 1,
+                    ProviderId = 10
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 53,
+                    InsuranceId = 1,
+                    ProviderId = 11
+                },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 54,
+                //     InsuranceId = 1,
+                //     ProviderId = 12
+                // },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 55,
+                    InsuranceId = 1,
+                    ProviderId = 13
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 56,
+                    InsuranceId = 1,
+                    ProviderId = 14
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 57,
+                    InsuranceId = 1,
+                    ProviderId = 15
+                },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 58,
+                //     InsuranceId = 1,
+                //     ProviderId = 16
+                // },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 59,
+                    InsuranceId = 1,
+                    ProviderId = 17
+                },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 60,
+                //     InsuranceId = 1,
+                //     ProviderId = 18
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 61,
+                //     InsuranceId = 1,
+                //     ProviderId = 19
+                // },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 62,
+                    InsuranceId = 1,
+                    ProviderId = 20
+                },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 63,
+                //     InsuranceId = 1,
+                //     ProviderId = 21
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 64,
+                //     InsuranceId = 1,
+                //     ProviderId = 22
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 65,
+                //     InsuranceId = 1,
+                //     ProviderId = 23
+                // },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 66,
+                    InsuranceId = 1,
+                    ProviderId = 24
+                },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 67,
+                //     InsuranceId = 1,
+                //     ProviderId = 25
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 68,
+                //     InsuranceId = 1,
+                //     ProviderId = 26
+                // },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 69,
+                    InsuranceId = 1,
+                    ProviderId = 27
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 70,
+                    InsuranceId = 1,
+                    ProviderId = 28
+                },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 71,
+                //     InsuranceId = 1,
+                //     ProviderId = 29
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 72,
+                //     InsuranceId = 1,
+                //     ProviderId = 30
+                // },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 73,
+                    InsuranceId = 1,
+                    ProviderId = 31
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 74,
+                    InsuranceId = 1,
+                    ProviderId = 32
+                },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 75,
+                //     InsuranceId = 1,
+                //     ProviderId = 33
+                // },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 76,
+                    InsuranceId = 1,
+                    ProviderId = 34
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 77,
+                    InsuranceId = 1,
+                    ProviderId = 35
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 78,
+                    InsuranceId = 1,
+                    ProviderId = 36
+                },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 79,
+                //     InsuranceId = 1,
+                //     ProviderId = 37
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 80,
+                //     InsuranceId = 1,
+                //     ProviderId = 38
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 81,
+                //     InsuranceId = 1,
+                //     ProviderId = 39
+                // },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 82,
+                    InsuranceId = 1,
+                    ProviderId = 40
+                },
+// ! Insurance 2
+                new Data_InsuranceProvider()
+                {
                     IPId = 4,
                     InsuranceId = 2,
                     ProviderId = 1
@@ -370,6 +594,228 @@ namespace HealthPairDataAccess.DataModels
                     InsuranceId = 2,
                     ProviderId = 3
                 },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 86,
+                //     InsuranceId = 2,
+                //     ProviderId = 4
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 87,
+                //     InsuranceId = 2,
+                //     ProviderId = 5
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 88,
+                //     InsuranceId = 2,
+                //     ProviderId = 6
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 89,
+                //     InsuranceId = 2,
+                //     ProviderId = 7
+                // },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 90,
+                    InsuranceId = 2,
+                    ProviderId = 8
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 91,
+                    InsuranceId = 2,
+                    ProviderId = 9
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 92,
+                    InsuranceId = 2,
+                    ProviderId = 10
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 93,
+                    InsuranceId = 2,
+                    ProviderId = 11
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 94,
+                    InsuranceId = 2,
+                    ProviderId = 12
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 95,
+                    InsuranceId = 2,
+                    ProviderId = 13
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 96,
+                    InsuranceId = 2,
+                    ProviderId = 14
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 97,
+                    InsuranceId = 2,
+                    ProviderId = 15
+                },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 98,
+                //     InsuranceId = 2,
+                //     ProviderId = 16
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 99,
+                //     InsuranceId = 2,
+                //     ProviderId = 17
+                // },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 100,
+                    InsuranceId = 2,
+                    ProviderId = 18
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 101,
+                    InsuranceId = 2,
+                    ProviderId = 19
+                },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 102,
+                //     InsuranceId = 2,
+                //     ProviderId = 20
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 103,
+                //     InsuranceId = 2,
+                //     ProviderId = 21
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 104,
+                //     InsuranceId = 2,
+                //     ProviderId = 22
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 105,
+                //     InsuranceId = 2,
+                //     ProviderId = 23
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 106,
+                //     InsuranceId = 2,
+                //     ProviderId = 24
+                // },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 107,
+                    InsuranceId = 2,
+                    ProviderId = 25
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 108,
+                    InsuranceId = 2,
+                    ProviderId = 26
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 109,
+                    InsuranceId = 2,
+                    ProviderId = 27
+                },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 110,
+                //     InsuranceId = 2,
+                //     ProviderId = 28
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 111,
+                //     InsuranceId = 2,
+                //     ProviderId = 29
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 112,
+                //     InsuranceId = 2,
+                //     ProviderId = 30
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 113,
+                //     InsuranceId = 2,
+                //     ProviderId = 31
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 114,
+                //     InsuranceId = 2,
+                //     ProviderId = 32
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 115,
+                //     InsuranceId = 2,
+                //     ProviderId = 33
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 116,
+                //     InsuranceId = 2,
+                //     ProviderId = 34
+                // },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 117,
+                    InsuranceId = 2,
+                    ProviderId = 35
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 118,
+                    InsuranceId = 2,
+                    ProviderId = 36
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 119,
+                    InsuranceId = 2,
+                    ProviderId = 37
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 120,
+                    InsuranceId = 2,
+                    ProviderId = 38
+                },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 121,
+                //     InsuranceId = 2,
+                //     ProviderId = 39
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 122,
+                //     InsuranceId = 2,
+                //     ProviderId = 40
+                // },
                 new Data_InsuranceProvider()
                 {
                     IPId = 7,
@@ -607,228 +1053,6 @@ namespace HealthPairDataAccess.DataModels
 // ! EDRFTVGHBJNOWSZEXDCFVGBNJMKL<HDXCFVGBHNJK<ML>
 // ! EDRFTVGHBJNOWSZEXDCFVGBNJMKL<HDXCFVGBHNJK<ML>
 // ! EDRFTVGHBJNOWSZEXDCFVGBNJMKL<HDXCFVGBHNJK<ML>
-                new Data_InsuranceProvider()
-                {
-                    IPId = 46,
-                    InsuranceId = 1,
-                    ProviderId = 4
-                },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 47,
-                    InsuranceId = 1,
-                    ProviderId = 5
-                },
-                // new Data_InsuranceProvider()
-                // {
-                //     IPId = 48,
-                //     InsuranceId = 1,
-                //     ProviderId = 6
-                // },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 49,
-                    InsuranceId = 1,
-                    ProviderId = 7
-                },
-                // new Data_InsuranceProvider()
-                // {
-                //     IPId = 50,
-                //     InsuranceId = 1,
-                //     ProviderId = 8
-                // },
-                // new Data_InsuranceProvider()
-                // {
-                //     IPId = 51,
-                //     InsuranceId = 1,
-                //     ProviderId = 9
-                // },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 52,
-                    InsuranceId = 1,
-                    ProviderId = 10
-                },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 53,
-                    InsuranceId = 1,
-                    ProviderId = 11
-                },
-                // new Data_InsuranceProvider()
-                // {
-                //     IPId = 54,
-                //     InsuranceId = 1,
-                //     ProviderId = 12
-                // },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 55,
-                    InsuranceId = 1,
-                    ProviderId = 13
-                },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 56,
-                    InsuranceId = 1,
-                    ProviderId = 14
-                },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 57,
-                    InsuranceId = 1,
-                    ProviderId = 15
-                },
-                // new Data_InsuranceProvider()
-                // {
-                //     IPId = 58,
-                //     InsuranceId = 1,
-                //     ProviderId = 16
-                // },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 59,
-                    InsuranceId = 1,
-                    ProviderId = 17
-                },
-                // new Data_InsuranceProvider()
-                // {
-                //     IPId = 60,
-                //     InsuranceId = 1,
-                //     ProviderId = 18
-                // },
-                // new Data_InsuranceProvider()
-                // {
-                //     IPId = 61,
-                //     InsuranceId = 1,
-                //     ProviderId = 19
-                // },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 62,
-                    InsuranceId = 1,
-                    ProviderId = 20
-                },
-                // new Data_InsuranceProvider()
-                // {
-                //     IPId = 63,
-                //     InsuranceId = 1,
-                //     ProviderId = 21
-                // },
-                // new Data_InsuranceProvider()
-                // {
-                //     IPId = 64,
-                //     InsuranceId = 1,
-                //     ProviderId = 22
-                // },
-                // new Data_InsuranceProvider()
-                // {
-                //     IPId = 65,
-                //     InsuranceId = 1,
-                //     ProviderId = 23
-                // },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 66,
-                    InsuranceId = 1,
-                    ProviderId = 24
-                },
-                // new Data_InsuranceProvider()
-                // {
-                //     IPId = 67,
-                //     InsuranceId = 1,
-                //     ProviderId = 25
-                // },
-                // new Data_InsuranceProvider()
-                // {
-                //     IPId = 68,
-                //     InsuranceId = 1,
-                //     ProviderId = 26
-                // },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 69,
-                    InsuranceId = 1,
-                    ProviderId = 27
-                },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 70,
-                    InsuranceId = 1,
-                    ProviderId = 28
-                },
-                // new Data_InsuranceProvider()
-                // {
-                //     IPId = 71,
-                //     InsuranceId = 1,
-                //     ProviderId = 29
-                // },
-                // new Data_InsuranceProvider()
-                // {
-                //     IPId = 72,
-                //     InsuranceId = 1,
-                //     ProviderId = 30
-                // },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 73,
-                    InsuranceId = 1,
-                    ProviderId = 31
-                },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 74,
-                    InsuranceId = 1,
-                    ProviderId = 32
-                },
-                // new Data_InsuranceProvider()
-                // {
-                //     IPId = 75,
-                //     InsuranceId = 1,
-                //     ProviderId = 33
-                // },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 76,
-                    InsuranceId = 1,
-                    ProviderId = 34
-                },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 77,
-                    InsuranceId = 1,
-                    ProviderId = 35
-                },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 78,
-                    InsuranceId = 1,
-                    ProviderId = 36
-                },
-                // new Data_InsuranceProvider()
-                // {
-                //     IPId = 79,
-                //     InsuranceId = 1,
-                //     ProviderId = 37
-                // },
-                // new Data_InsuranceProvider()
-                // {
-                //     IPId = 80,
-                //     InsuranceId = 1,
-                //     ProviderId = 38
-                // },
-                // new Data_InsuranceProvider()
-                // {
-                //     IPId = 81,
-                //     InsuranceId = 1,
-                //     ProviderId = 39
-                // },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 82,
-                    InsuranceId = 1,
-                    ProviderId = 40
-                },
                 new Data_InsuranceProvider()
                 {
                     IPId = 83,
@@ -1389,6 +1613,24 @@ namespace HealthPairDataAccess.DataModels
                     ProviderFirstName = "Ki'Nir",
                     ProviderLastName = "Habadayah",
                     ProviderPhoneNumber = 4997874451
+                },
+                new Data_Provider
+                {
+                    ProviderId = 44,
+                    FacilityId = 12,
+                    SpecialtyId = 1,
+                    ProviderFirstName = "James",
+                    ProviderLastName = "Comey",
+                    ProviderPhoneNumber = 3261558779
+                },
+                new Data_Provider
+                {
+                    ProviderId = 45,
+                    FacilityId = 1,
+                    SpecialtyId = 1,
+                    ProviderFirstName = "Karina",
+                    ProviderLastName = "Silkya",
+                    ProviderPhoneNumber = 6674219116
                 }
             );
 

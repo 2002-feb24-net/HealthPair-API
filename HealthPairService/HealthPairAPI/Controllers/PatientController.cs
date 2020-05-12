@@ -136,6 +136,7 @@ namespace HealthPairAPI.Controllers
                     PatientZipcode = patient.PatientZipcode,
                     PatientBirthDay = patient.PatientBirthDay,
                     PatientPhoneNumber = patient.PatientPhoneNumber,
+                    PatientEmail = patient.PatientEmail,
                     Insurance = (_insuranceRepository.GetInsuranceByIdAsync(patient.InsuranceId)).Result
                 };
                 _patientRepository.AddPatientAsync(transformedPatient);
