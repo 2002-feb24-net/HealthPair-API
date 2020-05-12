@@ -619,30 +619,30 @@ namespace HealthPairDataAccess.DataModels
                     InsuranceId = 1,
                     ProviderId = 5
                 },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 48,
-                    InsuranceId = 1,
-                    ProviderId = 6
-                },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 48,
+                //     InsuranceId = 1,
+                //     ProviderId = 6
+                // },
                 new Data_InsuranceProvider()
                 {
                     IPId = 49,
                     InsuranceId = 1,
                     ProviderId = 7
                 },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 50,
-                    InsuranceId = 1,
-                    ProviderId = 8
-                },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 51,
-                    InsuranceId = 1,
-                    ProviderId = 9
-                },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 50,
+                //     InsuranceId = 1,
+                //     ProviderId = 8
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 51,
+                //     InsuranceId = 1,
+                //     ProviderId = 9
+                // },
                 new Data_InsuranceProvider()
                 {
                     IPId = 52,
@@ -655,12 +655,12 @@ namespace HealthPairDataAccess.DataModels
                     InsuranceId = 1,
                     ProviderId = 11
                 },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 54,
-                    InsuranceId = 1,
-                    ProviderId = 12
-                },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 54,
+                //     InsuranceId = 1,
+                //     ProviderId = 12
+                // },
                 new Data_InsuranceProvider()
                 {
                     IPId = 55,
@@ -679,72 +679,72 @@ namespace HealthPairDataAccess.DataModels
                     InsuranceId = 1,
                     ProviderId = 15
                 },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 58,
-                    InsuranceId = 1,
-                    ProviderId = 16
-                },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 58,
+                //     InsuranceId = 1,
+                //     ProviderId = 16
+                // },
                 new Data_InsuranceProvider()
                 {
                     IPId = 59,
                     InsuranceId = 1,
                     ProviderId = 17
                 },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 60,
-                    InsuranceId = 1,
-                    ProviderId = 18
-                },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 61,
-                    InsuranceId = 1,
-                    ProviderId = 19
-                },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 60,
+                //     InsuranceId = 1,
+                //     ProviderId = 18
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 61,
+                //     InsuranceId = 1,
+                //     ProviderId = 19
+                // },
                 new Data_InsuranceProvider()
                 {
                     IPId = 62,
                     InsuranceId = 1,
                     ProviderId = 20
                 },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 63,
-                    InsuranceId = 1,
-                    ProviderId = 21
-                },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 64,
-                    InsuranceId = 1,
-                    ProviderId = 22
-                },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 65,
-                    InsuranceId = 1,
-                    ProviderId = 23
-                },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 63,
+                //     InsuranceId = 1,
+                //     ProviderId = 21
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 64,
+                //     InsuranceId = 1,
+                //     ProviderId = 22
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 65,
+                //     InsuranceId = 1,
+                //     ProviderId = 23
+                // },
                 new Data_InsuranceProvider()
                 {
                     IPId = 66,
                     InsuranceId = 1,
                     ProviderId = 24
                 },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 67,
-                    InsuranceId = 1,
-                    ProviderId = 25
-                },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 68,
-                    InsuranceId = 1,
-                    ProviderId = 26
-                },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 67,
+                //     InsuranceId = 1,
+                //     ProviderId = 25
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 68,
+                //     InsuranceId = 1,
+                //     ProviderId = 26
+                // },
                 new Data_InsuranceProvider()
                 {
                     IPId = 69,
@@ -757,18 +757,18 @@ namespace HealthPairDataAccess.DataModels
                     InsuranceId = 1,
                     ProviderId = 28
                 },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 71,
-                    InsuranceId = 1,
-                    ProviderId = 29
-                },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 72,
-                    InsuranceId = 1,
-                    ProviderId = 30
-                },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 71,
+                //     InsuranceId = 1,
+                //     ProviderId = 29
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 72,
+                //     InsuranceId = 1,
+                //     ProviderId = 30
+                // },
                 new Data_InsuranceProvider()
                 {
                     IPId = 73,
@@ -781,12 +781,12 @@ namespace HealthPairDataAccess.DataModels
                     InsuranceId = 1,
                     ProviderId = 32
                 },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 75,
-                    InsuranceId = 1,
-                    ProviderId = 33
-                },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 75,
+                //     InsuranceId = 1,
+                //     ProviderId = 33
+                // },
                 new Data_InsuranceProvider()
                 {
                     IPId = 76,
@@ -805,24 +805,24 @@ namespace HealthPairDataAccess.DataModels
                     InsuranceId = 1,
                     ProviderId = 36
                 },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 79,
-                    InsuranceId = 1,
-                    ProviderId = 37
-                },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 80,
-                    InsuranceId = 1,
-                    ProviderId = 38
-                },
-                new Data_InsuranceProvider()
-                {
-                    IPId = 81,
-                    InsuranceId = 1,
-                    ProviderId = 39
-                },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 79,
+                //     InsuranceId = 1,
+                //     ProviderId = 37
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 80,
+                //     InsuranceId = 1,
+                //     ProviderId = 38
+                // },
+                // new Data_InsuranceProvider()
+                // {
+                //     IPId = 81,
+                //     InsuranceId = 1,
+                //     ProviderId = 39
+                // },
                 new Data_InsuranceProvider()
                 {
                     IPId = 82,
