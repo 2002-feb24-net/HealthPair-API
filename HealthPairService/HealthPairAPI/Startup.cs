@@ -35,7 +35,7 @@ namespace HealthPairAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddApplicationInsightsTelemetry();
+            // services.AddApplicationInsightsTelemetry();
 
             // switch between database providers using runtime configuration
             // (the existing migrations are SQL-Server-specific, but the model itself is not)
@@ -55,7 +55,7 @@ namespace HealthPairAPI
 
             if (whichDb.Contains("PostgreSql", StringComparison.InvariantCultureIgnoreCase))
             {
-                services.AddDbContext<HealthPairContext>(options => options.UseNpgsql(connection));
+                services.AddDbContext<HealthPairContext>(options => options.UseNpgsql(connection),ServiceLifetime.Transient);
             }
             else
             {
