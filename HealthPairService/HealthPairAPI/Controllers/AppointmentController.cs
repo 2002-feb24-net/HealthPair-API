@@ -36,11 +36,14 @@ namespace HealthPairAPI.Controllers
         /// <param name="search"> string - This string is searched for in the body of multiple fields related to appointment. </param>
         /// <returns> A content result.
         /// 200 with A list of appointments, depending on input search
+        /// 401 if not authorized
         /// 500 if server error
         ///  </returns>
         /// </summary>
         [HttpGet]
+        [Authorize]
         [ProducesResponseType(typeof(List<Transfer_Appointment>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAsync([FromQuery] string search = null)
         {
@@ -79,12 +82,15 @@ namespace HealthPairAPI.Controllers
         /// <param name="id"> int - This int is searched for in the id related to appointment. </param>
         /// <returns> A content result.
         /// 200 with A appointment, depending on input id
+        /// 401 if not authorized
         /// 404 if no appointment with id is found
         /// 500 if server error
         ///  </returns>
         /// </summary>
+        [Authorize]
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(Transfer_Appointment), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<Transfer_Appointment>> GetById(int id)
@@ -108,10 +114,11 @@ namespace HealthPairAPI.Controllers
         /// 500 if server error
         ///  </returns>
         /// </summary>
+        [Authorize]
         [HttpPost]
         [ProducesResponseType(typeof(Transfer_Appointment), StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Post(Transfer_Appointment appointment)
         {
@@ -145,8 +152,10 @@ namespace HealthPairAPI.Controllers
         /// 500 if server error
         ///  </returns>
         /// </summary>
+        [Authorize]
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Put(int id, [FromBody] Transfer_Appointment appointment)
@@ -172,8 +181,10 @@ namespace HealthPairAPI.Controllers
         /// 500 if server error
         ///  </returns>
         /// </summary>
+        [Authorize]
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Delete(int id)

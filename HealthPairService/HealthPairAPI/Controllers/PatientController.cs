@@ -47,6 +47,7 @@ namespace HealthPairAPI.Controllers
         /// 401 if you are not authenticated
         /// 500 if server error
         ///  </returns>
+        [Authorize]
         [HttpGet]
         [ProducesResponseType(typeof(List<Transfer_Patient>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -86,6 +87,7 @@ namespace HealthPairAPI.Controllers
         /// 500 if server error
         ///  </returns>
         /// </summary>
+        [Authorize]
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(Transfer_Patient), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -93,6 +95,7 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<Transfer_Patient>> GetById(int id)
         {
+            var currentUser = HttpContext.User;
             _logger.LogInformation($"Retrieving patients with id {id}.");
             if (await _patientRepository.GetPatientByIdAsync(id) is Inner_Patient patient)
             {
@@ -113,6 +116,7 @@ namespace HealthPairAPI.Controllers
         /// 500 if server error
         ///  </returns>
         /// </summary>
+        [AllowAnonymous]
         [HttpPost]
         [ProducesResponseType(typeof(Transfer_Patient), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -158,8 +162,10 @@ namespace HealthPairAPI.Controllers
         /// 500 if server error
         ///  </returns>
         /// </summary>
+        [Authorize]
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Put(int id, [FromBody] Transfer_Patient patient)
@@ -195,8 +201,10 @@ namespace HealthPairAPI.Controllers
         /// 500 if server error
         ///  </returns>
         /// </summary>
+        [Authorize]
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Delete(int id)
@@ -220,20 +228,38 @@ namespace HealthPairAPI.Controllers
         /// 500 if server error
         ///  </returns>
         /// </summary>
+        [AllowAnonymous]
         [HttpPost("authenticate")]
         [ProducesResponseType(typeof(Transfer_Patient), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Authenticate([FromBody]AuthenticateModel model)
         {
-            var user = await _patientRepository.GetPatientByEmailAsync(model.Email);
+            _logger.LogInformation($"Authenticating user");
+            Inner_Patient user;
+            try
+            {
+                user = await _patientRepository.GetPatientByEmailAsync(model.Email);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogCritical(ex.Message);
+                return BadRequest(new { message = "Email or password is incorrect" });
+            }
 
             if (user == null)
+            {
+                _logger.LogInformation($"User is null.");
                 return BadRequest(new { message = "Email or password is incorrect" });
+            }
 
             if(user.PatientPassword != model.Password)
+            {
+                _logger.LogInformation($"Passwords do not match.");
                 return BadRequest(new { message = "Email or password is incorrect" });
+            }
 
+            _logger.LogInformation($"Creating token.");
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor

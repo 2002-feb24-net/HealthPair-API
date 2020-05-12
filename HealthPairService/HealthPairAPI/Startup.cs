@@ -35,7 +35,7 @@ namespace HealthPairAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
-            // services.AddApplicationInsightsTelemetry();
+            services.AddApplicationInsightsTelemetry();
 
             // switch between database providers using runtime configuration
             // (the existing migrations are SQL-Server-specific, but the model itself is not)
@@ -78,8 +78,8 @@ namespace HealthPairAPI
                             "https://healthpair.2002.revaturelabs.com",
                             "http://healthpair.2002.revaturelabs.com")
                         .AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .AllowCredentials());
+                        .AllowAnyHeader());
+                        //.AllowCredentials());
             });
 
 
@@ -98,10 +98,11 @@ namespace HealthPairAPI
             services.Configure<AppSettings>(appSettingsSection);
 
             // configure jwt authentication
-            var AppSettings = appSettingsSection.Get<AppSettings>();
-            var key = Encoding.ASCII.GetBytes(AppSettings.Secret);
+            var appSettings = appSettingsSection.Get<AppSettings>();
+            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
             services.AddAuthentication(x =>
             {
+                x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
@@ -113,7 +114,7 @@ namespace HealthPairAPI
                     {
                         var UserService = context.HttpContext.RequestServices.GetRequiredService<IPatientRepository>();
                         var userId = int.Parse(context.Principal.Identity.Name);
-                        var user = UserService.GetPatientByIdAsync(userId);
+                        var user = UserService.GetPatientByIdAsync(userId).Result;
                         if (user == null)
                         {
                             // return unauthorized if user no longer exists
@@ -124,7 +125,7 @@ namespace HealthPairAPI
 
                 };
                 x.RequireHttpsMetadata = false;
-                x.SaveToken = true;
+                x.SaveToken = false;
                 x.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
@@ -145,6 +146,8 @@ namespace HealthPairAPI
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseAuthentication();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -155,14 +158,11 @@ namespace HealthPairAPI
                 app.UseHttpsRedirection();
             }
 
-            //app.UseSerilogRequestLogging();
-
             app.UseRouting();
+            app.UseAuthorization();
 
             app.UseCors(CorsPolicyName);
 
-            app.UseAuthorization();
-            app.UseAuthentication();
 
             app.UseSwagger();
 

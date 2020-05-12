@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HealthPairDataAccess.Migrations
 {
     [DbContext(typeof(HealthPairContext))]
-    [Migration("20200512163610_migrationname")]
+    [Migration("20200512180753_migrationname")]
     partial class migrationname
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -383,6 +383,120 @@ namespace HealthPairDataAccess.Migrations
                         },
                         new
                         {
+                            IPId = 46,
+                            InsuranceId = 1,
+                            ProviderId = 4
+                        },
+                        new
+                        {
+                            IPId = 47,
+                            InsuranceId = 1,
+                            ProviderId = 5
+                        },
+                        new
+                        {
+                            IPId = 49,
+                            InsuranceId = 1,
+                            ProviderId = 7
+                        },
+                        new
+                        {
+                            IPId = 52,
+                            InsuranceId = 1,
+                            ProviderId = 10
+                        },
+                        new
+                        {
+                            IPId = 53,
+                            InsuranceId = 1,
+                            ProviderId = 11
+                        },
+                        new
+                        {
+                            IPId = 55,
+                            InsuranceId = 1,
+                            ProviderId = 13
+                        },
+                        new
+                        {
+                            IPId = 56,
+                            InsuranceId = 1,
+                            ProviderId = 14
+                        },
+                        new
+                        {
+                            IPId = 57,
+                            InsuranceId = 1,
+                            ProviderId = 15
+                        },
+                        new
+                        {
+                            IPId = 59,
+                            InsuranceId = 1,
+                            ProviderId = 17
+                        },
+                        new
+                        {
+                            IPId = 62,
+                            InsuranceId = 1,
+                            ProviderId = 20
+                        },
+                        new
+                        {
+                            IPId = 66,
+                            InsuranceId = 1,
+                            ProviderId = 24
+                        },
+                        new
+                        {
+                            IPId = 69,
+                            InsuranceId = 1,
+                            ProviderId = 27
+                        },
+                        new
+                        {
+                            IPId = 70,
+                            InsuranceId = 1,
+                            ProviderId = 28
+                        },
+                        new
+                        {
+                            IPId = 73,
+                            InsuranceId = 1,
+                            ProviderId = 31
+                        },
+                        new
+                        {
+                            IPId = 74,
+                            InsuranceId = 1,
+                            ProviderId = 32
+                        },
+                        new
+                        {
+                            IPId = 76,
+                            InsuranceId = 1,
+                            ProviderId = 34
+                        },
+                        new
+                        {
+                            IPId = 77,
+                            InsuranceId = 1,
+                            ProviderId = 35
+                        },
+                        new
+                        {
+                            IPId = 78,
+                            InsuranceId = 1,
+                            ProviderId = 36
+                        },
+                        new
+                        {
+                            IPId = 82,
+                            InsuranceId = 1,
+                            ProviderId = 40
+                        },
+                        new
+                        {
                             IPId = 4,
                             InsuranceId = 2,
                             ProviderId = 1
@@ -398,6 +512,108 @@ namespace HealthPairDataAccess.Migrations
                             IPId = 6,
                             InsuranceId = 2,
                             ProviderId = 3
+                        },
+                        new
+                        {
+                            IPId = 90,
+                            InsuranceId = 2,
+                            ProviderId = 8
+                        },
+                        new
+                        {
+                            IPId = 91,
+                            InsuranceId = 2,
+                            ProviderId = 9
+                        },
+                        new
+                        {
+                            IPId = 92,
+                            InsuranceId = 2,
+                            ProviderId = 10
+                        },
+                        new
+                        {
+                            IPId = 93,
+                            InsuranceId = 2,
+                            ProviderId = 11
+                        },
+                        new
+                        {
+                            IPId = 94,
+                            InsuranceId = 2,
+                            ProviderId = 12
+                        },
+                        new
+                        {
+                            IPId = 95,
+                            InsuranceId = 2,
+                            ProviderId = 13
+                        },
+                        new
+                        {
+                            IPId = 96,
+                            InsuranceId = 2,
+                            ProviderId = 14
+                        },
+                        new
+                        {
+                            IPId = 97,
+                            InsuranceId = 2,
+                            ProviderId = 15
+                        },
+                        new
+                        {
+                            IPId = 100,
+                            InsuranceId = 2,
+                            ProviderId = 18
+                        },
+                        new
+                        {
+                            IPId = 101,
+                            InsuranceId = 2,
+                            ProviderId = 19
+                        },
+                        new
+                        {
+                            IPId = 107,
+                            InsuranceId = 2,
+                            ProviderId = 25
+                        },
+                        new
+                        {
+                            IPId = 108,
+                            InsuranceId = 2,
+                            ProviderId = 26
+                        },
+                        new
+                        {
+                            IPId = 109,
+                            InsuranceId = 2,
+                            ProviderId = 27
+                        },
+                        new
+                        {
+                            IPId = 117,
+                            InsuranceId = 2,
+                            ProviderId = 35
+                        },
+                        new
+                        {
+                            IPId = 118,
+                            InsuranceId = 2,
+                            ProviderId = 36
+                        },
+                        new
+                        {
+                            IPId = 119,
+                            InsuranceId = 2,
+                            ProviderId = 37
+                        },
+                        new
+                        {
+                            IPId = 120,
+                            InsuranceId = 2,
+                            ProviderId = 38
                         },
                         new
                         {
@@ -542,120 +758,6 @@ namespace HealthPairDataAccess.Migrations
                             IPId = 45,
                             InsuranceId = 15,
                             ProviderId = 3
-                        },
-                        new
-                        {
-                            IPId = 46,
-                            InsuranceId = 1,
-                            ProviderId = 4
-                        },
-                        new
-                        {
-                            IPId = 47,
-                            InsuranceId = 1,
-                            ProviderId = 5
-                        },
-                        new
-                        {
-                            IPId = 49,
-                            InsuranceId = 1,
-                            ProviderId = 7
-                        },
-                        new
-                        {
-                            IPId = 52,
-                            InsuranceId = 1,
-                            ProviderId = 10
-                        },
-                        new
-                        {
-                            IPId = 53,
-                            InsuranceId = 1,
-                            ProviderId = 11
-                        },
-                        new
-                        {
-                            IPId = 55,
-                            InsuranceId = 1,
-                            ProviderId = 13
-                        },
-                        new
-                        {
-                            IPId = 56,
-                            InsuranceId = 1,
-                            ProviderId = 14
-                        },
-                        new
-                        {
-                            IPId = 57,
-                            InsuranceId = 1,
-                            ProviderId = 15
-                        },
-                        new
-                        {
-                            IPId = 59,
-                            InsuranceId = 1,
-                            ProviderId = 17
-                        },
-                        new
-                        {
-                            IPId = 62,
-                            InsuranceId = 1,
-                            ProviderId = 20
-                        },
-                        new
-                        {
-                            IPId = 66,
-                            InsuranceId = 1,
-                            ProviderId = 24
-                        },
-                        new
-                        {
-                            IPId = 69,
-                            InsuranceId = 1,
-                            ProviderId = 27
-                        },
-                        new
-                        {
-                            IPId = 70,
-                            InsuranceId = 1,
-                            ProviderId = 28
-                        },
-                        new
-                        {
-                            IPId = 73,
-                            InsuranceId = 1,
-                            ProviderId = 31
-                        },
-                        new
-                        {
-                            IPId = 74,
-                            InsuranceId = 1,
-                            ProviderId = 32
-                        },
-                        new
-                        {
-                            IPId = 76,
-                            InsuranceId = 1,
-                            ProviderId = 34
-                        },
-                        new
-                        {
-                            IPId = 77,
-                            InsuranceId = 1,
-                            ProviderId = 35
-                        },
-                        new
-                        {
-                            IPId = 78,
-                            InsuranceId = 1,
-                            ProviderId = 36
-                        },
-                        new
-                        {
-                            IPId = 82,
-                            InsuranceId = 1,
-                            ProviderId = 40
                         },
                         new
                         {
@@ -1261,6 +1363,24 @@ namespace HealthPairDataAccess.Migrations
                             ProviderFirstName = "Ki'Nir",
                             ProviderLastName = "Habadayah",
                             ProviderPhoneNumber = 4997874451L,
+                            SpecialtyId = 1
+                        },
+                        new
+                        {
+                            ProviderId = 44,
+                            FacilityId = 12,
+                            ProviderFirstName = "James",
+                            ProviderLastName = "Comey",
+                            ProviderPhoneNumber = 3261558779L,
+                            SpecialtyId = 1
+                        },
+                        new
+                        {
+                            ProviderId = 45,
+                            FacilityId = 1,
+                            ProviderFirstName = "Karina",
+                            ProviderLastName = "Silkya",
+                            ProviderPhoneNumber = 6674219116L,
                             SpecialtyId = 1
                         });
                 });
