@@ -121,6 +121,7 @@ namespace HealthPairDataAccess.Logic
                 PatientLastName = patient.PatientLastName,
                 PatientPhoneNumber = patient.PatientPhoneNumber,
                 PatientState = patient.PatientState,
+                PatientEmail = patient.PatientEmail,
                 InsuranceId = patient.Insurance.InsuranceId,
                 IsAdmin = patient.IsAdmin
             };
