@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HealthPairDataAccess.Migrations
 {
     [DbContext(typeof(HealthPairContext))]
-    [Migration("20200511214401_migrationname")]
+    [Migration("20200512163610_migrationname")]
     partial class migrationname
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -289,37 +289,37 @@ namespace HealthPairDataAccess.Migrations
                         new
                         {
                             InsuranceId = 3,
-                            InsuranceName = "UnitedHealth"
+                            InsuranceName = "Community"
                         },
                         new
                         {
                             InsuranceId = 4,
-                            InsuranceName = "Blue Cross Blue Shield Association"
+                            InsuranceName = "Molina"
                         },
                         new
                         {
                             InsuranceId = 5,
-                            InsuranceName = "Aetna"
+                            InsuranceName = "FirstCare"
                         },
                         new
                         {
                             InsuranceId = 6,
-                            InsuranceName = "Anthem Inc."
+                            InsuranceName = "Superior"
                         },
                         new
                         {
                             InsuranceId = 7,
-                            InsuranceName = "Kaiser Foundation"
+                            InsuranceName = "Christus"
                         },
                         new
                         {
                             InsuranceId = 8,
-                            InsuranceName = "HCSC"
+                            InsuranceName = "Celtic"
                         },
                         new
                         {
                             InsuranceId = 9,
-                            InsuranceName = "Centene"
+                            InsuranceName = "Sendero"
                         },
                         new
                         {
@@ -339,17 +339,17 @@ namespace HealthPairDataAccess.Migrations
                         new
                         {
                             InsuranceId = 13,
-                            InsuranceName = "Molina Healthcare Inc."
-                        },
-                        new
-                        {
-                            InsuranceId = 14,
                             InsuranceName = "Independence Health Group Inc."
                         },
                         new
                         {
-                            InsuranceId = 15,
+                            InsuranceId = 14,
                             InsuranceName = "Highmark Group"
+                        },
+                        new
+                        {
+                            InsuranceId = 15,
+                            InsuranceName = "None (Cash)"
                         });
                 });
 
@@ -557,27 +557,9 @@ namespace HealthPairDataAccess.Migrations
                         },
                         new
                         {
-                            IPId = 48,
-                            InsuranceId = 1,
-                            ProviderId = 6
-                        },
-                        new
-                        {
                             IPId = 49,
                             InsuranceId = 1,
                             ProviderId = 7
-                        },
-                        new
-                        {
-                            IPId = 50,
-                            InsuranceId = 1,
-                            ProviderId = 8
-                        },
-                        new
-                        {
-                            IPId = 51,
-                            InsuranceId = 1,
-                            ProviderId = 9
                         },
                         new
                         {
@@ -590,12 +572,6 @@ namespace HealthPairDataAccess.Migrations
                             IPId = 53,
                             InsuranceId = 1,
                             ProviderId = 11
-                        },
-                        new
-                        {
-                            IPId = 54,
-                            InsuranceId = 1,
-                            ProviderId = 12
                         },
                         new
                         {
@@ -617,27 +593,9 @@ namespace HealthPairDataAccess.Migrations
                         },
                         new
                         {
-                            IPId = 58,
-                            InsuranceId = 1,
-                            ProviderId = 16
-                        },
-                        new
-                        {
                             IPId = 59,
                             InsuranceId = 1,
                             ProviderId = 17
-                        },
-                        new
-                        {
-                            IPId = 60,
-                            InsuranceId = 1,
-                            ProviderId = 18
-                        },
-                        new
-                        {
-                            IPId = 61,
-                            InsuranceId = 1,
-                            ProviderId = 19
                         },
                         new
                         {
@@ -647,39 +605,9 @@ namespace HealthPairDataAccess.Migrations
                         },
                         new
                         {
-                            IPId = 63,
-                            InsuranceId = 1,
-                            ProviderId = 21
-                        },
-                        new
-                        {
-                            IPId = 64,
-                            InsuranceId = 1,
-                            ProviderId = 22
-                        },
-                        new
-                        {
-                            IPId = 65,
-                            InsuranceId = 1,
-                            ProviderId = 23
-                        },
-                        new
-                        {
                             IPId = 66,
                             InsuranceId = 1,
                             ProviderId = 24
-                        },
-                        new
-                        {
-                            IPId = 67,
-                            InsuranceId = 1,
-                            ProviderId = 25
-                        },
-                        new
-                        {
-                            IPId = 68,
-                            InsuranceId = 1,
-                            ProviderId = 26
                         },
                         new
                         {
@@ -695,18 +623,6 @@ namespace HealthPairDataAccess.Migrations
                         },
                         new
                         {
-                            IPId = 71,
-                            InsuranceId = 1,
-                            ProviderId = 29
-                        },
-                        new
-                        {
-                            IPId = 72,
-                            InsuranceId = 1,
-                            ProviderId = 30
-                        },
-                        new
-                        {
                             IPId = 73,
                             InsuranceId = 1,
                             ProviderId = 31
@@ -716,12 +632,6 @@ namespace HealthPairDataAccess.Migrations
                             IPId = 74,
                             InsuranceId = 1,
                             ProviderId = 32
-                        },
-                        new
-                        {
-                            IPId = 75,
-                            InsuranceId = 1,
-                            ProviderId = 33
                         },
                         new
                         {
@@ -743,27 +653,27 @@ namespace HealthPairDataAccess.Migrations
                         },
                         new
                         {
-                            IPId = 79,
-                            InsuranceId = 1,
-                            ProviderId = 37
-                        },
-                        new
-                        {
-                            IPId = 80,
-                            InsuranceId = 1,
-                            ProviderId = 38
-                        },
-                        new
-                        {
-                            IPId = 81,
-                            InsuranceId = 1,
-                            ProviderId = 39
-                        },
-                        new
-                        {
                             IPId = 82,
                             InsuranceId = 1,
                             ProviderId = 40
+                        },
+                        new
+                        {
+                            IPId = 83,
+                            InsuranceId = 1,
+                            ProviderId = 41
+                        },
+                        new
+                        {
+                            IPId = 84,
+                            InsuranceId = 1,
+                            ProviderId = 42
+                        },
+                        new
+                        {
+                            IPId = 85,
+                            InsuranceId = 1,
+                            ProviderId = 43
                         });
                 });
 
@@ -1325,6 +1235,33 @@ namespace HealthPairDataAccess.Migrations
                             ProviderLastName = "Dows",
                             ProviderPhoneNumber = 7618424391L,
                             SpecialtyId = 11
+                        },
+                        new
+                        {
+                            ProviderId = 41,
+                            FacilityId = 6,
+                            ProviderFirstName = "Lisa",
+                            ProviderLastName = "Simons",
+                            ProviderPhoneNumber = 5821908432L,
+                            SpecialtyId = 1
+                        },
+                        new
+                        {
+                            ProviderId = 42,
+                            FacilityId = 12,
+                            ProviderFirstName = "Leroy",
+                            ProviderLastName = "Gerkins",
+                            ProviderPhoneNumber = 2337452877L,
+                            SpecialtyId = 1
+                        },
+                        new
+                        {
+                            ProviderId = 43,
+                            FacilityId = 1,
+                            ProviderFirstName = "Ki'Nir",
+                            ProviderLastName = "Habadayah",
+                            ProviderPhoneNumber = 4997874451L,
+                            SpecialtyId = 1
                         });
                 });
 
@@ -1348,107 +1285,77 @@ namespace HealthPairDataAccess.Migrations
                         new
                         {
                             SpecialtyId = 1,
-                            Specialty = "Addiction Medicine"
+                            Specialty = "Ophthalmologist"
                         },
                         new
                         {
                             SpecialtyId = 2,
-                            Specialty = "Addiction Psychiatry"
+                            Specialty = "Dermatologist"
                         },
                         new
                         {
                             SpecialtyId = 3,
-                            Specialty = "Allergy & Immunology"
+                            Specialty = "Cardiologist"
                         },
                         new
                         {
                             SpecialtyId = 4,
-                            Specialty = "Alternative Medicine"
+                            Specialty = "Urologist"
                         },
                         new
                         {
                             SpecialtyId = 5,
-                            Specialty = "Anesthesiology"
+                            Specialty = "Gastroenterologist"
                         },
                         new
                         {
                             SpecialtyId = 6,
-                            Specialty = "Audiology - Hearing Health"
+                            Specialty = "Psychiatrist"
                         },
                         new
                         {
                             SpecialtyId = 7,
-                            Specialty = "Bariatric Medicine"
+                            Specialty = "Internist"
                         },
                         new
                         {
                             SpecialtyId = 8,
-                            Specialty = "Bariatric Surgery"
+                            Specialty = "Neurologist"
                         },
                         new
                         {
                             SpecialtyId = 9,
-                            Specialty = "Cancer Care"
+                            Specialty = "Endocrinologist"
                         },
                         new
                         {
                             SpecialtyId = 10,
-                            Specialty = "Cardiac Electrophysiology"
+                            Specialty = "Otolaryngologist"
                         },
                         new
                         {
                             SpecialtyId = 11,
-                            Specialty = "Cardiology"
+                            Specialty = "Orthopedist"
                         },
                         new
                         {
                             SpecialtyId = 12,
-                            Specialty = "Cardiothoracic Surgery"
+                            Specialty = "Pediatrician"
                         },
                         new
                         {
                             SpecialtyId = 13,
-                            Specialty = "Child & Adolescent Psychiatry"
+                            Specialty = "Anesthesiologist"
                         },
                         new
                         {
                             SpecialtyId = 14,
-                            Specialty = "Chiropractic Medicine"
+                            Specialty = "Pulmonologist"
                         },
                         new
                         {
                             SpecialtyId = 15,
-                            Specialty = "Colon & Rectal Surgery"
-                        },
-                        new
-                        {
-                            SpecialtyId = 16,
-                            Specialty = "Critical Care Medicine"
-                        },
-                        new
-                        {
-                            SpecialtyId = 17,
-                            Specialty = "Dentistry"
-                        },
-                        new
-                        {
-                            SpecialtyId = 18,
-                            Specialty = "Dermatology"
-                        },
-                        new
-                        {
-                            SpecialtyId = 19,
-                            Specialty = "Emergency Medicine"
-                        },
-                        new
-                        {
-                            SpecialtyId = 20,
-                            Specialty = "Endocrinology, Diabetes & Metabolism"
-                        },
-                        new
-                        {
-                            SpecialtyId = 70,
-                            Specialty = "Vascular Surgery"
+                            Specialty = "Proctologist"
                         });
                 });
 
