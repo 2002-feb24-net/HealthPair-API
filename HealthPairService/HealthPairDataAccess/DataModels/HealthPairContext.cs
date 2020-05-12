@@ -256,37 +256,37 @@ namespace HealthPairDataAccess.DataModels
                 new Data_Insurance()
                 {
                     InsuranceId = 3,
-                    InsuranceName = "UnitedHealth"
+                    InsuranceName = "Community"
                 },
                 new Data_Insurance()
                 {
                     InsuranceId = 4,
-                    InsuranceName = "Blue Cross Blue Shield Association"
+                    InsuranceName = "Molina"
                 },
                 new Data_Insurance()
                 {
                     InsuranceId = 5,
-                    InsuranceName = "Aetna"
+                    InsuranceName = "FirstCare"
                 },
                 new Data_Insurance()
                 {
                     InsuranceId = 6,
-                    InsuranceName = "Anthem Inc."
+                    InsuranceName = "Superior"
                 },
                 new Data_Insurance()
                 {
                     InsuranceId = 7,
-                    InsuranceName = "Kaiser Foundation"
+                    InsuranceName = "Christus"
                 },
                 new Data_Insurance()
                 {
                     InsuranceId = 8,
-                    InsuranceName = "HCSC"
+                    InsuranceName = "Celtic"
                 },
                 new Data_Insurance()
                 {
                     InsuranceId = 9,
-                    InsuranceName = "Centene"
+                    InsuranceName = "Sendero"
                 },
                 new Data_Insurance()
                 {
@@ -306,17 +306,17 @@ namespace HealthPairDataAccess.DataModels
                 new Data_Insurance()
                 {
                     InsuranceId = 13,
-                    InsuranceName = "Molina Healthcare Inc."
-                },
-                new Data_Insurance()
-                {
-                    InsuranceId = 14,
                     InsuranceName = "Independence Health Group Inc."
                 },
                 new Data_Insurance()
                 {
-                    InsuranceId = 15,
+                    InsuranceId = 14,
                     InsuranceName = "Highmark Group"
+                },
+                new Data_Insurance()
+                {
+                    InsuranceId = 15,
+                    InsuranceName = "None (Cash)"
                 }
             );
 
@@ -828,6 +828,24 @@ namespace HealthPairDataAccess.DataModels
                     IPId = 82,
                     InsuranceId = 1,
                     ProviderId = 40
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 83,
+                    InsuranceId = 1,
+                    ProviderId = 41
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 84,
+                    InsuranceId = 1,
+                    ProviderId = 42
+                },
+                new Data_InsuranceProvider()
+                {
+                    IPId = 85,
+                    InsuranceId = 1,
+                    ProviderId = 43
                 }
             );
 
@@ -1344,6 +1362,33 @@ namespace HealthPairDataAccess.DataModels
                     ProviderFirstName = "Gearalt",
                     ProviderLastName = "Dows",
                     ProviderPhoneNumber = 7618424391
+                },
+                new Data_Provider
+                {
+                    ProviderId = 41,
+                    FacilityId = 6,
+                    SpecialtyId = 1,
+                    ProviderFirstName = "Lisa",
+                    ProviderLastName = "Simons",
+                    ProviderPhoneNumber = 5821908432
+                },
+                new Data_Provider
+                {
+                    ProviderId = 42,
+                    FacilityId = 12,
+                    SpecialtyId = 1,
+                    ProviderFirstName = "Leroy",
+                    ProviderLastName = "Gerkins",
+                    ProviderPhoneNumber = 2337452877
+                },
+                new Data_Provider
+                {
+                    ProviderId = 43,
+                    FacilityId = 1,
+                    SpecialtyId = 1,
+                    ProviderFirstName = "Ki'Nir",
+                    ProviderLastName = "Habadayah",
+                    ProviderPhoneNumber = 4997874451
                 }
             );
 
@@ -1359,107 +1404,77 @@ namespace HealthPairDataAccess.DataModels
                 new Data_Specialty()
                 {
                     SpecialtyId = 1,
-                    Specialty = "Addiction Medicine"
+                    Specialty = "Ophthalmologist"
                 },
                 new Data_Specialty()
                 {
                     SpecialtyId = 2,
-                    Specialty = "Addiction Psychiatry"
+                    Specialty = "Dermatologist"
                 },
                 new Data_Specialty()
                 {
                     SpecialtyId = 3,
-                    Specialty = "Allergy & Immunology"
+                    Specialty = "Cardiologist"
                 },
                 new Data_Specialty()
                 {
                     SpecialtyId = 4,
-                    Specialty = "Alternative Medicine"
+                    Specialty = "Urologist"
                 },
                 new Data_Specialty()
                 {
                     SpecialtyId = 5,
-                    Specialty = "Anesthesiology"
+                    Specialty = "Gastroenterologist"
                 },
                 new Data_Specialty()
                 {
                     SpecialtyId = 6,
-                    Specialty = "Audiology - Hearing Health"
+                    Specialty = "Psychiatrist"
                 },
                 new Data_Specialty()
                 {
                     SpecialtyId = 7,
-                    Specialty = "Bariatric Medicine"
+                    Specialty = "Internist"
                 },
                 new Data_Specialty()
                 {
                     SpecialtyId = 8,
-                    Specialty = "Bariatric Surgery"
+                    Specialty = "Neurologist"
                 },
                 new Data_Specialty()
                 {
                     SpecialtyId = 9,
-                    Specialty = "Cancer Care"
+                    Specialty = "Endocrinologist"
                 },
                 new Data_Specialty()
                 {
                     SpecialtyId = 10,
-                    Specialty = "Cardiac Electrophysiology"
+                    Specialty = "Otolaryngologist"
                 },
                 new Data_Specialty()
                 {
                     SpecialtyId = 11,
-                    Specialty = "Cardiology"
+                    Specialty = "Orthopedist"
                 },
                 new Data_Specialty()
                 {
                     SpecialtyId = 12,
-                    Specialty = "Cardiothoracic Surgery"
+                    Specialty = "Pediatrician"
                 },
                 new Data_Specialty()
                 {
                     SpecialtyId = 13,
-                    Specialty = "Child & Adolescent Psychiatry"
+                    Specialty = "Anesthesiologist"
                 },
                 new Data_Specialty()
                 {
                     SpecialtyId = 14,
-                    Specialty = "Chiropractic Medicine"
+                    Specialty = "Pulmonologist"
                 },
                 new Data_Specialty()
                 {
                     SpecialtyId = 15,
-                    Specialty = "Colon & Rectal Surgery"
-                },
-                new Data_Specialty()
-                {
-                    SpecialtyId = 16,
-                    Specialty = "Critical Care Medicine"
-                },
-                new Data_Specialty()
-                {
-                    SpecialtyId = 17,
-                    Specialty = "Dentistry"
-                },
-                new Data_Specialty()
-                {
-                    SpecialtyId = 18,
-                    Specialty = "Dermatology"
-                },
-                new Data_Specialty()
-                {
-                    SpecialtyId = 19,
-                    Specialty = "Emergency Medicine"
-                },
-                new Data_Specialty()
-                {
-                    SpecialtyId = 20,
-                    Specialty = "Endocrinology, Diabetes & Metabolism"
-                },
-                new Data_Specialty()
-                {
-                    SpecialtyId = 70,
-                    Specialty = "Vascular Surgery"
+                    Specialty = "Proctologist"
                 }
             );
         }

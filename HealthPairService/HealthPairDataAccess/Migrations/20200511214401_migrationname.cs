@@ -300,8 +300,7 @@ namespace HealthPairDataAccess.Migrations
                     { 35, 7, "Phillip", "Sharville", 9529171778L, 7 },
                     { 30, 15, "Neala", "Cianelli", 4504879923L, 15 },
                     { 12, 12, "Mauricio", "Rowes", 3259067361L, 8 },
-                    { 34, 15, "Gardie", "Drakes", 6921919943L, 15 },
-                    { 41, 8, "Karol", "Fenech", 5874706348, 8 },
+                    { 34, 15, "Gardie", "Drakes", 6921919943L, 15 }
                 });
 
             migrationBuilder.InsertData(
