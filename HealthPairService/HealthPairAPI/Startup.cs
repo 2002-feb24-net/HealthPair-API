@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Diagnostics.CodeAnalysis;
 
 using HealthPairDataAccess.DataModels;
 using HealthPairDataAccess.Repositories;
@@ -21,6 +22,7 @@ using HealthPairAPI.Helpers;
 [assembly: ApiController]
 namespace HealthPairAPI
 {
+    [ExcludeFromCodeCoverage]
     public class Startup
     {
         private const string CorsPolicyName = "AllowConfiguredOrigins";

@@ -8,9 +8,11 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using HealthPairDataAccess.DataModels;
+using System.Diagnostics.CodeAnalysis;
 
 namespace HealthPairAPI
 {
+    [ExcludeFromCodeCoverage]
     public class Program
     {
         public static void Main(string[] args)
