@@ -78,7 +78,7 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(typeof(Transfer_Specialty), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<Transfer_Specialty>> GetById(int id)
+        public async Task<ActionResult<Transfer_Specialty>> GetByIdAsync(int id)
         {
             _logger.LogInformation($"Retrieving specialties with id {id}.");
             if (await _specialtyRepository.GetSpecialtyByIdAsync(id) is Inner_Specialty specialty)
@@ -102,7 +102,7 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(typeof(Transfer_Specialty), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Post(Transfer_Specialty specialty)
+        public async Task<IActionResult> PostAsync(Transfer_Specialty specialty)
         {
             _logger.LogInformation($"Adding new specialty.");
             Inner_Specialty transformedSpecialty = new Inner_Specialty
@@ -128,7 +128,7 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Put(int id, [FromBody] Transfer_Specialty specialty)
+        public async Task<IActionResult> PutAsync(int id, [FromBody] Transfer_Specialty specialty)
         {
             _logger.LogInformation($"Editing specialty with id {id}.");
             var entity = await _specialtyRepository.GetSpecialtyByIdAsync(id);
@@ -155,7 +155,7 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> DeleteAsync(int id)
         {
             _logger.LogInformation($"Deleting specialty with id {id}.");
             if (await _specialtyRepository.GetSpecialtyByIdAsync(id) is Inner_Specialty specialty)

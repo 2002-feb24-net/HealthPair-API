@@ -80,7 +80,7 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(typeof(Transfer_Facility), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<Transfer_Facility>> GetById(int id)
+        public async Task<ActionResult<Transfer_Facility>> GetByIdAsync(int id)
         {
             _logger.LogInformation($"Retrieving facilities with id {id}.");
             if (await _facilityRepository.GetFacilityByIdAsync(id) is Inner_Facility facility)
@@ -104,7 +104,7 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(typeof(Transfer_Facility), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Post(Transfer_Facility facility)
+        public async Task<IActionResult> PostAsync(Transfer_Facility facility)
         {
             try
             {
@@ -122,7 +122,7 @@ namespace HealthPairAPI.Controllers
                     FacilityPhoneNumber = facility.FacilityPhoneNumber,
                 };
                 await _facilityRepository.AddFacilityAsync(transformedFacility);
-                return CreatedAtAction(nameof(GetById), new { id = facility.FacilityId }, facility);
+                return CreatedAtAction(nameof(GetByIdAsync), new { id = facility.FacilityId }, facility);
             }
             catch (Exception ex)
             {
@@ -143,7 +143,7 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Put(int id, [FromBody] Transfer_Facility facility)
+        public async Task<IActionResult> PutAsync(int id, [FromBody] Transfer_Facility facility)
         {
             _logger.LogInformation($"Editing facility with id {id}.");
             var entity = await _facilityRepository.GetFacilityByIdAsync(id);
@@ -175,7 +175,7 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> DeleteAsync(int id)
         {
             _logger.LogInformation($"Deleting facility with id {id}.");
             if (await _facilityRepository.GetFacilityByIdAsync(id) is Inner_Facility facility)

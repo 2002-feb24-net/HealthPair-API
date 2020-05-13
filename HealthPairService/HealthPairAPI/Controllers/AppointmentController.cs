@@ -95,7 +95,7 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<Transfer_Appointment>> GetById(int id)
+        public async Task<ActionResult<Transfer_Appointment>> GetByIdAsync(int id)
         {
             _logger.LogInformation($"Retrieving appointments with id {id}.");
             if (await _appointmentRepository.GetAppointmentByIdAsync(id) is Inner_Appointment appointment)
@@ -122,7 +122,7 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Post(Transfer_Appointment appointment)
+        public async Task<IActionResult> PostAsync(Transfer_Appointment appointment)
         {
             try
             {
@@ -137,7 +137,7 @@ namespace HealthPairAPI.Controllers
                     Provider = await _providerRepository.GetProviderByIdAsync(appointment.ProviderId)
                 };
                 await _appointmentRepository.AddAppointmentAsync(transformedAppointment);
-                return CreatedAtAction(nameof(GetById), new { id = appointment.AppointmentId }, appointment);
+                return CreatedAtAction(nameof(GetByIdAsync), new { id = appointment.AppointmentId }, appointment);
             }
             catch (Exception e)
             {
@@ -160,7 +160,7 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Put(int id, [FromBody] Transfer_Appointment appointment)
+        public async Task<IActionResult> PutAsync(int id, [FromBody] Transfer_Appointment appointment)
         {
             _logger.LogInformation($"Editing appointment with id {id}.");
             var entity = await _appointmentRepository.GetAppointmentByIdAsync(id);
@@ -189,7 +189,7 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> DeleteAsync(int id)
         {
             _logger.LogInformation($"Deleting appointment with id {id}.");
             if (await _appointmentRepository.GetAppointmentByIdAsync(id) is Inner_Appointment appointment)

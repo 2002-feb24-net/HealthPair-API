@@ -84,7 +84,7 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(typeof(Transfer_Insurance), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<Transfer_Insurance>> GetById(int id)
+        public async Task<ActionResult<Transfer_Insurance>> GetByIdAsync(int id)
         {
             _logger.LogInformation($"Retrieving insurances with id {id}.");
             if (await _insuranceRepository.GetInsuranceByIdAsync(id) is Inner_Insurance insurance)
@@ -108,7 +108,7 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(typeof(Transfer_Insurance), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Post(Transfer_Insurance insurance)
+        public async Task<IActionResult> PostAsync(Transfer_Insurance insurance)
         {
             _logger.LogInformation($"Adding new insurance.");
             Inner_Insurance transformedInsurance = new Inner_Insurance
@@ -117,7 +117,7 @@ namespace HealthPairAPI.Controllers
                 InsuranceName = insurance.InsuranceName
             };
             await _insuranceRepository.AddInsuranceAsync(transformedInsurance);
-            return CreatedAtAction(nameof(GetById), new { id = insurance.InsuranceId }, insurance);
+            return CreatedAtAction(nameof(GetByIdAsync), new { id = insurance.InsuranceId }, insurance);
         }
 
         // PUT: api/insurance/5
@@ -133,7 +133,7 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Put(int id, [FromBody] Transfer_Insurance insurance)
+        public async Task<IActionResult> PutAsync(int id, [FromBody] Transfer_Insurance insurance)
         {
             _logger.LogInformation($"Editing insurance with id {id}.");
             var entity = await _insuranceRepository.GetInsuranceByIdAsync(id);
@@ -160,7 +160,7 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> DeleteAsync(int id)
         {
             _logger.LogInformation($"Deleting insurance with id {id}.");
             if (await _insuranceRepository.GetInsuranceByIdAsync(id) is Inner_Insurance insurance)
