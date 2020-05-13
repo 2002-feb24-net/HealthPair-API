@@ -244,8 +244,7 @@ namespace HealthPairDataAccess.Migrations
                 values: new object[,]
                 {
                     { 3, 5, "5919 Peg Street", new DateTime(2002, 10, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), "Houston", "lsiward2@cnbc.com", "Zach", "Zellner", "Password3", 2452488647L, "TX", 77092 },
-                    { 4, 7, "10810 Spring Cypress Rd.", new DateTime(1999, 1, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), "Tomball", "mindgs3@microsoft.com", "Don", "Robbins", "Password4", 8823701130L, "TX", 77375 },
-                    { 5, 7, "10810 Spring Cypress Rd.", new DateTime(1999, 1, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), "Tomball", "mindgs3@microsoft.com", "Don", "Robbins", "Password4", 8823701130L, "TX", 77375 }
+                    { 4, 7, "10810 Spring Cypress Rd.", new DateTime(1999, 1, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), "Tomball", "mindgs3@microsoft.com", "Don", "Robbins", "Password4", 8823701130L, "TX", 77375 }
                 });
 
             migrationBuilder.InsertData(
