@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System;
 
 namespace HealthPairDataAccess.Repositories
 {
@@ -15,7 +16,7 @@ namespace HealthPairDataAccess.Repositories
 
         public ProvInsurRepository(HealthPairContext context)
         {
-            _context = context;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
         public async Task<int[]> GetInsuranceCoverage(int id)

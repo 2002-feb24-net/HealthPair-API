@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System;
 
 namespace HealthPairDataAccess.Repositories
 {
@@ -16,7 +17,7 @@ namespace HealthPairDataAccess.Repositories
 
         public PatientRepository(HealthPairContext context)
         {
-            _context = context;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
         /// <summary> Fetches all patients related to input string. Null fetches all.

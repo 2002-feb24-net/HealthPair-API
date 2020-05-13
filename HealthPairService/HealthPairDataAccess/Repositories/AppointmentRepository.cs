@@ -80,12 +80,19 @@ namespace HealthPairDataAccess.Repositories
         /// </summary>
         public async Task<Inner_Appointment> AddAppointmentAsync(Inner_Appointment appointment)
         {
-            var newAppointment = Mapper.UnMapAppointment(appointment);
-            newAppointment.AppointmentId = GetAppointmentAsync().Result.Max(p => p.AppointmentId)+1;
-            _context.Appointments.Add(newAppointment);
-            await Save();
-
-            return Mapper.MapAppointment(newAppointment);
+            try
+            {
+                var newAppointment = Mapper.UnMapAppointment(appointment);
+                newAppointment.AppointmentId = GetAppointmentAsync().Result.Max(p => p.AppointmentId)+1;
+                _context.Appointments.Add(newAppointment);
+                await Save();
+                return Mapper.MapAppointment(newAppointment);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogCritical(ex.Message);
+                throw ex;
+            }
         }
 
         /// <summary> Updates one existing appointment in the database
@@ -123,7 +130,16 @@ namespace HealthPairDataAccess.Repositories
         /// </summary>
         private async Task Save()
         {
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogCritical("Error Saving!");
+                _logger.LogCritical(ex.Message);
+                throw ex;
+            }
         }
     }
 }
