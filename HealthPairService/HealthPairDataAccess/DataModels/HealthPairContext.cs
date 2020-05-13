@@ -1176,21 +1176,6 @@ namespace HealthPairDataAccess.DataModels
                 },
                 new Data_Patient()
                 {
-                    PatientId = 5,
-                    InsuranceId = 7,
-                    PatientFirstName = "Don",
-                    PatientLastName = "Robbins",
-                    PatientPassword = "Password4",
-                    PatientAddress1 = "10810 Spring Cypress Rd.",
-                    PatientCity = "Tomball", PatientState = "TX",
-                    PatientZipcode = 77375,
-                    PatientBirthDay = new DateTime(1999, 1, 9),
-                    PatientPhoneNumber = 8823701130,
-                    PatientEmail = "mindgs3@microsoft.com",
-                    IsAdmin = false
-                },
-                new Data_Patient()
-                {
                     PatientId = 6,
                     InsuranceId = 1,
                     PatientFirstName = "TestPatientFirstName",
