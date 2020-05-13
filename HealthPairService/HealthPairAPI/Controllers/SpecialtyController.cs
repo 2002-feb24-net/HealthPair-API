@@ -112,7 +112,7 @@ namespace HealthPairAPI.Controllers
 
             };
             await _specialtyRepository.AddSpecialtyAsync(transformedSpecialty);
-            return CreatedAtAction(nameof(GetById), new { id = specialty.SpecialtyId }, specialty);
+            return CreatedAtAction(nameof(GetByIdAsync), new { id = specialty.SpecialtyId }, specialty);
         }
 
         // PUT: api/specialty/5
