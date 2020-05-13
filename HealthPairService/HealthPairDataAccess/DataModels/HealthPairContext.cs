@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.CodeAnalysis;
 
 namespace HealthPairDataAccess.DataModels
 {
+    [ExcludeFromCodeCoverage]
     public class HealthPairContext : DbContext
     {
         public HealthPairContext(DbContextOptions<HealthPairContext> options) : base(options)

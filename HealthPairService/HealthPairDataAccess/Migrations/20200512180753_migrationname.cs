@@ -1,9 +1,11 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+using System.Diagnostics.CodeAnalysis;
 
 namespace HealthPairDataAccess.Migrations
 {
+    [ExcludeFromCodeCoverage]
     public partial class migrationname : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
