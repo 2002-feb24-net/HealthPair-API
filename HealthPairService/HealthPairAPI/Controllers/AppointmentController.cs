@@ -122,7 +122,7 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult Post(Transfer_Appointment appointment)
+        public async Task<IActionResult> Post(Transfer_Appointment appointment)
         {
             try
             {
@@ -133,10 +133,10 @@ namespace HealthPairAPI.Controllers
                 {
                     AppointmentId = 0,
                     AppointmentDate = (DateTime)appointment.AppointmentDate,
-                    Patient = (_patientRepository.GetPatientByIdAsync(appointment.PatientId)).Result,
-                    Provider = (_providerRepository.GetProviderByIdAsync(appointment.ProviderId)).Result
+                    Patient = await _patientRepository.GetPatientByIdAsync(appointment.PatientId),
+                    Provider = await _providerRepository.GetProviderByIdAsync(appointment.ProviderId)
                 };
-                _appointmentRepository.AddAppointmentAsync(transformedAppointment);
+                await _appointmentRepository.AddAppointmentAsync(transformedAppointment);
                 return CreatedAtAction(nameof(GetById), new { id = appointment.AppointmentId }, appointment);
             }
             catch (Exception e)

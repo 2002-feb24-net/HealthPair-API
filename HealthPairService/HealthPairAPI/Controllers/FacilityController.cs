@@ -104,7 +104,7 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(typeof(Transfer_Facility), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult Post(Transfer_Facility facility)
+        public async Task<IActionResult> Post(Transfer_Facility facility)
         {
             try
             {
@@ -121,7 +121,7 @@ namespace HealthPairAPI.Controllers
                     FacilityZipcode = facility.FacilityZipcode,
                     FacilityPhoneNumber = facility.FacilityPhoneNumber,
                 };
-                _facilityRepository.AddFacilityAsync(transformedFacility);
+                await _facilityRepository.AddFacilityAsync(transformedFacility);
                 return CreatedAtAction(nameof(GetById), new { id = facility.FacilityId }, facility);
             }
             catch (Exception ex)

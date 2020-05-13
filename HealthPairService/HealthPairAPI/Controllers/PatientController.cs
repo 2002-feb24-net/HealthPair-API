@@ -123,7 +123,7 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(typeof(Transfer_Patient), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult Post(Transfer_Patient patient)
+        public async Task<IActionResult> Post(Transfer_Patient patient)
         {
             try
             {
@@ -143,9 +143,9 @@ namespace HealthPairAPI.Controllers
                     PatientBirthDay = patient.PatientBirthDay,
                     PatientPhoneNumber = patient.PatientPhoneNumber,
                     PatientEmail = patient.PatientEmail,
-                    Insurance = (_insuranceRepository.GetInsuranceByIdAsync(patient.InsuranceId)).Result
+                    Insurance = await _insuranceRepository.GetInsuranceByIdAsync(patient.InsuranceId)
                 };
-                _patientRepository.AddPatientAsync(transformedPatient);
+                await _patientRepository.AddPatientAsync(transformedPatient);
                 return CreatedAtAction(nameof(GetById), new { id = patient.PatientId }, patient);
             }
             catch(Exception ex)
@@ -185,7 +185,7 @@ namespace HealthPairAPI.Controllers
                 entity.PatientPhoneNumber = patient.PatientPhoneNumber;
                 entity.PatientState = patient.PatientState;
                 entity.PatientZipcode = patient.PatientZipcode;
-                entity.Insurance = _insuranceRepository.GetInsuranceByIdAsync(patient.InsuranceId).Result;
+                entity.Insurance = await _insuranceRepository.GetInsuranceByIdAsync(patient.InsuranceId);
                 await _patientRepository.UpdatePatientAsync(entity);
                 return NoContent();
             }

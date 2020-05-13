@@ -114,7 +114,7 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(typeof(Transfer_Provider), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult Post(Transfer_Provider provider)
+        public async Task<IActionResult> Post(Transfer_Provider provider)
         {
 
             try
@@ -128,10 +128,10 @@ namespace HealthPairAPI.Controllers
                     ProviderFirstName = provider.ProviderFirstName,
                     ProviderLastName = provider.ProviderLastName,
                     ProviderPhoneNumber = provider.ProviderPhoneNumber,
-                    Facility = (_facilityRepository.GetFacilityByIdAsync(provider.FacilityId)).Result,
-                    Specialty = (_specialtyRepository.GetSpecialtyByIdAsync(provider.FacilityId)).Result
+                    Facility = await _facilityRepository.GetFacilityByIdAsync(provider.FacilityId),
+                    Specialty = await _specialtyRepository.GetSpecialtyByIdAsync(provider.FacilityId)
                 };
-                _providerRepository.AddProviderAsync(transformedProvider);
+                await _providerRepository.AddProviderAsync(transformedProvider);
                 return CreatedAtAction(nameof(GetById), new { id = provider.ProviderId }, provider);
             }
             catch (Exception ex)

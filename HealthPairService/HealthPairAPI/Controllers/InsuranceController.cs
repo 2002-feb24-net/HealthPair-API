@@ -108,7 +108,7 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(typeof(Transfer_Insurance), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult Post(Transfer_Insurance insurance)
+        public async Task<IActionResult> Post(Transfer_Insurance insurance)
         {
             _logger.LogInformation($"Adding new insurance.");
             Inner_Insurance transformedInsurance = new Inner_Insurance
@@ -116,7 +116,7 @@ namespace HealthPairAPI.Controllers
                 InsuranceId = 0,
                 InsuranceName = insurance.InsuranceName
             };
-            _insuranceRepository.AddInsuranceAsync(transformedInsurance);
+            await _insuranceRepository.AddInsuranceAsync(transformedInsurance);
             return CreatedAtAction(nameof(GetById), new { id = insurance.InsuranceId }, insurance);
         }
 

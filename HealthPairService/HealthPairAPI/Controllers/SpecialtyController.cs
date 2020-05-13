@@ -102,7 +102,7 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(typeof(Transfer_Specialty), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult Post(Transfer_Specialty specialty)
+        public async Task<IActionResult> Post(Transfer_Specialty specialty)
         {
             _logger.LogInformation($"Adding new specialty.");
             Inner_Specialty transformedSpecialty = new Inner_Specialty
@@ -111,7 +111,7 @@ namespace HealthPairAPI.Controllers
                 Specialty = specialty.Specialty
 
             };
-            _specialtyRepository.AddSpecialtyAsync(transformedSpecialty);
+            await _specialtyRepository.AddSpecialtyAsync(transformedSpecialty);
             return CreatedAtAction(nameof(GetById), new { id = specialty.SpecialtyId }, specialty);
         }
 
