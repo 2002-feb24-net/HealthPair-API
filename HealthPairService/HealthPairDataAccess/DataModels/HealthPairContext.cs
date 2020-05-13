@@ -135,7 +135,7 @@ namespace HealthPairDataAccess.DataModels
                 new Data_Facility()
                 {
                 FacilityId = 6,
-                FacilityName = "Woodlands Specialty Hospita",
+                FacilityName = "Woodlands Specialty Hospital",
                 FacilityAddress1 = "25440 I 45 North",
                 FacilityCity = "The Woodlands",
                 FacilityState = "TX",

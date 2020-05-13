@@ -55,7 +55,8 @@ namespace HealthPairAPI
 
             if (whichDb.Contains("PostgreSql", StringComparison.InvariantCultureIgnoreCase))
             {
-                services.AddDbContext<HealthPairContext>(options => options.UseNpgsql(connection),ServiceLifetime.Transient);
+                //services.AddDbContext<HealthPairContext>(options => options.UseNpgsql(connection),ServiceLifetime.Transient);
+                services.AddDbContext<HealthPairContext>(options => options.UseNpgsql(connection));
             }
             else
             {
