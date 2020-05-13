@@ -10,11 +10,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
 
 namespace HealthPairAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [ExcludeFromCodeCoverage]
     public class ProviderController : ControllerBase
     {
         private readonly IProviderRepository _providerRepository;

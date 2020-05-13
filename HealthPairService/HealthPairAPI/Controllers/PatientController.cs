@@ -12,6 +12,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Authorization;
+using System.Diagnostics.CodeAnalysis;
 
 using HealthPairDomain.InnerModels;
 using HealthPairDomain.Interfaces;
@@ -23,6 +24,7 @@ namespace HealthPairAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [ExcludeFromCodeCoverage]
     public class PatientController : ControllerBase
     {
         private readonly IPatientRepository _patientRepository;
