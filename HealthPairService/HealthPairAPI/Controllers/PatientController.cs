@@ -128,7 +128,7 @@ namespace HealthPairAPI.Controllers
             try
             {
                 _logger.LogInformation($"Adding new patient.");
-                var checkPatient = new CheckerClass(_patientRepository);
+                var checkPatient = new CheckerClass(_patientRepository,_insuranceRepository);
                 checkPatient.CheckPatient(patient);
                 Inner_Patient transformedPatient = new Inner_Patient
                 {

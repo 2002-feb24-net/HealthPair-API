@@ -79,7 +79,7 @@ namespace HealthPairDataAccess.Repositories
         public async Task<Inner_Patient> AddPatientAsync(Inner_Patient patient)
         {
             var newPatient = Mapper.UnMapPatient(patient);
-            newPatient.PatientId = GetPatientsAsync().Result.Max(p => p.PatientId)+1;
+            newPatient.PatientId = (await GetPatientsAsync()).Max(p => p.PatientId)+1;
             _context.Patients.Add(newPatient);
             await Save();
 

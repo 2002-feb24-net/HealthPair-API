@@ -66,7 +66,7 @@ namespace HealthPairDataAccess.Repositories
         public async Task<Inner_Specialty> AddSpecialtyAsync(Inner_Specialty specialty)
         {
             var newSpecialty = Mapper.UnMapSpecialty(specialty);
-            newSpecialty.SpecialtyId = GetSpecialtyAsync().Result.Max(p => p.SpecialtyId)+1;
+            newSpecialty.SpecialtyId = (await GetSpecialtyAsync()).Max(p => p.SpecialtyId)+1;
             _context.Specialties.Add(newSpecialty);
             await Save();
 
