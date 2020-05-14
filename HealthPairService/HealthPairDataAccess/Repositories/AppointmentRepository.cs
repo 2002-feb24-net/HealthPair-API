@@ -83,7 +83,7 @@ namespace HealthPairDataAccess.Repositories
             try
             {
                 var newAppointment = Mapper.UnMapAppointment(appointment);
-                newAppointment.AppointmentId = GetAppointmentAsync().Result.Max(p => p.AppointmentId)+1;
+                newAppointment.AppointmentId = (await GetAppointmentAsync()).Max(p => p.AppointmentId)+1;
                 _context.Appointments.Add(newAppointment);
                 await Save();
                 return Mapper.MapAppointment(newAppointment);

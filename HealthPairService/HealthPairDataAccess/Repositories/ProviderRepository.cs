@@ -74,7 +74,7 @@ namespace HealthPairDataAccess.Repositories
         public async Task<Inner_Provider> AddProviderAsync(Inner_Provider provider)
         {
             var newProvider = Mapper.UnMapProvider(provider);
-            newProvider.ProviderId = GetProvidersAsync().Result.Max(p => p.ProviderId)+1;
+            newProvider.ProviderId = (await GetProvidersAsync()).Max(p => p.ProviderId)+1;
             _context.Providers.Add(newProvider);
             await Save();
 

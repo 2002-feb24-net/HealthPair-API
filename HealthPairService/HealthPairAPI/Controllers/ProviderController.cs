@@ -88,7 +88,7 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(typeof(Transfer_Provider), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<Transfer_Provider>> GetById(int id)
+        public async Task<ActionResult<Transfer_Provider>> GetByIdAsync(int id)
         {
             _logger.LogInformation($"Retrieving providers with id {id}.");
             if (await _providerRepository.GetProviderByIdAsync(id) is Inner_Provider provider)
@@ -114,7 +114,7 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(typeof(Transfer_Provider), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Post(Transfer_Provider provider)
+        public async Task<IActionResult> PostAsync(Transfer_Provider provider)
         {
 
             try
@@ -132,7 +132,7 @@ namespace HealthPairAPI.Controllers
                     Specialty = await _specialtyRepository.GetSpecialtyByIdAsync(provider.FacilityId)
                 };
                 await _providerRepository.AddProviderAsync(transformedProvider);
-                return CreatedAtAction(nameof(GetById), new { id = provider.ProviderId }, provider);
+                return CreatedAtAction(nameof(GetByIdAsync), new { id = provider.ProviderId }, provider);
             }
             catch (Exception ex)
             {
@@ -153,7 +153,7 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Put(int id, [FromBody] Transfer_Provider provider)
+        public async Task<IActionResult> PutAsync(int id, [FromBody] Transfer_Provider provider)
         {
             _logger.LogInformation($"Editing provider with id {id}.");
             var entity = await _providerRepository.GetProviderByIdAsync(id);
@@ -182,7 +182,7 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> DeleteAsync(int id)
         {
             _logger.LogInformation($"Deleting provider with id {id}.");
             if (await _providerRepository.GetProviderByIdAsync(id) is Inner_Provider provider)

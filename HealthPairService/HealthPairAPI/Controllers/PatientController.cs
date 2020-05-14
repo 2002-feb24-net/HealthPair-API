@@ -95,7 +95,7 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<Transfer_Patient>> GetById(int id)
+        public async Task<ActionResult<Transfer_Patient>> GetByIdAsync(int id)
         {
             var currentUser = HttpContext.User;
             _logger.LogInformation($"Retrieving patients with id {id}.");
@@ -123,12 +123,12 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(typeof(Transfer_Patient), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Post(Transfer_Patient patient)
+        public async Task<IActionResult> PostAsync(Transfer_Patient patient)
         {
             try
             {
                 _logger.LogInformation($"Adding new patient.");
-                var checkPatient = new CheckerClass(_patientRepository);
+                var checkPatient = new CheckerClass(_patientRepository,_insuranceRepository);
                 checkPatient.CheckPatient(patient);
                 Inner_Patient transformedPatient = new Inner_Patient
                 {
@@ -146,11 +146,11 @@ namespace HealthPairAPI.Controllers
                     Insurance = await _insuranceRepository.GetInsuranceByIdAsync(patient.InsuranceId)
                 };
                 await _patientRepository.AddPatientAsync(transformedPatient);
-                return CreatedAtAction(nameof(GetById), new { id = patient.PatientId }, patient);
+                return CreatedAtAction(nameof(GetByIdAsync), new { id = patient.PatientId }, patient);
             }
             catch(Exception ex)
             {
-             return BadRequest(ex.Message);
+                return BadRequest(ex.Message);
             }
         }
 
@@ -170,7 +170,7 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Put(int id, [FromBody] Transfer_Patient patient)
+        public async Task<IActionResult> PutAsync(int id, [FromBody] Transfer_Patient patient)
         {
             _logger.LogInformation($"Editing patient with id {id}.");
             var entity = await _patientRepository.GetPatientByIdAsync(id);
@@ -209,7 +209,7 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> DeleteAsync(int id)
         {
             _logger.LogInformation($"Deleting patient with id {id}.");
             if (await _patientRepository.GetPatientByIdAsync(id) is Inner_Patient patient)
@@ -235,7 +235,7 @@ namespace HealthPairAPI.Controllers
         [ProducesResponseType(typeof(Transfer_Patient), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Authenticate([FromBody]AuthenticateModel model)
+        public async Task<IActionResult> AuthenticateAsync([FromBody]AuthenticateModel model)
         {
             _logger.LogInformation($"Authenticating user");
             Inner_Patient user;
