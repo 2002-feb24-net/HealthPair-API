@@ -7,5 +7,8 @@ using Xunit;
 
 namespace HealthPairDataAccess.Tests.Repositories
 {
+    public class DataAccessMapperTest
+    {
 
+    }
 }
